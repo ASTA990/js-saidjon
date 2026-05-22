@@ -1,0 +1,197 @@
+//* ===============================
+//*      JS IF / ELSE MAVZUSI
+//* ===============================
+
+//! 1. Voyaga yetgan yoki yetmaganligini aniqlash
+//? Foydalanuvchi yosh kiritsin
+//^ Agar yosh 18 dan katta yoki teng bo‘lsa
+//^ "Siz voyaga yetgansiz" chiqsin
+//^ Aks holda "Siz voyaga yetmagansiz" chiqsin
+
+// let yosh = 12;
+
+// if (yosh >= 18) {
+//   console.log("Siz voyaga yetgansiz");
+// } else {
+//   console.log("Siz voyaga yetmagansiz");
+// }
+
+//! 2. Son juft yoki toqligini aniqlash
+//? Foydalanuvchi son kiritsin
+//^ Agar son juft bo‘lsa
+//^ "Siz juft son kiritdingiz" chiqsin
+//^ Aks holda "Siz toq son kiritdingiz" chiqsin
+
+// let son = 132;
+
+// if (son % 2 === 0) {
+//   console.log("Siz juft son kiritdingiz");
+// } else {
+//   console.log("Siz toq son kiritdingiz");
+// }
+
+//! 3. O‘quvchi maktabni tugatganmi?
+//? Foydalanuvchi sinf kiritsin
+//^ Agar sinf 11 dan katta bo‘lsa
+//^ "Siz maktabni tugatgansiz" chiqsin
+//^ Aks holda "Siz hali o‘quvchisiz" chiqsin
+
+// let sinf = 3;
+
+// if (sinf > 11) {
+//   console.log("Siz maktabni tugatgansiz");
+// } else {
+//   console.log("Siz hali o‘quvchisiz");
+// }
+
+//! 4. Havo haroratini aniqlash
+//? Foydalanuvchi harorat kiritsin
+//^ Agar harorat 30 yoki undan katta bo‘lsa
+//^ "Bugun havo juda issiq" chiqsin
+//^ Aks holda "Bugun havo yaxshi" chiqsin
+
+// let daraja = 40;
+
+// if (daraja >= 30) {
+//   console.log("Bugun havo juda issiq");
+// } else {
+//   console.log("Bugun havo yaxshi");
+// }
+
+//! 5. Musbat, manfiy yoki nol son
+//? Foydalanuvchi son kiritsin
+//^ Agar son musbat bo‘lsa
+//^ "Siz musbat son kiritdingiz"
+//^ Agar 0 bo‘lsa
+//^ "Siz nol sonini kiritdingiz"
+//^ Aks holda
+//^ "Siz manfiy son kiritdingiz"
+
+// let son = -1;
+
+// if (son > 0) {
+//   console.log("Siz musbat son kiritdingiz");
+// } else if (son === 0) {
+//   console.log("Siz nol sonini kiritdingiz");
+// } else {
+//   console.log("Siz manfiy son kiritdingiz");
+// }
+
+//! 6. Parolni tekshirish
+//? Foydalanuvchi parol kiritsin
+//^ Agar parol "qweqwe" bo‘lsa
+//^ "Tizim ochildi" chiqsin
+//^ Aks holda "Parol xato" chiqsin
+
+// let parol = "qweqwe";
+
+// if (parol === "qweqwe") {
+//   console.log("Tizim ochildi");
+// } else {
+//   console.log("Parol xato");
+// }
+
+//* ===============================
+//*        JS AMALIYOTLAR
+//* ===============================
+
+//TODO: 7. Bahoni aniqlash
+//? Ball kiriting
+//^ Agar ball 70 yoki undan katta bo‘lsa
+//^ "Siz imtihondan o'tdingiz"
+//^ Aks holda "Siz yiqildingiz"
+// alert("Diqqat savolga to'g'ri javob bering!")
+// let ball = prompt("Ball kiriting:")
+// if (ball < 70) {
+//     console.log("Siz imtihondan yiqildingiz")
+// } else {
+//     console.log("Siz imtihondan o'tdingiz")
+// }
+
+
+//TODO: 8. Son 100 dan katta yoki kichik
+//? Son kiriting
+//^ Agar son 100 dan katta bo‘lsa
+//^ "Katta son"
+//^ Aks holda "Kichik son"
+
+//TODO: 9. Login tekshirish
+//? Login kiriting
+//^ Agar login "admin" bo‘lsa
+//^ "Xush kelibsiz admin"
+//^ Aks holda "Login noto‘g‘ri"
+
+//TODO: 10. Ikki sondan kattasini topish
+//? Ikkita son berilgan
+//^ Kattasini chiqaring
+//^ Agar teng bo‘lsa
+//^ "Sonlar teng"
+
+// let son1 = 20;
+// let son2 = 50;
+
+//TODO: 11. Harorat tekshirish
+//? Harorat kiriting
+//^ 0 dan kichik → "Havo juda sovuq"
+//^ 0–20 oralig‘i → "Havo salqin"
+//^ 20 dan katta → "Havo issiq"
+
+//TODO: 12. Pul yetadimi?
+//? Pul miqdorini kiriting
+//^ Agar pul 50000 yoki undan ko‘p bo‘lsa
+//^ "Sotib olishingiz mumkin"
+//^ Aks holda "Pul yetarli emas"
+
+//TODO: 13. Son 3 va 5 ga bo‘linadimi?
+//? Son kiriting
+//^ Agar son 3 ga ham,
+//^ 5 ga ham bo‘linsa
+//^ "3 va 5 ga bo‘linadi"
+//^ Aks holda "Bo‘linmaydi"
+
+//TODO: 14. Yosh kategoriyasi
+//? Yosh kiriting
+//^ 0–6 → "Bola"
+//^ 7–17 → "O‘quvchi"
+//^ 18+ → "Katta odam"
+
+//TODO: 15. Login + parol tekshirish
+//? Login va parol kiriting
+//^ login === "admin"
+//^ parol === "12345"
+//^ To‘g‘ri bo‘lsa
+//^ "Tizimga xush kelibsiz"
+//^ Aks holda
+//^ "Login yoki parol xato"
+
+//TODO: 16. 3 ta sondan kattasini topish
+//? 3 ta son berilgan
+//^ Eng katta sonni chiqaring
+
+// let a = 15;
+// let b = 80;
+// let c = 45;
+
+//^ Natija: 80
+
+//9.
+
+// let login = prompt("Login kiriting:")
+// if (login == "admin") {
+//     console.log("xush kelibsiz admin kalla")
+// } else {
+//     console.log("getay jilli")
+// }
+
+//10.
+// alert("Ikkita son kiriting")
+// let son1 = prompt("Birinchi sonni kiriting:")
+// let son2 = prompt("Ikkinchi sonni kiriting")
+
+// if (son1 > son2) {
+//     console.log ("birinchi soningiz katta")
+// } else if (son1 < son2) {
+//     console.log("ikkinchi soningiz katta")
+// } else {
+//     console.log("sonlaringiz teng")
+// }
