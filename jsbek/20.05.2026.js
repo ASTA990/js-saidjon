@@ -35,5 +35,5 @@
 // } else {
 //     console.log("man sanga yanga novvi dadim")
 // }
-
-let son2 = 21
+    
+let
