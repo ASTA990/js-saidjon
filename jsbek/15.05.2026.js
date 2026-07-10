@@ -27,3 +27,4 @@
 // } else {
 //     console.log("Siz testdan yiqildingiz")
 // }
+
