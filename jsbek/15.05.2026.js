@@ -28,3 +28,7 @@
 //     console.log("Siz testdan yiqildingiz")
 // }
 
+console.log('shohjahon'.padEnd(11, '69'))           
+console.log('elmurod'.padStart(9, 'IT'))            
+console.log('saidjon'.padStart(9, 'ok'))
+console.log('xamida'.padEnd(7, 'yiban'))
