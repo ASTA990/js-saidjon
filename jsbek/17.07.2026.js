@@ -25,7 +25,7 @@
 //     let qoldiq = son % 10;
 //     teskari = teskari * 10 + qoldiq;
 //     son = Math.floor(son / 10);
-// }               
+// }
 
 // console.log("Teskari son:", teskari);
 
@@ -40,3 +40,24 @@
 // }
 
 // console.log("Musbat sonlar yig'indisi:", yigindi);
+
+// 24. 10 dan 1 gacha bo'lgan sonlarni teskari tartibda for yordamida chiqaring
+// for (let i = 10; i >= 1; i--) {
+//     console.log(i);
+// }
+//  25. Berilgan massivda 5 raqami bor yoki yo'qligini for va if yordamida tekshiring
+// let arr = [2, 8, 5, 10, 3];
+// let bor = false;
+
+// for (let i = 0; i < arr.length; i++) {
+//   if (arr[i] === 5) {
+//     bor = true;
+//     break;
+//   }
+// }
+
+// if (bor) {
+//   console.log("Massivda 5 bor.");
+// } else {
+//   console.log("Massivda 5 yo'q.");
+// }   
