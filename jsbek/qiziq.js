@@ -1,0 +1,1 @@
+const openBtn = dacument.querySelector(".open-btn")
