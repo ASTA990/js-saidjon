@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shiftwave</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #aaa;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #111a2c;
+        }
+
+        .page {
+            width: 768px;
+            min-height: 100vh;
+            margin: auto;
+            background: white;
+            overflow: hidden;
+        }
+
+        header {
+            height: 91px;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            color: #7043cf;
+            font-size: 25px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            margin-left: 25px;
+        }
+
+        nav a {
+            color: #354158;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 11px;
+            margin-left: auto;
+        }
+
+        button {
+            border: none;
+            height: 37px;
+            border-radius: 4px;
+            padding: 0 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login {
+            background: #fafafa;
+            color: #354158;
+        }
+
+        .create {
+            background: #8050d8;
+            color: white;
+        }
+
+        main {
+            text-align: center;
+            padding-top: 44px;
+        }
+
+        h1 {
+            font-size: 34px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            color: #7043cf;
+        }
+
+        main p {
+            margin-top: 21px;
+            color: #53627b;
+            font-size: 19px;
+            line-height: 1.45;
+        }
+
+        .stores {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .store {
+            width: 111px;
+            height: 37px;
+            background: #050505;
+            color: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .store small,
+        .store strong {
+            display: block;
+            text-align: left;
+        }
+
+        .store small {
+            font-size: 7px;
+        }
+
+        .store strong {
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .apple {
+            font-size: 18px;
+        }
+
+        .google {
+            width: 124px;
+        }
+
+        .google b {
+            color: #36c5f0;
+            font-size: 18px;
+        }
+
+        .phone {
+            width: 375px;
+            height: 500px;
+            margin: 44px auto 0;
+            overflow: hidden;
+        }
+
+        .phone img {
+            width: 375px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .page {
+                width: 100%;
+            }
+
+            nav {
+                display: none;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            main p {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+
+            main p br {
+                display: none;
+            }
+
+            .phone {
+                max-width: 92%;
+            }
+
+            .phone img {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <header>
+
+        <div class="logo">
+            <div class="logo-icon">◉</div>
+            Shiftwave
+        </div>
+
+        <nav>
+            <a href="#">Products⌄</a>
+            <a href="#">Features⌄</a>
+            <a href="#">Pricing</a>
+            <a href="#">•••</a>
+        </nav>
+
+        <div class="buttons">
+            <button class="login">Login</button>
+            <button class="create">Create account</button>
+        </div>
+
+    </header>
+
+    <main>
+
+        <h1>
+            Enhance Service with
+            <span>AI-Powered</span><br>
+            <span>Customer Support Software</span>
+        </h1>
+
+        <p>
+            Effortlessly handle 70% of customer inquiries using our comprehensive<br>
+            platform. Leverage AI, automation, and omnichannel support for a smooth,<br>
+            efficient customer experience.
+        </p>
+
+        <div class="stores">
+
+            <div class="store">
+                <b class="apple">●</b>
+                <div>
+                    <small>Download on the</small>
+                    <strong>App Store</strong>
+                </div>
+            </div>
+
+            <div class="store google">
+                <b>▶</b>
+                <div>
+                    <small>GET IT ON</small>
+                    <strong>Google Play</strong>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="phone">
+            <img src="../rasmlar/228b250067e0c53ad50b43d9cc131c7242e9a19c (2).jpg   " alt="Phone">
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+    // Create account
+    document.querySelector(".create").onclick = function () {
+        alert("Create account clicked!");
+    };
+
+    // Login                
+    document.querySelector(".login").onclick = function () {
+        alert("Login clicked!");
+    };
+
+    // App Store / Google Play
+    document.querySelectorAll(".store").forEach(function (store) {
+        store.onclick = function () {
+            alert("Store button clicked!");
+        };
+    });
+</script>
+
+</body>
+</html>
