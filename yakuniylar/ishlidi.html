@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CarHut</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+      }
+
+      /* ================= HERO ================= */
+      .hero {
+        height: 800px;
+        position: relative;
+        color: #fff;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(70, 80, 95, 0.48), rgba(30, 40, 55, 0.48)),
+          url("../rasmlar/5527067eca25aa7aee38985bbf7c9e6cc48514dc.jpg");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .navbar {
+        height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 38px;
+      }
+
+      .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .logo-car {
+        font-size: 25px;
+      }
+
+      .phone {
+        font-size: 9px;
+        opacity: 0.9;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .menu a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 10px;
+        transition: opacity 0.2s;
+      }
+
+      .menu a:hover {
+        opacity: 0.7;
+      }
+
+      .signin {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .submit {
+        color: #fff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        padding: 9px 18px;
+        font-size: 9px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+
+      .submit:hover {
+        background: #fff;
+        color: #222;
+      }
+
+      .hero-text {
+        position: absolute;
+        left: 135px;
+        top: 270px;
+      }
+
+      .price {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 16px;
+      }
+
+      .car-name {
+        font-size: 42px;
+        line-height: 1.25;
+        font-weight: 500;
+      }
+
+      .info-card {
+        position: absolute;
+        right: 38px;
+        top: 110px;
+        width: 172px;
+        height: 455px;
+        padding: 35px 30px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .info {
+        margin-bottom: 17px;
+      }
+
+      .icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .label {
+        font-size: 9px;
+        opacity: 0.75;
+      }
+
+      .value {
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
+      .learn {
+        position: absolute;
+        left: 30px;
+        bottom: 75px;
+        width: 112px;
+        height: 70px;
+        border: none;
+        border-radius: 10px;
+        background: #fff;
+        color: #222;
+        font-size: 9px;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .learn:hover {
+        background: #e9e9e9;
+      }
+
+      .slider {
+        position: absolute;
+        left: 145px;
+        bottom: 35px;
+        display: flex;
+        gap: 7px;
+      }
+
+      .slider span {
+        width: 18px;
+        height: 3px;
+        background: #fff;
+        border-radius: 5px;
+      }
+
+      /* ================= EXPLORE ================= */
+      .explore {
+        width: 100%;
+        padding: 115px 0 0 260px;
+      }
+
+      .vehicles {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      /* ================= VEHICLES SECTION ================= */
+      .qatorlar {
+        width: 100%;
+        max-width: 1660px;
+        margin: 0 auto;
+        padding: 0 40px;
+        overflow: hidden;
+      }
+
+      .tepa {
+        display: flex;
+        gap: 40px;
+        height: 40px;
+        align-items: center;
+        margin: 15px 0 20px;
+      }
+
+      .tepa a {
+        color: #000;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .tepa a:hover {
+        text-decoration: underline;
+      }
+
+      /* ---------- Carousel ---------- */
+      .past {
+        width: 100%;
+        overflow: hidden;
+        padding: 10px 0;
+      }
+
+      .carusel-track {
+        display: flex;
+        gap: 30px;
+        transition: transform 0.4s ease;
+        will-change: transform;
+      }
+
+      .cartabek1 {
+        flex: 0 0 685px;
+        height: 274px;
+        border-radius: 16px;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+
+      .rasmbek img {
+        width: 319px;
+        height: 274px;
+        border-radius: 16px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .ong {
+        width: 366px;
+        height: 274px;
+        border-radius: 16px;
+        background-color: #373948;
+        padding: 25px 30px;
+      }
+
+      .cross h4 {
+        color: #fff;
+        font-size: 16px;
+      }
+
+      .d5 {
+        margin-top: 4px;
+      }
+
+      .d5 h6 {
+        color: #fff;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      .miles,
+      .miles2,
+      .miles3 {
+        width: 78px;
+        height: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 6px;
+      }
+
+      .miles span,
+      .miles2 span,
+      .miles3 span {
+        font-size: 15px;
+        color: #fff;
+      }
+
+      .pulbek1 {
+        width: 310px;
+        margin-top: 31px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .dollar h3 {
+        color: #fff;
+        font-size: 18px;
+      }
+
+      .view {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .view h5 {
+        font-size: 12px;
+        font-weight: 500;
+      }
+
+      /* ---------- Carousel buttons ---------- */
+      .otkazish {
+        width: 145px;
+        height: 40px;
+        margin-top: 30px;
+        display: flex;
+        gap: 25px;
+      }
+
+      .a1,
+      .a2 {
+        width: 60px;
+        height: 40px;
+        border: 1px solid #e9e9e9;
+        border-radius: 30px;
+        background-color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      .a1:hover,
+      .a2:hover {
+        background-color: #f5f5f5;
+        transform: scale(1.05);
+      }
+
+      .orta {
+        width: 1800px;
+        height: 489.5px;
+        margin-top: 105px;
+        background-color: #F9FBFC;
+      }
+      /* ================= RESPONSIVE ================= */
+      @media (max-width: 1200px) {
+        .hero-text {
+          left: 60px;
+        }
+        .explore {
+          padding-left: 60px;
+        }
+        .cartabek1 {
+          flex: 0 0 600px;
+        }
+        .rasmbek img {
+          width: 280px;
+        }
+        .ong {
+          width: 320px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu {
+          display: none;
+        }
+        .hero {
+          height: 600px;
+        }
+        .hero-text {
+          left: 30px;
+          top: 200px;
+        }
+        .car-name {
+          font-size: 28px;
+        }
+        .info-card {
+          display: none;
+        }
+        .explore {
+          padding: 60px 20px 0;
+        }
+        .qatorlar {
+          padding: 0 20px;
+        }
+        .cartabek1 {
+          flex: 0 0 90%;
+          flex-direction: column;
+          height: auto;
+        }
+        .rasmbek img {
+          width: 100%;
+          height: 200px;
+        }
+        .ong {
+          width: 100%;
+          height: auto;
+        }
+        .pulbek1 {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="navbar">
+        <div class="logo-box">
+          <span class="logo-car">
+            <i class="fa-solid fa-car" style="color: #fff"></i>
+          </span>
+          <div class="logo">CarHut</div>
+          <div class="phone">
+            <span>+75 123 456 789</span>
+          </div>
+        </div>
+
+        <div class="menu">
+          <a href="#">Home</a>
+          <a href="#">Listings</a>
+          <a href="#">Blog</a>
+          <a href="#">Pages</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#" class="signin">Sign in</a>
+          <button class="submit">Submit Listing</button>
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <div class="price">$165,000</div>
+        <div class="car-name">
+          Ranger Black –<br />
+          2021
+        </div>
+      </div>
+
+      <div class="info-card">
+        <div class="info">
+          <div class="icon">
+            <i class="fa-solid fa-truck" style="color: #f4efef"></i>
+          </div>
+          <div class="label">Fuel Type</div>
+          <div class="value">Petrol</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i class="fa-solid fa-sun" style="color: #fdfbfb"></i>
+          </div>
+          <div class="label">Mileage</div>
+          <div class="value">250 Miles</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i
+              class="fa-solid fa-arrow-up-from-bracket"
+              style="color: #fbfafa"
+            ></i>
+          </div>
+          <div class="label">Transmission</div>
+          <div class="value">Manual</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i class="fa-regular fa-calendar" style="color: #fcfbfb"></i>
+          </div>
+          <div class="label">Year</div>
+          <div class="value">2021</div>
+        </div>
+
+        <button class="learn">Learn More</button>
+      </div>
+
+      <div class="slider">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ================= EXPLORE ================= -->
+    <div class="explore">
+      <div class="vehicles">
+        <h1>Explore All Vehicles</h1>
+      </div>
+    </div>
+
+    <!-- ================= VEHICLES ================= -->
+    <div class="qatorlar">
+      <div class="tepa">
+        <a href="#">In Stock</a>
+        <a href="#">New Cars</a>
+        <a href="#">Used Cars</a>
+      </div>
+
+      <div class="past">
+        <div class="carusel-track" id="track">
+          <!-- Card 1 -->
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="../rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                alt="T-Cross"
+              />
+            </div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
+              </div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
+              </div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
+              </div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="../rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                alt="T-Cross"
+              />
+            </div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
+              </div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
+              </div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
+              </div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="../rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                alt="T-Cross"
+              />
+            </div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
+              </div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
+              </div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
+              </div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 (qo'shimcha) -->
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="../rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                alt="T-Cross"
+              />
+            </div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
+              </div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
+              </div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
+              </div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="otkazish">
+        <button class="a1" id="prevBtn">
+          <i class="fa-solid fa-angle-left" style="color: #000"></i>
+        </button>
+        <button class="a2" id="nextBtn">
+          <i class="fa-solid fa-angle-right" style="color: #000"></i>
+        </button>
+      </div>
+    </div>
+
+
+
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+    <!-- ====================================================================================================== -->
+
+
+
+    <div class="orta">
+      
+    </div>
+
+
+
+
+
+
+
+    <!-- ================= SCRIPT ================= -->
+    <script>
+      const track = document.getElementById("track");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      // Kartalarni to'g'ri tanlash
+      const cards = document.querySelectorAll(".cartabek1");
+      const totalCards = cards.length;
+
+      let currentIndex = 0;
+
+      // Har bir qadamda nechta karta ko'rinishini hisoblash
+      function getVisibleCards() {
+        const containerWidth = track.parentElement.offsetWidth;
+        const cardWidth = cards[0].offsetWidth + 30; // 30 = gap
+        return Math.max(1, Math.floor(containerWidth / cardWidth));
+      }
+
+      // Maksimal indeksni hisoblash
+      function getMaxIndex() {
+        return Math.max(0, totalCards - getVisibleCards());
+      }
+
+      // Carouselni yangilash
+      function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth + 30; // karta + gap
+        const moveAmount = -currentIndex * cardWidth;
+        track.style.transform = `translateX(${moveAmount}px)`;
+
+        // Tugmalarni holatini yangilash
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+        prevBtn.style.opacity = currentIndex === 0 ? 0.4 : 1;
+        nextBtn.style.opacity = currentIndex >= getMaxIndex() ? 0.4 : 1;
+      }
+
+      // Keyingi
+      nextBtn.addEventListener("click", () => {
+        if (currentIndex < getMaxIndex()) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+
+      // Oldingi
+      prevBtn.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+
+      // Oyna o'lchami o'zgarganda qayta hisoblash
+      window.addEventListener("resize", () => {
+        if (currentIndex > getMaxIndex()) {
+          currentIndex = getMaxIndex();
+        }
+        updateCarousel();
+      });
+
+      // Boshlang'ich holat
+      updateCarousel();
+    </script>
+  </body>
+</html>
