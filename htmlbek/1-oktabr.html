@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ustozimga — 1 Oktabr</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #070b1f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ===== BACKGROUND ===== */
+
+        .background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 20%, #5036b850, transparent 30%),
+                radial-gradient(circle at 80% 80%, #00c6ff35, transparent 30%),
+                #070b1f;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            animation: float 8s infinite alternate ease-in-out;
+        }
+
+        .orb1 {
+            width: 250px;
+            height: 250px;
+            background: #7c3aed;
+            top: 5%;
+            left: -5%;
+        }
+
+        .orb2 {
+            width: 300px;
+            height: 300px;
+            background: #06b6d4;
+            bottom: -10%;
+            right: -5%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from {
+                transform: translate(0, 0);
+            }
+            to {
+                transform: translate(70px, 50px);
+            }
+        }
+
+        /* ===== NAVBAR ===== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(15px);
+            background: rgba(7, 11, 31, .55);
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #a78bfa;
+        }
+
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 25px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #a78bfa;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 70px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(167,139,250,.13);
+            border: 1px solid rgba(167,139,250,.3);
+            color: #c4b5fd;
+            margin-bottom: 25px;
+            animation: fadeDown 1s ease;
+        }
+
+        h1 {
+            font-size: clamp(45px, 8vw, 95px);
+            line-height: 1;
+            font-weight: 900;
+            margin-bottom: 25px;
+            background: linear-gradient(
+                90deg,
+                #fff,
+                #c4b5fd,
+                #67e8f9,
+                #fff
+            );
+            background-size: 300%;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradient 5s infinite linear;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0%;
+            }
+
+            100% {
+                background-position: 300%;
+            }
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 35px;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            padding: 15px 28px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            margin: 7px;
+            transition: .3s;
+        }
+
+        .primary {
+            color: white;
+            background: linear-gradient(135deg, #7c3aed, #06b6d4);
+            box-shadow: 0 10px 30px #7c3aed55;
+        }
+
+        .secondary {
+            color: white;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.15);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+        }
+
+        /* ===== COUNTDOWN ===== */
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 55px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            min-width: 100px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255,255,255,.07);
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .time-box strong {
+            display: block;
+            font-size: 35px;
+            color: #fff;
+        }
+
+        .time-box span {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ===== SECTION ===== */
+
+        section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            color: #a78bfa;
+        }
+
+        /* ===== CARDS ===== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .card {
+            padding: 35px 25px;
+            text-align: center;
+            border-radius: 25px;
+            background: rgba(255,255,255,.055);
+            border: 1px solid rgba(255,255,255,.1);
+            backdrop-filter: blur(15px);
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-12px);
+            border-color: #a78bfa77;
+            box-shadow: 0 20px 50px #0005;
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #94a3b8;
+            line-height: 1.7;
+        }
+
+        /* ===== LETTER ===== */
+
+        .letter-wrapper {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .letter {
+            position: relative;
+            padding: 55px;
+            border-radius: 30px;
+            background: linear-gradient(
+                135deg,
+                rgba(124,58,237,.15),
+                rgba(6,182,212,.1)
+            );
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 30px 80px #0005;
+            text-align: center;
+        }
+
+        .letter::before {
+            content: "❝";
+            position: absolute;
+            top: 5px;
+            left: 25px;
+            font-size: 100px;
+            color: #a78bfa33;
+        }
+
+        .letter p {
+            font-size: 20px;
+            line-height: 2;
+            color: #e2e8f0;
+        }
+
+        .signature {
+            margin-top: 30px;
+            color: #c4b5fd;
+            font-weight: 700;
+        }
+
+        /* ===== FOOTER ===== */
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #64748b;
+            border-top: 1px solid rgba(255,255,255,.07);
+        }
+
+        footer span {
+            color: #c4b5fd;
+        }
+
+        /* ===== MODAL ===== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,.75);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-box {
+            max-width: 600px;
+            width: 100%;
+            padding: 45px;
+            text-align: center;
+            border-radius: 30px;
+            background: #111936;
+            border: 1px solid rgba(255,255,255,.12);
+            animation: pop .5s ease;
+        }
+
+        .modal-box h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .modal-box p {
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-size: 18px;
+        }
+
+        .close {
+            margin-top: 25px;
+        }
+
+        @keyframes pop {
+            from {
+                opacity: 0;
+                transform: scale(.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== FALLING PARTICLES ===== */
+
+        .particle {
+            position: fixed;
+            top: -30px;
+            pointer-events: none;
+            z-index: 50;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media(max-width: 800px) {
+
+            nav {
+                padding: 15px 5%;
+            }
+
+            nav .links {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .letter {
+                padding: 35px 22px;
+            }
+
+            .letter p {
+                font-size: 17px;
+            }
+
+            .time-box {
+                min-width: 75px;
+                padding: 15px 10px;
+            }
+
+            .time-box strong {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+    </div>
+
+    <!-- NAVBAR -->
+
+    <nav>
+        <div class="logo">
+            USTOZ<span>IM</span> 🎓
+        </div>
+
+        <div class="links">
+            <a href="#home">Bosh sahifa</a>
+            <a href="#about">Minnatdorchilik</a>
+            <a href="#letter">Tabrik</a>
+        </div>
+    </nav>
+
+
+    <!-- HERO -->
+
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    🎓 1 OKTABR • USTOZ VA MURABBIYLAR KUNI
+                </div>
+
+                <h1>
+                    Aziz Ustozim!
+                </h1>
+
+                <p class="subtitle">
+                    Siz bergan bilim, tarbiya va mehr bizning kelajagimiz
+                    uchun eng katta sovg'adir. Bugungi kuningiz muborak bo'lsin!
+                </p>
+
+                <div class="buttons">
+                    <button class="btn primary" onclick="openLetter()">
+                        💌 Tabrikni ochish
+                    </button>
+
+                    <button class="btn secondary" onclick="scrollToLetter()">
+                        ↓ Tabriknoma
+                    </button>
+                </div>
+
+                <!-- COUNTDOWN -->
+
+                <div class="countdown">
+
+                    <div class="time-box">
+                        <strong id="days">00</strong>
+                        <span>KUN</span>
+                    </div>
+
+                    <div class="time-box">
+                        <strong id="hours">00</strong>
+                        <span>SOAT</span>
+                    </div>
+
+                    <div class="time-box">
+                        <strong id="minutes">00</strong>
+                        <span>DAQIQA</span>
+                    </div>
+
+                    <div class="time-box">
+                        <strong id="seconds">00</strong>
+                        <span>SONIYA</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <h2 class="section-title">
+                Sizga <span>rahmat</span>, ustoz! ❤️
+            </h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="icon">📚</div>
+
+                    <h3>Bilim</h3>
+
+                    <p>
+                        Bizga bergan har bir bilimingiz kelajak sari
+                        tashlangan muhim qadamdir.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">🌱</div>
+
+                    <h3>Tarbiya</h3>
+
+                    <p>
+                        Siz faqat fan o‘rgatmaysiz, balki hayot yo‘lida
+                        to‘g‘ri yo‘l tanlashni ham o‘rgatasiz.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="icon">⭐</div>
+
+                    <h3>Ilhom</h3>
+
+                    <p>
+                        Sizning ishonchingiz bizni yanada katta
+                        maqsadlar sari intilishga undaydi.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LETTER -->
+
+        <section id="letter">
+
+            <h2 class="section-title">
+                Ustozimga <span>tilaklar</span> 💐
+            </h2>
+
+            <div class="letter-wrapper">
+
+                <div class="letter">
+
+                    <p>
+                        Hurmatli ustozim!<br><br>
+
+                        Sizni 1-oktabr — Ustoz va murabbiylar kuni
+                        bilan chin qalbimdan tabriklayman.
+                        Bizga bergan bilimingiz, sabringiz va
+                        mehringiz uchun katta rahmat aytaman.
+                        Har bir darsingiz biz uchun yangi bilim,
+                        yangi imkoniyat va yangi maqsad demakdir.
+                        <br><br>
+
+                        Sizga mustahkam sog‘liq, oilaviy baxt,
+                        doimo ko‘tarinki kayfiyat va shogirdlaringiz
+                        yutuqlaridan faxrlanib yurishingizni tilayman.
+                        <br><br>
+
+                        <b>Bayramingiz muborak bo‘lsin, aziz ustoz! ❤️</b>
+                    </p>
+
+                    <div class="signature">
+                        Hurmat bilan, shogirdingiz ❤️
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+        Tayyorlandi ❤️ <span>Aziz ustoz uchun</span> • 1 Oktabr
+    </footer>
+
+
+    <!-- MODAL -->
+
+    <div class="modal" id="modal">
+
+        <div class="modal-box">
+
+            <div style="font-size:60px;">🎓💐</div>
+
+            <h2>
+                Bayramingiz muborak!
+            </h2>
+
+            <p>
+                Aziz ustoz, sizning mehnatingiz va bizga bergan
+                bilimingiz hech qachon unutilmaydi.
+                Har bir shogirdingizning yutug‘i — sizning
+                mehnatingizning eng chiroyli natijasidir.
+                <br><br>
+                Sizga uzoq umr, sog‘lik va cheksiz baxt tilaymiz!
+            </p>
+
+            <button class="btn primary close" onclick="closeLetter()">
+                ❤️ Rahmat
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           COUNTDOWN
+        ========================= */
+
+        function updateCountdown() {
+
+            const now = new Date();
+
+            let year = now.getFullYear();
+
+            // 1-oktabr
+            let target = new Date(year, 9, 1, 0, 0, 0);
+
+            // Agar 1-oktabr o'tib ketgan bo'lsa,
+            // keyingi yilni olamiz
+            if (now > target) {
+                target = new Date(year + 1, 9, 1, 0, 0, 0);
+            }
+
+            const difference = target - now;
+
+            const days = Math.floor(
+                difference / (1000 * 60 * 60 * 24)
+            );
+
+            const hours = Math.floor(
+                (difference / (1000 * 60 * 60)) % 24
+            );
+
+            const minutes = Math.floor(
+                (difference / (1000 * 60)) % 60
+            );
+
+            const seconds = Math.floor(
+                (difference / 1000) % 60
+            );
+
+            document.getElementById("days").textContent =
+                String(days).padStart(2, "0");
+
+            document.getElementById("hours").textContent =
+                String(hours).padStart(2, "0");
+
+            document.getElementById("minutes").textContent =
+                String(minutes).padStart(2, "0");
+
+            document.getElementById("seconds").textContent =
+                String(seconds).padStart(2, "0");
+        }
+
+        updateCountdown();
+
+        setInterval(updateCountdown, 1000);
+
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        function openLetter() {
+
+            document.getElementById("modal")
+                .classList.add("active");
+
+            createConfetti();
+        }
+
+        function closeLetter() {
+
+            document.getElementById("modal")
+                .classList.remove("active");
+        }
+
+
+        /* =========================
+           SCROLL
+        ========================= */
+
+        function scrollToLetter() {
+
+            document.getElementById("letter")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        /* =========================
+           CONFETTI
+        ========================= */
+
+        function createConfetti() {
+
+            const symbols = [
+                "🎉",
+                "✨",
+                "💐",
+                "🌸",
+                "❤️",
+                "⭐",
+                "🎓"
+            ];
+
+            for (let i = 0; i < 60; i++) {
+
+                const particle =
+                    document.createElement("div");
+
+                particle.className = "particle";
+
+                particle.textContent =
+                    symbols[
+                        Math.floor(
+                            Math.random() * symbols.length
+                        )
+                    ];
+
+                particle.style.left =
+                    Math.random() * 100 + "vw";
+
+                particle.style.fontSize =
+                    (15 + Math.random() * 25) + "px";
+
+                particle.style.animationDuration =
+                    (3 + Math.random() * 5) + "s";
+
+                particle.style.animationDelay =
+                    Math.random() * 2 + "s";
+
+                document.body.appendChild(particle);
+
+                setTimeout(() => {
+                    particle.remove();
+                }, 8000);
+            }
+        }
+
+
+        /* =========================
+           ESC BUTTON
+        ========================= */
+
+        document.addEventListener("keydown", function(e) {
+
+            if (e.key === "Escape") {
+                closeLetter();
+            }
+
+        });
+
+
+        /* =========================
+           MODAL OUTSIDE CLICK
+        ========================= */
+
+        document.getElementById("modal")
+            .addEventListener("click", function(e) {
+
+                if (e.target === this) {
+                    closeLetter();
+                }
+
+            });
+
+    </script>
+
+</body>
+</html>

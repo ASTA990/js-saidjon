@@ -13,6 +13,11 @@
       referrerpolicy="no-referrer"
     />
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
     <style>
       * {
         margin: 0;
@@ -100,7 +105,9 @@
         padding: 9px 18px;
         font-size: 9px;
         cursor: pointer;
-        transition: background 0.2s, color 0.2s;
+        transition:
+          background 0.2s,
+          color 0.2s;
       }
 
       .submit:hover {
@@ -257,7 +264,6 @@
       .rasmbek img {
         width: 319px;
         height: 274px;
-        border-radius: 16px;
         object-fit: cover;
         display: block;
       }
@@ -265,7 +271,6 @@
       .ong {
         width: 366px;
         height: 274px;
-        border-radius: 16px;
         background-color: #373948;
         padding: 25px 30px;
       }
@@ -350,7 +355,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        transition: background 0.2s, transform 0.2s;
+        transition:
+          background 0.2s,
+          transform 0.2s;
       }
 
       .a1:hover,
@@ -360,10 +367,10 @@
       }
 
       .orta {
-        width: 1800px;
+        width: 1500px;
         height: 489.5px;
         margin-top: 105px;
-        background-color: #F9FBFC;
+        background-color: #f9fbfc;
         position: relative;
       }
 
@@ -412,12 +419,12 @@
       }
 
       .Browse {
-        width: 1920px;
+        width: 1420px;
         height: 180px;
       }
 
       .dostlar {
-        width: 1399.50px;
+        width: 1399.5px;
         height: 40px;
         margin-top: 115px;
         margin-left: 100px;
@@ -439,6 +446,7 @@
       .all a {
         font-size: 15px;
         color: #000;
+        text-decoration: none;
       }
 
       .quticha {
@@ -461,7 +469,7 @@
         display: flex;
         justify-content: space-between;
       }
-     
+
       .type1 {
         width: 370.4495544433594px;
         height: 40px;
@@ -470,20 +478,139 @@
       .qop {
         width: 1400px;
         height: 300px;
-        border: 1px solid red;
         margin-left: 100px;
       }
 
       .usti {
         width: 1400px;
         height: 49.59000015258789px;
-        border: 1px solid red;
       }
 
       .ichm {
         width: 810.4800033569336px;
         height: 49.59000015258789px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .burchak1 {
+        width: 135.1300048828125px;
+        height: 49.59000015258789px;
+        position: relative;
+      }
+
+      .burchak1 a {
+        font-size: 15px;
+        top: 15px;
+        position: absolute;
+        text-decoration: none;
+        color: #050b20;
+      }
+
+      .burchak1 a:hover {
+        text-decoration: underline;
+      }
+
+      .oyoq {
+        width: 1383px;
+        height: 216.5px;
+        margin-top: 35px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .jigar1 {
+        width: 262.4100036621094px;
+        height: 216.5px;
+      }
+
+      .ford {
+        width: 262.4100036621094px;
+        height: 27.75px;
+        position: relative;
+      }
+
+      .ford a {
+        font-size: 15px;
+        text-decoration: none;
+        color: #050b20;
+        top: 5px;
+        position: absolute;
+      }
+
+      .honda1 {
+        width: 262.4100036621094px;
+        height: 27.75px;
+        position: relative;
+        margin-top: 10px;
+      }
+
+      .honda1 a {
+        font-size: 15px;
+        text-decoration: none;
+        color: #050b20;
+        top: 5px;
+        position: absolute;
+      }
+
+      .type2 {
+        width: 470px;
+        height: 40px;
+      }
+
+      .all {
+        width: 140.19999694824219px;
+        height: 15px;
+        margin-top: 23px;
+      }
+
+      .brendbeklar {
+        width: 100%;
+        height: 310.5899963378906px;
+      }
+
+      .jahon {
+        width: 1430px;
+        height: 180.58999633789062px;
         border: 1px solid red;
+        margin-top: 15px;
+        margin-left: 100px;
+      }
+
+      .audi {
+        width: 209px;
+        height: 180.58999633789062px;
+        border: 1px solid #e9e9e9;
+        border-radius: 16px;
+      }
+
+      .aylana {
+        width: 100px;
+        height: 128.58999633789062px;
+        margin-top: 26px;
+        margin-left: 54px;
+      }
+
+      .yuqori {
+        width: 100px;
+        height: 100px;
+      }
+
+      .yuqori img {
+        width: 90px;
+        height: 100px;
+      }
+
+      .tuyoq {
+        width: 100px;
+        height: 28.59px;
+      }
+
+      .di {
+        width: 38.87737274169922px;
+        height: 21.600000381469727px;
+        margin-top: 6px;
+        margin-left: 30px;
       }
       /* ================= RESPONSIVE ================= */
       @media (max-width: 1200px) {
@@ -841,8 +968,6 @@
       </div>
     </div>
 
-
-
     <!-- ====================================================================================================== -->
     <!-- ====================================================================================================== -->
     <!-- ====================================================================================================== -->
@@ -850,8 +975,6 @@
     <!-- ====================================================================================================== -->
     <!-- ====================================================================================================== -->
     <!-- ====================================================================================================== -->
-
-
 
     <div class="orta">
       <div class="choose">
@@ -861,7 +984,12 @@
       <div class="barcha">
         <div class="yozuvlar">
           <div class="ibek">
-            <p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0);"></i></p>
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
           </div>
 
           <div class="offers">
@@ -869,14 +997,21 @@
           </div>
 
           <div class="stress">
-            <p>Our stress-free finance department that can
-find financial solutions to save you money.</p>
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
           </div>
         </div>
 
         <div class="yozuvlar">
           <div class="ibek">
-            <p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0);"></i></p>
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
           </div>
 
           <div class="offers">
@@ -884,14 +1019,21 @@ find financial solutions to save you money.</p>
           </div>
 
           <div class="stress">
-            <p>Our stress-free finance department that can
-find financial solutions to save you money.</p>
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
           </div>
         </div>
 
         <div class="yozuvlar">
           <div class="ibek">
-            <p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0);"></i></p>
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
           </div>
 
           <div class="offers">
@@ -899,14 +1041,21 @@ find financial solutions to save you money.</p>
           </div>
 
           <div class="stress">
-            <p>Our stress-free finance department that can
-find financial solutions to save you money.</p>
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
           </div>
         </div>
 
         <div class="yozuvlar">
           <div class="ibek">
-            <p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0);"></i></p>
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
           </div>
 
           <div class="offers">
@@ -914,8 +1063,10 @@ find financial solutions to save you money.</p>
           </div>
 
           <div class="stress">
-            <p>Our stress-free finance department that can
-find financial solutions to save you money.</p>
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
           </div>
         </div>
       </div>
@@ -929,7 +1080,7 @@ find financial solutions to save you money.</p>
 
         <div class="all">
           <a href="#">View All</a>
-          <span><i class="fa-solid fa-arrow-up-right-from-square" style="color: rgb(0, 0, 0);"></i></span>
+          <span><i class="ri-arrow-right-up-fill"></i></span>
         </div>
       </div>
     </div>
@@ -937,25 +1088,40 @@ find financial solutions to save you money.</p>
     <div class="quticha">
       <div class="dostbek">
         <div class="picture1">
-          <img src="../rasmlar/0834a9a13618984afe4e6f06a3e500246db02353.jpg" alt="">
+          <img
+            src="../rasmlar/0834a9a13618984afe4e6f06a3e500246db02353.jpg"
+            alt=""
+          />
         </div>
 
         <div class="picture2">
-          <img src="../rasmlar/8e701cff7f065e7b6be57650912ab250ab386159.jpg" alt="">
+          <img
+            src="../rasmlar/8e701cff7f065e7b6be57650912ab250ab386159.jpg"
+            alt=""
+          />
         </div>
       </div>
 
       <div class="dostbek2">
         <div class="picture3">
-          <img src="../rasmlar/c36fc004129f2f0dcd04df565fc3a67fc91ce0ca.jpg" alt="">
+          <img
+            src="../rasmlar/c36fc004129f2f0dcd04df565fc3a67fc91ce0ca.jpg"
+            alt=""
+          />
         </div>
 
         <div class="picture4">
-          <img src="../rasmlar/fcd87c97a6e47040f3e03e844a51decea6a0c19a (1).jpg" alt="">
+          <img
+            src="../rasmlar/fcd87c97a6e47040f3e03e844a51decea6a0c19a (1).jpg"
+            alt=""
+          />
         </div>
 
         <div class="picture5">
-          <img src="../rasmlar/7874d753d2683f97c82bec7dd00c8480a79cb936.jpg" alt="">
+          <img
+            src="../rasmlar/7874d753d2683f97c82bec7dd00c8480a79cb936.jpg"
+            alt=""
+          />
         </div>
       </div>
     </div>
@@ -968,7 +1134,9 @@ find financial solutions to save you money.</p>
 
         <div class="all">
           <a href="#">View All</a>
-          <span><i class="fa-solid fa-arrow-up-right-from-square" style="color: rgb(0, 0, 0);"></i></span>
+          <span
+            <i class="ri-arrow-right-up-fill"></i>
+          ></span>
         </div>
       </div>
     </div>
@@ -976,16 +1144,187 @@ find financial solutions to save you money.</p>
     <div class="qop">
       <div class="usti">
         <div class="ichm">
+          <div class="burchak1">
+            <a href="#">New Cars For Sale</a>
+          </div>
 
+          <div class="burchak1">
+            <a href="#">Used Cars For Sale</a>
+          </div>
+
+          <div class="burchak1">
+            <a href="#">Browse By Type</a>
+          </div>
+
+          <div class="burchak1">
+            <a href="#">Browse By Brand</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="oyoq">
+        <div class="jigar1">
+          <div class="ford">
+            <a href="#">Ford Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Honda Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Hyundai Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Infiniti Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Jaguar Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Jeep Cars</a>
+          </div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford">
+            <a href="#">Chrysler Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Citroen Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Cupra Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Dacia Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">DS Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Fiat Cars</a>
+          </div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford">
+            <a href="#">Land Rover Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Lexus Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Mercedes-Benz Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Mazda Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">MG Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Kia Cars</a>
+          </div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford">
+            <a href="#">Abarth Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Romeo Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Audi Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Bentley Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">BMW Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Chevrolet Cars</a>
+          </div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford">
+            <a href="#">Ford Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Honda Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Hyundai Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Infiniti Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Jaguar Cars</a>
+          </div>
+
+          <div class="honda1">
+            <a href="#">Jeep Cars</a>
+          </div>
         </div>
       </div>
     </div>
 
+    <div class="dostlar">
+      <div class="type2">
+        <h1>Explore Our Premium Brands</h1>
+      </div>
 
+      <div class="all">
+        <a href="#">Show All Brands</a>
+        <span
+          <i class="ri-arrow-right-up-fill"></i>
+        </span>
+      </div>
+    </div>
 
+    <div class="brendbeklar">
+      <div class="jahon">
+        <div class="audi">
+          <div class="aylana">
+            <div class="yuqori">
+              <img src="../rasmlar/77867001930a7f83335c2e20a7c2b2aa202f7101 (4).jpg" alt="">
+            </div>
 
-
-
+            <div class="tuyoq">
+              <div class="di">
+                <h4>Audi</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ================= SCRIPT ================= -->
     <script>
