@@ -1,0 +1,1061 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>CarHut</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+      integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+        background-image:
+          linear-gradient(rgba(20, 27, 34, 0.38), rgba(20, 27, 34, 0.38)),
+          url("../rambek2/4602ced7c3faa04635c9b6802f935a1619d3f39d.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+      }
+
+      .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 38px;
+        border-bottom: 1px solid rgba(239, 230, 230, 0.16);
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: white;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .menu {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+
+      .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 10px;
+        font-weight: 400;
+        white-space: nowrap;
+        opacity: 0.95;
+        transition: 0.2s;
+      }
+
+      .down {
+        font-size: 7px;
+        margin-left: 3px;
+      }
+
+      .signin {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .submit {
+        margin-left: 1px;
+        height: 32px;
+        padding: 0 17px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        color: white;
+        font-size: 10px;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      .content {
+        position: absolute;
+        left: 14.5%;
+        top: 36.2%;
+        width: 600px;
+      }
+
+      .price {
+        font-size: 25px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+        margin-bottom: 18px;
+      }
+
+      .title {
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 1.05;
+        letter-spacing: -1.3px;
+        margin-bottom: 23px;
+      }
+
+      .details {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 27px;
+      }
+
+      .detail {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 10px;
+        color: white;
+      }
+
+      .detail-icon {
+        font-size: 13px;
+      }
+
+      .learn {
+        width: 103px;
+        height: 36px;
+        border: none;
+        border-radius: 10px;
+        background: white;
+        color: #222;
+        font-size: 10px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .slider {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 38px;
+        height: 25px;
+        border: none;
+        border-radius: 20px;
+        background: white;
+        color: #333;
+        font-size: 23px;
+        line-height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .prev {
+        left: 40px;
+      }
+
+      .next {
+        right: 40px;
+      }
+
+      .settings {
+        position: absolute;
+        right: 4px;
+        bottom: 5px;
+        width: 59px;
+        height: 59px;
+        background: #061017;
+        border-radius: 18px 0 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .settings-circle {
+        width: 39px;
+        height: 39px;
+        border: 3px solid #00a891;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #00a891;
+        font-size: 20px;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.65);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+      }
+
+      .modal.show {
+        display: flex;
+      }
+
+      .modal-box {
+        width: 380px;
+        padding: 30px;
+        background: white;
+        border-radius: 15px;
+        text-align: center;
+        color: #222;
+      }
+
+      .modal-box h2 {
+        margin-bottom: 12px;
+        font-size: 22px;
+      }
+
+      .modal-box p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      .close {
+        margin-top: 20px;
+        padding: 10px 25px;
+        border: 0;
+        border-radius: 8px;
+        background: #222;
+        color: white;
+        cursor: pointer;
+      }
+
+      .Browse {
+        width: 100%;
+        background: #fff;
+        padding: 80px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .browse-container {
+        width: 85%;
+        max-width: 1200px;
+      }
+
+      .browse-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 40px;
+        position: relative;
+        padding-top: 30px;
+      }
+
+      .browse-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: #111;
+        letter-spacing: -0.5px;
+      }
+
+      .view-all {
+        font-size: 13px;
+        color: #111;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .view-all i {
+        font-size: 12px;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: #fff;
+      }
+
+      .card-icon {
+        font-size: 28px;
+        color: #111;
+      }
+
+      .card-text {
+        font-size: 14px;
+        color: #111;
+      }
+
+      .qidiruv {
+        width: 100%;
+        height: 180px;
+        position: relative;
+        background-color: #f9fbfc;
+      }
+
+      .vehiccles {
+        top: 115px;
+        left: 165px;
+        position: absolute;
+      }
+
+      .qidiruv a {
+        position: absolute;
+        left: 1200px;
+        top: 133px;
+        text-decoration: none;
+        color: #050b20;
+      }
+
+      .qidiruv a:hover {
+        text-decoration: underline;
+      }
+
+      .kattabek {
+        width: 100%;
+        height: 1116.219970703125px;
+      }
+
+      .qatorbeklar {
+        width: 1400px;
+        height: 1016.219970703125px;
+        margin-left: 50px;
+        margin-top: 15px;
+      }
+
+      .tepabek {
+        width: 1400px;
+        height: 40.88999938964844px;
+      }
+
+      .ichm {
+        width: 354px;
+        height: 39.88999938964844px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .recentbek {
+        width: 91.80999755859375px;
+        height: 39.88999938964844px;
+        position: relative;
+      }
+
+      .recentbek a {
+        position: absolute;
+        top: 10px;
+        color: #050b20;
+        text-decoration: none;
+      }
+
+      .recentbek2 {
+        width: 106.33999633789062px;
+        height: 39.88999938964844px;
+        position: relative;
+      }
+
+      .recentbek2 a {
+        position: absolute;
+        top: 10px;
+        color: #050b20;
+        text-decoration: none;
+      }
+
+      .recentbek3 {
+        width: 95.83999633789062px;
+        height: 39.88999938964844px;
+        position: relative;
+      }
+
+      .recentbek3 a {
+        position: absolute;
+        top: 10px;
+        color: #050b20;
+        text-decoration: none;
+      }
+
+      .obshiybek1 {
+        width: 1400px;
+        height: 432.80999755859375px;
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .recentbek3 a:hover {
+        text-decoration: underline;
+      }
+
+      .recentbek a:hover {
+        text-decoration: underline;
+      }
+
+      .recentbek2 a:hover {
+        text-decoration: underline;
+      }
+
+      .kartabek1 {
+        width: 327.5px;
+        height: 432.80999755859375px;
+        border-radius: 16px;
+        border: 1px solid #E9E9E9;
+      }
+
+      .picturebek1 img {
+        width: 327.5px;
+        height: 218.3300018310547px;
+        border-top-left-radius: 16px;
+        border-top-right-radius: 16px;
+      }
+
+      .camry {
+        color: #050b20;
+        margin-top: 17px;
+        margin-left: 31px;
+      }
+
+      .momentum p {
+        color: #050b20;
+        font-size: 14px;
+        margin-left: 31px;
+        margin-top: 6px;
+      }
+
+      .ibeklarim {
+        width: 265.5px;
+        height: 69.29000091552734px;
+        margin-left: 31px;
+        margin-top: 4px;
+        border-bottom: 1px solid #E9E9E9;
+        border-top: 1px solid #E9E9E9;
+      }
+
+      .ibekjonlar {
+        width: 228px;
+        height: 18px;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 18.55px;
+        margin-top: 16px;
+      }
+
+      .yozuvbeklarim {
+        width: 266px;
+        height: 14px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .yozuvbek1 p {
+        font-size: 14px;
+        color: #050B20;
+      }
+
+      .summabeklar {
+        width: 266px;
+        height: 56.400001525878906px;
+        margin-left: 31px;
+        margin-top: 4px;
+      }
+
+      .ichkipul {
+        width: 266px;
+        height: 30px;
+        margin-top: 16px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .ichkipul a {
+        text-decoration: none;
+      }
+
+      .obshiybek2 {
+        width: 1400px;
+        height: 432.80999755859375px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .bel1 {
+        width: 1400px;
+        height: 579.530029296875px;
+        border: 1px solid red;
+        margin-left: 60px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .buyoq2 {
+        width: 700px;
+        height: 579.530029296875px;
+        border: 1px solid red;
+      }
+      @media (max-width: 900px) {
+        .menu {
+          gap: 12px;
+        }
+
+        .menu a {
+          font-size: 9px;
+        }
+
+        .content {
+          left: 10%;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .menu a {
+          display: none;
+        }
+
+        .navbar {
+          padding: 0 20px;
+        }
+
+        .content {
+          left: 9%;
+          width: 80%;
+        }
+
+        .title {
+          font-size: 34px;
+        }
+
+        .price {
+          font-size: 22px;
+        }
+
+        .prev {
+          left: 15px;
+        }
+
+        .next {
+          right: 15px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="hero" id="hero">
+      <div class="navbar">
+        <div class="logo">
+          <div class="car">
+            <i
+              class="fa-solid fa-car-side"
+              style="color: rgb(244, 241, 241)"
+            ></i>
+          </div>
+
+          <span>CarHut</span>
+        </div>
+
+        <div class="menu">
+          <a href="#"> Home </a>
+          <a href="#"> Listings </a>
+          <a href="#"> Blog </a>
+          <a href="#"> Pages </a>
+          <a href="#"> About </a>
+          <a href="#"> Contact </a>
+          <a href="#" class="signin">Sign in </a>
+
+          <button class="submit">Submit Listing</button>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="price">$35,000</div>
+
+        <h1 class="title">Mercedes-Benz, C Class</h1>
+
+        <div class="details">
+          <div class="detail">
+            <span id="fuel">Petrol</span>
+          </div>
+
+          <div class="detail">
+            <span id="miles">100 Miles</span>
+          </div>
+
+          <div class="detail">
+            <span id="gear">Automatic</span>
+          </div>
+        </div>
+
+        <button class="learn">Learn More ↗</button>
+      </div>
+
+      <button class="slider prev"><i class="fa-solid fa-arrow-left" style="color: rgb(0, 0, 0);"></i></button>
+
+      <button class="slider next"><i class="fa-solid fa-arrow-right" style="color: rgb(0, 0, 0);"></i></button>
+    </section>
+
+    <div class="modal">
+      <div class="modal-box">
+        <h2>Mercedes-Benz, C Class</h2>
+
+        <p>Premium avtomobil.</p>
+
+        <button class="close">Close</button>
+      </div>
+    </div>
+
+    <div class="Browse">
+      <div class="browse-container">
+        <div class="browse-header">
+          <h2 class="browse-title">Browse by Type</h2>
+          <a href="#" class="view-all"
+            >View All <i class="fa-solid fa-arrow-up-right-from-square"></i
+          ></a>
+        </div>
+
+        <div class="cards-grid">
+          <div class="card">
+            <i class="fa-solid fa-car-side card-icon"></i>
+            <div class="card-text">SUV</div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-truck-pickup card-icon"></i>
+            <div class="card-text">Sedan</div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-car-rear card-icon"></i>
+            <div class="card-text">Hatchback</div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-van-shuttle card-icon"></i>
+            <div class="card-text">Coupe</div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-car-on" style="color: rgb(0, 0, 0)"></i>
+            <div class="card-text">Hybrid</div>
+          </div>
+
+          <div class="card">
+            <i class="fa-solid fa-taxi" style="color: rgb(0, 0, 0)"></i>
+            <div class="card-text">Convertible</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="qidiruv">
+      <div class="vehiccles"><h1>Explore All Vehicles</h1></div>
+      <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
+    </div>
+
+    <div class="kattabek">
+      <div class="qatorbeklar">
+        <div class="tepabek">
+          <div class="ichm">
+            <div class="recentbek"><a href="#">Recent Cars</a></div>
+            <div class="recentbek2"><a href="#">Featured Cars</a></div>
+            <div class="recentbek3"><a href="#">Popular Cars</a></div>
+          </div>
+        </div>
+
+        <div class="obshiybek1">
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/60e918b1d49e16d94a7d331d0a22d92bbd66a21e.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/5e04709e6424eb18f47268bd197a88c3bc96dff5.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/b715e80ecd27bafb01ffb424d8802f899a95b2ad.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/5508d78a6dd0ea1cbd2608911bef270e57bacf6e (1).jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="obshiybek2">
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/2d203977c60d30e50e3c0655ca7cc456e96de1cb (1).jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/5edc831e0b3ab5df71c63fdc600c1a13a8962f51.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/7a5a7d295ba1b2814a6dff55719b04c1a4a4da5e.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="kartabek1">
+            <div class="picturebek1">
+              <img
+                src="../rambek2/500958e2544714ad454bb185c67b9d154034c143.jpg"
+                alt=""
+              />
+            </div>
+
+            <div class="camry"><h3>Toyota Camry New</h3></div>
+            <div class="momentum">
+              <p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p>
+            </div>
+            <div class="ibeklarim">
+              <div class="ibekjonlar">
+                <div class="ibek1">
+                  <i
+                    class="fa-solid fa-stopwatch"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek2">
+                  <i
+                    class="fa-solid fa-gas-pump"
+                    style="color: rgb(0, 0, 0)"
+                  ></i>
+                </div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              </div>
+
+              <div class="yozuvbeklarim">
+                <div class="yozuvbek1"><p>20 Miles</p></div>
+                <div class="yozuvbek1"><p>Petrol</p></div>
+                <div class="yozuvbek1"><p>Automatic</p></div>
+              </div>
+            </div>
+
+            <div class="summabeklar">
+              <div class="ichkipul">
+                <div class="yozn1"><h3>$40,000</h3></div>
+                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bel1">
+      <div class="buyoq2">
+
+      </div>
+    </div>
+  </body>
+</html>
