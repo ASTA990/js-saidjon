@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CarHut</title>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
@@ -11,395 +12,328 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
       }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #fff;
+      }
+
       .hero {
-        width: 100%;
-        height: 100vh;
+        height: 800px;
         position: relative;
-        background-image:
-          linear-gradient(rgba(20, 27, 34, 0.38), rgba(20, 27, 34, 0.38)),
-          url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80");
+        color: #fff;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(70, 80, 95, 0.48), rgba(30, 40, 55, 0.48)),
+          url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=80");
         background-size: cover;
         background-position: center;
-        color: white;
       }
+
       .navbar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 72px;
+        height: 75px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 0 38px;
-        border-bottom: 1px solid rgba(239, 230, 230, 0.16);
       }
+
+      .logo-box {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
       .logo {
         display: flex;
         align-items: center;
         gap: 7px;
-        color: white;
         font-size: 15px;
-        font-weight: 600;
+        font-weight: bold;
       }
+
+      .logo-car {
+        font-size: 25px;
+      }
+
+      .phone {
+        font-size: 9px;
+        opacity: 0.9;
+      }
+
       .menu {
-        height: 100%;
         display: flex;
         align-items: center;
         gap: 25px;
       }
+
       .menu a {
-        color: white;
+        color: #fff;
         text-decoration: none;
         font-size: 10px;
-        font-weight: 400;
-        white-space: nowrap;
-        opacity: 0.95;
-        transition: 0.2s;
+        transition: opacity 0.2s;
       }
+
       .signin {
         display: flex;
         align-items: center;
         gap: 5px;
       }
-      .sumbit {
-        margin-left: 1px;
-        height: 32px;
-        padding: 0 17px;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        border-radius: 10px;
-        background: rgba(255, 255, 255, 0.02);
-        color: white;
-        position: relative;
-        font-size: 10px;
-        text-align: center;
+
+      .submit {
+        color: #fff;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 20px;
+        padding: 9px 18px;
+        font-size: 9px;
       }
 
-
-      .content {
+      .hero-text {
         position: absolute;
-        left: 14.5%;
-        top: 36.2%;
-        width: 600px;
+        left: 135px;
+        top: 270px;
       }
 
       .price {
-        font-size: 25px;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-        margin-bottom: 18px;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 16px;
       }
-      .title {
+
+      .car-name {
         font-size: 42px;
-        font-weight: 400;
-        line-height: 1.05;
-        letter-spacing: -1.3px;
-        margin-bottom: 23px;
+        line-height: 1.25;
+        font-weight: 500;
       }
-      .details {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        margin-bottom: 27px;
+
+      .info-card {
+        position: absolute;
+        right: 38px;
+        top: 110px;
+        width: 172px;
+        height: 455px;
+        padding: 35px 30px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
       }
-      .detail {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 10px;
-        color: white;
+
+      .info {
+        margin-bottom: 17px;
       }
+
+      .icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+      }
+
+      .label {
+        font-size: 9px;
+        opacity: 0.75;
+      }
+
+      .value {
+        font-size: 12px;
+        margin-top: 2px;
+      }
+
       .learn {
-        width: 103px;
-        height: 36px;
+        position: absolute;
+        left: 30px;
+        bottom: 75px;
+        width: 112px;
+        height: 70px;
         border: none;
         border-radius: 10px;
-        background: white;
+        background: #fff;
         color: #222;
-        font-size: 10px;
+        font-size: 9px;
         cursor: pointer;
-        transition: 0.2s;
+        transition: background 0.2s;
       }
+
       .slider {
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 38px;
-        height: 25px;
-        border: none;
-        border-radius: 20px;
-        background: white;
-        color: #333;
-        font-size: 23px;
-        line-height: 20px;
+        left: 145px;
+        bottom: 35px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: 0.2s;
+        gap: 7px;
       }
-      .prev {
-        left: 40px;
+
+      .slider span {
+        width: 18px;
+        height: 3px;
+        background: #fff;
+        border-radius: 5px;
       }
-      .next {
-        right: 40px;
-      }
-      .modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.65);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-      }
-      .modal-box {
-        width: 380px;
-        padding: 30px;
-        background: white;
-        border-radius: 15px;
-        text-align: center;
-        color: #222;
-      }
-      .close {
-        margin-top: 20px;
-        padding: 10px 25px;
-        border: 0;
-        border-radius: 8px;
-        background: #222;
-        color: white;
-        cursor: pointer;
-      }
-      .Browse {
+
+      .explore {
         width: 100%;
-        background: #fff;
-        padding: 80px 0;
+        padding: 115px 0 0 260px;
+      }
+
+      .vehicles {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .qatorlar {
+        width: 100%;
+        max-width: 1660px;
+        margin: 0 auto;
+        padding: 0 40px;
+        overflow: hidden;
+      }
+
+      .tepa {
         display: flex;
-        flex-direction: column;
+        gap: 40px;
+        height: 40px;
         align-items: center;
+        margin: 15px 0 20px;
       }
-      .browse-container {
-        width: 85%;
-        max-width: 1200px;
-      }
-      .browse-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 40px;
-        position: relative;
-        padding-top: 30px;
-      }
-      .browse-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #111;
-        letter-spacing: -0.5px;
-      }
-      .view-all {
-        font-size: 13px;
-        color: #111;
+
+      .tepa a {
+        color: #000;
         text-decoration: none;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
-      }
-      .card {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 24px 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        background: #fff;
-      }
-      .card-icon {
-        font-size: 28px;
-        color: #111;
-      }
-      .card-text {
         font-size: 14px;
-        color: #111;
+        font-weight: 600;
       }
-      .qidiruv {
+
+      .tepa a:hover {
+        text-decoration: underline;
+      }
+
+      .past {
         width: 100%;
-        height: 180px;
-        position: relative;
-        background-color: #f9fbfc;
+        overflow: hidden;
+        padding: 10px 0;
       }
-      .vehiccles {
-        top: 115px;
-        left: 165px;
-        position: absolute;
-      }
-      .qidiruv a {
-        position: absolute;
-        left: 1200px;
-        top: 133px;
-        text-decoration: none;
-        color: #050b20;
-      }
-      .kattabek {
-        width: 100%;
-        height: 1116.219970703125px;
-      }
-      .qatorbeklar {
-        width: 1400px;
-        height: 1016.219970703125px;
-        margin-left: 50px;
-        margin-top: 15px;
-      }
-      .tepabek {
-        width: 1400px;
-        height: 40.88999938964844px;
-      }
-      .ichm {
-        width: 354px;
-        height: 39.88999938964844px;
+
+      .carusel-track {
         display: flex;
-        justify-content: space-between;
+        gap: 30px;
+        transition: transform 0.4s ease;
+        will-change: transform;
       }
-      .recentbek a,
-      .recentbek2 a,
-      .recentbek3 a {
-        color: #050b20;
-        text-decoration: none;
-      }
-      .obshiybek1 {
-        width: 1400px;
-        height: 432.80999755859375px;
-        margin-top: 50px;
-        display: flex;
-        justify-content: space-around;
-      }
-      .kartabek1 {
-        width: 327.5px;
-        height: 432.80999755859375px;
+
+      .cartabek1 {
+        flex: 0 0 685px;
+        height: 274px;
         border-radius: 16px;
-        border: 1px solid #e9e9e9;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
       }
-      .picturebek1 img {
-        width: 327.5px;
-        height: 218.3300018310547px;
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
+
+      .rasmbek img {
+        width: 319px;
+        height: 274px;
         object-fit: cover;
+        display: block;
       }
-      .camry {
-        color: #050b20;
-        margin-top: 17px;
-        margin-left: 31px;
+
+      .ong {
+        width: 366px;
+        height: 274px;
+        background-color: #373948;
+        padding: 25px 30px;
       }
-      .momentum p {
-        color: #050b20;
-        font-size: 14px;
-        margin-left: 31px;
-        margin-top: 6px;
+
+      .cross h4 {
+        color: #fff;
+        font-size: 16px;
       }
-      .ibeklarim {
-        width: 265.5px;
-        height: 69.29000091552734px;
-        margin-left: 31px;
+
+      .d5 {
         margin-top: 4px;
-        border-bottom: 1px solid #e9e9e9;
-        border-top: 1px solid #e9e9e9;
       }
-      .ibekjonlar {
-        width: 228px;
+
+      .d5 h6 {
+        color: #fff;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: 1.4;
+      }
+
+      .miles,
+      .miles2,
+      .miles3 {
+        width: 78px;
         height: 18px;
         display: flex;
         justify-content: space-between;
-        margin-left: 18.55px;
-        margin-top: 16px;
+        align-items: center;
+        margin-top: 6px;
       }
-      .yozuvbeklarim {
-        width: 266px;
-        height: 14px;
+
+      .miles span,
+      .miles2 span,
+      .miles3 span {
+        font-size: 15px;
+        color: #fff;
+      }
+
+      .pulbek1 {
+        width: 310px;
+        margin-top: 31px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
       }
-      .yozuvbek1 p {
-        font-size: 14px;
-        color: #050b20;
+
+      .dollar h3 {
+        color: #fff;
+        font-size: 18px;
       }
-      .summabeklar {
-        width: 266px;
-        height: 56.400001525878906px;
-        margin-left: 31px;
-        margin-top: 4px;
-      }
-      .ichkipul {
-        width: 266px;
-        height: 30px;
-        margin-top: 16px;
+
+      .view {
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        cursor: pointer;
       }
-      .ichkipul a {
-        text-decoration: none;
+
+      .view h5 {
+        font-size: 12px;
+        font-weight: 500;
       }
-      .obshiybek2 {
-        width: 1400px;
-        height: 432.80999755859375px;
+
+      .otkazish {
+        width: 145px;
+        height: 40px;
         margin-top: 30px;
         display: flex;
-        justify-content: space-around;
+        gap: 25px;
       }
-      .bel1 {
-        width: 1400px;
-        height: 579.530029296875px;
-        margin-left: 60px;
+
+      .a1,
+      .a2 {
+        width: 60px;
+        height: 40px;
+        border: 1px solid #e9e9e9;
+        border-radius: 30px;
+        background-color: white;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
       }
-      .buyoq2 {
-        width: 700px;
-        height: 579.530029296875px;
-      }
-      .s1 {
-        margin-top: 140px;
-      }
-      .s1 h1 {
-        font-size: 40px;
-        color: #050b20;
-      }
-      .s2 {
-        margin-top: 19px;
-      }
-      .buyoq2 button {
-        width: 158.94000244140625px;
-        height: 53.220001220703125px;
-        border-radius: 12px;
-        background-color: #050b20;
-        color: wheat;
-        margin-top: 25px;
-        border: none;
-      }
-      .uyoq2 img {
-        width: 700px;
-        height: 579.530029296875px;
-        object-fit: cover;
-        border-radius: 16px;
-      }
+
       .orta {
         width: 1500px;
         height: 489.5px;
@@ -407,6 +341,7 @@
         background-color: #f9fbfc;
         position: relative;
       }
+
       .choose {
         width: 325.7066955566406px;
         height: 40px;
@@ -414,6 +349,7 @@
         top: 115px;
         position: absolute;
       }
+
       .barcha {
         width: 1383.78px;
         height: 173px;
@@ -423,386 +359,189 @@
         display: flex;
         justify-content: space-between;
       }
+
       .yozuvlar {
         width: 311.2799987792969px;
         height: 173px;
       }
+
       .ibek {
         width: 51px;
         height: 60px;
       }
+
       .ibek p {
         font-size: 40px;
       }
+
       .offers {
         width: 228.20721435546875px;
         height: 24px;
         margin-top: 20px;
       }
+
       .stress {
         width: 311.2799987792969px;
         height: 55.5px;
         margin-top: 14px;
       }
-      .carousel-wrap {
-        width: 100%;
-        padding: 40px 0 60px;
-        background: #fff;
+
+      .Browse {
+        width: 1420px;
+        height: 180px;
       }
-      .carousel-outer {
-        width: 1400px;
-        margin: 0 auto;
-        overflow: hidden;
-      }
-      .carousel-track {
+
+      .dostlar {
+        width: 1399.5px;
+        height: 40px;
+        margin-top: 115px;
+        margin-left: 100px;
         display: flex;
-        gap: 14px;
-        transition: transform 0.5s ease;
+        justify-content: space-between;
       }
-      .rasm-karta {
-        flex: 0 0 calc((100% - 42px) / 4);
-        border: 1px solid #e9e9e9;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
+
+      .type {
+        width: 307.4495544433594px;
+        height: 40px;
+      }
+
+      .all {
+        width: 79.19999694824219px;
+        height: 15px;
+        margin-top: 23px;
+      }
+
+      .all a {
+        font-size: 15px;
+        color: #000;
+        text-decoration: none;
+      }
+
+      .quticha {
+        width: 1400.0098876953125px;
+        height: 728.4400024414062px;
+        margin-left: 100px;
+      }
+
+      .dostbek {
+        width: 1400.0098876953125px;
+        height: 349.4800109863281px;
         display: flex;
-        flex-direction: column;
+        justify-content: space-between;
       }
-      .rasm-img {
-        position: relative;
-        width: 100%;
-        height: 175px;
-        overflow: hidden;
+
+      .dostbek2 {
+        width: 1400.0098876953125px;
+        height: 348.95001220703125px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
       }
-      .rasm-img img {
+
+      .dostbek img,
+      .dostbek2 img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
+        border-radius: 12px;
       }
-      .rasm-badge {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background-color: #00b87c;
-        color: #fff;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 600;
+
+      .picture1, .picture2 {
+        width: 685px;
+        height: 349.48px;
       }
-      .rasm-body {
-        padding: 14px 16px;
+
+      .picture3, .picture4, .picture5 {
+        width: 450px;
+        height: 348.95px;
+      }
+
+      .type1 {
+        width: 370.4495544433594px;
+        height: 40px;
+      }
+
+      .qop {
+        width: 1400px;
+        height: 300px;
+        margin-left: 100px;
+      }
+
+      .usti {
+        width: 1400px;
+        height: 49.59000015258789px;
+      }
+
+      .ichm {
+        width: 810.4800033569336px;
+        height: 49.59000015258789px;
         display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+        justify-content: space-between;
       }
-      .rasm-nom {
+
+      .burchak1 {
+        width: 135.1300048828125px;
+        height: 49.59000015258789px;
+        position: relative;
+      }
+
+      .burchak1 a {
         font-size: 15px;
-        font-weight: 700;
-        color: #050b20;
-        margin-bottom: 4px;
-      }
-      .rasm-tavsif {
-        font-size: 11px;
-        color: #999;
-        margin-bottom: 12px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .rasm-info {
-        display: flex;
-        justify-content: space-between;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
-        margin-bottom: 12px;
-      }
-      .rasm-info-item {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 11px;
-        color: #555;
-      }
-      .rasm-info-item i {
-        font-size: 13px;
-        color: #888;
-      }
-      .rasm-past {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: auto;
-      }
-      .rasm-narx {
-        font-size: 17px;
-        font-weight: 700;
-        color: #050b20;
-      }
-      .rasm-link {
-        font-size: 11px;
-        color: #4a6cf7;
+        top: 15px;
+        position: absolute;
         text-decoration: none;
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
-      .carousel-nav {
-        width: 1400px;
-        margin: 25px auto 0;
-        display: flex;
-        gap: 8px;
-      }
-      .carousel-btn {
-        width: 36px;
-        height: 36px;
-        border: 1px solid #ddd;
-        border-radius: 50%;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        color: #333;
-        font-size: 13px;
-        transition: 0.2s;
+        color: #050b20;
       }
 
-      .reviews-section {
-        width: 100%;
-        padding: 80px 0;
-        background-color: #f9fbfc;
-        overflow: hidden;
+      .burchak1 a:hover {
+        text-decoration: underline;
       }
-      .reviews-container {
-        width: 1400px;
-        max-width: 95%;
-        margin: 0 auto;
-        position: relative;
-      }
-      .reviews-header {
+
+      .oyoq {
+        width: 1383px;
+        height: 216.5px;
+        margin-top: 35px;
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
-        margin-bottom: 40px;
       }
-      .reviews-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: #050b20;
-        letter-spacing: -0.5px;
+
+      .jigar1 {
+        width: 262.4100036621094px;
+        height: 216.5px;
       }
-      .reviews-rating {
-        font-size: 13px;
-        color: #555;
-        margin-bottom: 5px;
-      }
-      .reviews-carousel-wrap {
+
+      .ford {
+        width: 262.4100036621094px;
+        height: 27.75px;
         position: relative;
-        padding: 0 50px;
       }
-      .reviews-outer {
-        overflow: hidden;
-        width: 100%;
-      }
-      .reviews-track {
-        display: flex;
-        gap: 20px;
-        transition: transform 0.4s ease-in-out;
-      }
-      .rev-card {
-        flex: 0 0 calc((100% - 60px) / 4);
-        background: #fff;
-        border-radius: 16px;
-        padding: 24px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        border: 1px solid #f0f0f0;
-        display: flex;
-        flex-direction: column;
-      }
-      .rev-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-      }
-      .rev-stars i {
-        color: #00b87c;
-        font-size: 14px;
-        margin-right: 2px;
-      }
-      .rev-stars .grey-star {
-        color: #d1d5db;
-      }
-      .rev-verified {
-        font-size: 11px;
-        color: #888;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-      .rev-verified i {
-        color: #888;
-        font-size: 12px;
-      }
-      .rev-card-title {
+
+      .ford a {
         font-size: 15px;
-        font-weight: 700;
+        text-decoration: none;
         color: #050b20;
-        margin-bottom: 8px;
-        line-height: 1.3;
-      }
-      .rev-card-text {
-        font-size: 13px;
-        color: #666;
-        line-height: 1.5;
-        margin-bottom: 20px;
-        flex-grow: 1;
-      }
-      .rev-author {
-        font-size: 13px;
-        font-weight: 600;
-        color: #050b20;
-        margin-top: auto;
-      }
-      .rev-nav-btn {
+        top: 5px;
         position: absolute;
-        top: 50%;
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: #fff;
-        border: 1px solid #eee;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-        font-size: 14px;
-        transition: 0.3s;
       }
 
-      .rev-prev {
-        left: 0;
-      }
-      .rev-next {
-        right: 0;
-      }
-
-      .hemans {
-        width: 1410px;
-        height: 468.05999755859375px;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .henry {
-        width: 327.5px;
-        height: 468.05999755859375px;
-      }
-
-      .henry .smilee img {
-        width: 327.5px;
-        height: 380px;
-        object-fit: cover;
-        border-radius: 16px;
-      }
-
-      .Courtneyy {
+      .honda1 {
+        width: 262.4100036621094px;
+        height: 27.75px;
+        position: relative;
         margin-top: 10px;
       }
 
-      .Courtneyy P {
-        font-size: 20px;
-      }
-
-      .managerr {
-        margin-top: 4px;
-      }
-
-      .managerr p {
-        font-size: 14px;
-      }
-
-      .orqaxon {
-        width: 1440px;
-        height: 527.5px;
-        position: relative;
-        overflow: hidden;
-        background: linear-gradient(rgba(20,27,34,0.55), rgba(20,27,34,0.55)),
-          url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80");
-        background-size: cover;
-        background-position: center;
-        margin-left: 40px;
-        border-radius: 16px;
-        margin-top: 115px;
-      }
-
-      .whether {
-        width: 627.3699951171875px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: 150px;
-        font-size: 20px;
-        color: white;
-      }
-
-      .whether h1 {
-        font-size: 38px;
-        line-height: 1.3;
-        margin-bottom: 20px;
-        font-weight: 700;
-      }
-
-      .whether p {
+      .honda1 a {
         font-size: 15px;
-        line-height: 1.6;
-        opacity: 0.9;
-        max-width: 550px;
-        margin-bottom: 25px;
-      }
-
-      .app-buttons {
-        display: flex;
-        gap: 15px;
-      }
-
-      .app-btn {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: #050b20;
-        color: wheat;
         text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
+        color: #050b20;
+        top: 5px;
+        position: absolute;
       }
 
-      .app-btn i {
-        font-size: 24px;
-        color: white;
-      }
-
-      .app-btn .btn-text {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
-      }
-
-      .app-btn .btn-text span {
-        font-size: 10px;
-        opacity: 0.7;
-        color: wheat;
-      }
-
-      .app-btn .btn-text span {
-        font-size: 14px;
-        font-weight: bold;
-        color: white;
+      .type2 {
+        width: 470px;
+        height: 40px;
       }
 
       .brendbeklar {
@@ -833,884 +572,1826 @@
         margin-left: 54px;
       }
 
-      .aylana img {
+      .yuqori {
         width: 100px;
+        height: 100px;
+      }
+
+      .yuqori img {
+        width: 90px;
         height: 100px;
         object-fit: contain;
       }
 
-      .dostlar {
-        width: 1399.5px;
+      .tuyoq {
+        width: 100px;
+        height: 28.59px;
+      }
+
+      .di {
+        width: 38.87737274169922px;
+        height: 21.600000381469727px;
+        margin-top: 6px;
+        margin-left: 30px;
+      }
+
+      .diy {
+        width: 130px;
+        height: 21.600000381469727px;
+        margin-top: 6px;
+      }
+
+      .cacos {
+        width: 1430px;
+        height: 670.75px;
+        margin-left: 60px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .loan {
+        width: 411.0600280761719px;
         height: 40px;
-        margin-top: 115px;
+        margin-top: 140px;
+        margin-left: 100px;
+      }
+
+      .loan h1 {
+        font-size: 40px;
+        color: #050b20;
+      }
+
+      .payment {
+        width: 579.5399780273438px;
+        height: 55.5px;
+        margin-left: 100px;
+        margin-top: 19px;
+      }
+
+      .payment p {
+        font-size: 15px;
+        color: #050b20;
+      }
+
+      .sonbeklar {
+        width: 579.5399780273438px;
+        height: 57.75px;
         margin-left: 100px;
         display: flex;
         justify-content: space-between;
       }
 
-      .type {
-        width: 307.4495544433594px;
-        height: 40px;
+      .price1 {
+        width: 275.19000244140625px;
+        height: 57.75px;
+        border-radius: 12px;
+        background-color: #ffffff;
       }
 
-      .all {
-        width: 79.19999694824219px;
-        height: 15px;
-        margin-top: 23px;
+      .chap1 {
+        width: 715px;
+        height: 670.75px;
+        background-color: #eef1fb;
       }
 
-      .backbek {
-        width: 100%;
-        height: 648.219970703125px;
-        position: relative;
-        background-image:
-          linear-gradient(rgba(20, 27, 34, 0.38), rgba(20, 27, 34, 0.38)),
-          url("https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1600&q=80");
-        background-size: cover;
-        background-position: center;
-        color: white;
+      .feel {
+        width: 51.35625076293945px;
+        height: 24.049999237060547px;
+        margin-top: 4px;
+        margin-left: 14px;
       }
 
-      .wejon {
-        width: 697.34375px;
-        height: 210px;
-        position: absolute;
-        top: 175px;
-        left: 275px;
+      .feel p {
+        font-size: 13px;
+        color: #818181;
       }
 
-      .wejon h1 {
-        font-size: 70px;
-        color: #ffffff;
+      .feel2 {
+        width: 46.209564208984375px;
+        height: 27.75px;
+        margin-left: 14px;
       }
 
-      .backbek button {
-        width: 296.4800109863281px;
-        height: 63.220001220703125px;
-        border: 1px solid #ffffff;
-        position: absolute;
+      .feel2 p {
+        font-size: 15px;
+        color: #050b20;
+      }
+
+      .sonbeklar1 {
+        width: 579.5399780273438px;
+        height: 57.75px;
+        margin-left: 100px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 32px;
+      }
+
+      .tuyma button {
+        width: 584.3900146484375px;
+        height: 55.75px;
+        background-color: #405ff2;
         border-radius: 16px;
-        background-color: rgb(0, 0, 0, 0.1);
-        top: 410px;
-        left: 275px;
-        color: white;
+        margin-left: 97px;
+        margin-top: 31px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
       }
 
-      .footer {
-        width: 100%;
-        background: #ffffff;
-        padding: 60px 0 0;
-        color: #111;
+      .buyoq img {
+        width: 715px;
+        height: 670.75px;
+        object-fit: cover;
       }
-      .footer-top {
-        width: 85%;
-        max-width: 1200px;
-        margin: 0 auto;
+
+      .reviews-section {
+        width: 100%;
+        max-width: 1400px;
+        margin: 100px auto 60px;
+        padding: 0 40px;
+      }
+
+      .reviews-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 40px;
-        border-bottom: 1px solid #e5e7eb;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
       }
-      .footer-top-left h2 {
-        font-size: 28px;
+
+      .reviews-header h2 {
+        font-size: 32px;
         font-weight: 700;
-        color: #111;
-        margin-bottom: 6px;
+        color: #050b20;
       }
-      .footer-top-left p {
+
+      .reviews-rating {
         font-size: 14px;
         color: #555;
-      }
-      .footer-top-right {
         display: flex;
         align-items: center;
-        gap: 12px;
-      }
-      .footer-top-right input {
-        width: 320px;
-        height: 48px;
-        padding: 0 16px;
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        font-size: 14px;
-        background: #f9fafb;
+        gap: 6px;
       }
 
-      .footer-top-right button {
-        height: 48px;
-        padding: 0 28px;
-        background: #050b20;
+      .reviews-rating i {
+        color: #f5b342;
+      }
+
+      .reviews-carousel-wrapper {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .reviews-track {
+        display: flex;
+        gap: 24px;
+        transition: transform 0.4s ease;
+        will-change: transform;
+        padding: 5px 0 15px;
+      }
+
+      .review-card {
+        flex: 0 0 300px;
+        background: #f9fbfc;
+        border-radius: 14px;
+        padding: 24px 22px 22px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #eef1f6;
+      }
+
+      .review-stars {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 10px;
+      }
+
+      .review-stars .star-filled {
         color: #fff;
-        border: none;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 600;
-        transition: 0.2s;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        font-size: 11px;
       }
 
-      .footer-middle {
-        width: 85%;
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        gap: 30px;
-        padding: 50px 0;
+      .review-stars .verified {
+        margin-left: 8px;
+        font-size: 12px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        gap: 4px;
       }
-      .footer-col h4 {
+
+      .review-stars .verified i {
+        color: #555;
+        font-size: 12px;
+      }
+
+      .review-title {
         font-size: 15px;
         font-weight: 700;
-        color: #111;
+        color: #050b20;
+        margin-bottom: 6px;
+      }
+
+      .review-text {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 14px;
+        flex: 1;
+      }
+
+      .review-author {
+        font-size: 13px;
+        font-weight: 600;
+        color: #050b20;
+        margin-top: auto;
+      }
+
+      .reviews-nav {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .reviews-nav button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid #e0e4ec;
+        background: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+        font-size: 16px;
+        color: #050b20;
+      }
+
+      .miyya {
+        width: 100%;
+        height: 468.05999755859375px;
+      }
+
+      .odambeklar {
+        width: 1399.8px;
+        height: 468.05999755859375px;
+        margin-left: 100px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .odam1 {
+        width: 327.5px;
+        height: 468.05999755859375px;
+      }
+
+      .odam1 img,
+      .odam2 img {
+        width: 327.5px;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 12px;
+      }
+
+      .henry {
+        margin-top: 15px;
+      }
+
+      .odam2 {
+        width: 327.5px;
+        height: 468.05999755859375px;
+        margin-left: 30px;
+      }
+
+      .development {
+        margin-top: 4px;
+      }
+
+      .orqaxon {
+        width: 1440px;
+        height: 527.5px;
+        position: relative;
+        color: #fff;
+        overflow: hidden;
+        background: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80");
+        background-size: cover;
+        background-position: center;
+        margin-left: 40px;
+        border-radius: 16px;
+        margin-top: 115px;
+      }
+
+      .whether {
+        width: 627.3699951171875px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 150px;
+        font-size: 20px;
+      }
+
+      .whether h1 {
+        font-size: 38px;
+        line-height: 1.3;
         margin-bottom: 20px;
+        font-weight: 700;
+      }
+
+      .whether p {
+        font-size: 15px;
+        line-height: 1.6;
+        opacity: 0.9;
+        max-width: 550px;
+        margin-bottom: 25px;
+      }
+
+      .app-buttons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .app-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        color: #222;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .app-btn i {
+        font-size: 24px;
+        color: #222;
+      }
+
+      .app-btn .btn-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .app-btn .btn-text span {
+        font-size: 10px;
+        opacity: 0.7;
+        color: #405ff2;
+      }
+
+      .app-btn .btn-text span {
+        font-size: 14px;
+        font-weight: bold;
+        color: #405ff2;
+      }
+
+      .sport {
+        width: 1430px;
+        height: 441.0899963378906px;
+        margin-left: 60px;
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .alpina {
+        width: 447px;
+        height: 411.0899963378906px;
+      }
+
+      .alpina img {
+        width: 447px;
+        height: 298px;
+        border-radius: 16px;
+        object-fit: cover;
+      }
+
+      .sanabeklar {
+        width: 208px;
+        height: 28.625px;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 19px;
+      }
+
+      .footer {
+        background-color: #050b20;
+        color: #fff;
+        padding: 80px 0 0 0;
+        font-family: Arial, sans-serif;
+        margin-top: 100px;
+      }
+
+      .footer-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding-bottom: 60px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        gap: 40px;
+      }
+
+      .footer-brand {
+        max-width: 400px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo i {
+        font-size: 28px;
+      }
+
+      .footer-desc {
+        font-size: 14px;
+        color: #a0aec0;
+        margin-bottom: 25px;
+      }
+
+      .footer-contacts {
+        display: flex;
+        gap: 15px;
+      }
+
+      .contact-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        padding: 8px 18px;
+        font-size: 13px;
+        color: #fff;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .contact-pill i {
+        font-size: 14px;
+      }
+
+      .footer-newsletter {
+        max-width: 400px;
+        width: 100%;
+      }
+
+      .footer-newsletter h3 {
+        font-size: 22px;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .footer-newsletter p {
+        font-size: 13px;
+        color: #a0aec0;
+        margin-bottom: 20px;
+      }
+
+      .newsletter-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+        padding: 14px 18px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .newsletter-form input {
+        color: #718096;
+      }
+
+      .newsletter-form button {
+        width: 100%;
+        padding: 14px;
+        border-radius: 8px;
+        border: none;
+        background-color: #405ff2;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        transition: 0.3s;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+        padding: 60px 0;
+      }
+
+      .footer-col h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        color: #fff;
       }
 
       .footer-col ul {
         list-style: none;
+        padding: 0;
+        margin: 0;
       }
 
       .footer-col ul li {
-        margin-bottom: 12px;
+        margin-bottom: 14px;
       }
+
       .footer-col ul li a {
-        font-size: 13px;
-        color: #555;
+        color: #a0aec0;
         text-decoration: none;
+        font-size: 14px;
         transition: 0.2s;
       }
 
-      .footer-hours p {
-        font-size: 13px;
-        color: #555;
-        margin-bottom: 10px;
-      }
-      .footer-social {
-        margin-top: 25px;
-      }
-      .footer-social h4 {
-        font-size: 15px;
-        font-weight: 700;
-        color: #111;
-        margin-bottom: 15px;
-      }
-      .footer-social-icons {
+      .app-buttons-footer {
         display: flex;
-        gap: 18px;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 25px;
       }
-      .footer-social-icons a {
-        color: #111;
+
+      .app-btn-footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #fff;
+        color: #222;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 8px;
+        transition: 0.2s;
+        width: fit-content;
+      }
+
+      .app-btn-footer i {
+        font-size: 22px;
+        color: #222;
+      }
+
+      .app-btn-footer .btn-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+      }
+
+      .app-btn-footer .btn-text span {
+        font-size: 9px;
+        opacity: 0.7;
+      }
+
+      .app-btn-footer .btn-text span {
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icons a {
+        color: #fff;
         font-size: 16px;
+        transition: 0.2s;
       }
 
       .footer-bottom {
-        width: 85%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 25px 0;
-        border-top: 1px solid #e5e7eb;
         display: flex;
         justify-content: space-between;
         align-items: center;
-      }
-      .footer-bottom-left p {
+        padding: 25px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
         font-size: 13px;
-        color: #555;
-      }
-      .footer-bottom-right {
-        display: flex;
-        align-items: center;
-        gap: 24px;
-      }
-      .footer-bottom-right a {
-        font-size: 13px;
-        color: #555;
-        text-decoration: none;
-        transition: 0.2s;
+        color: #a0aec0;
+        flex-wrap: wrap;
+        gap: 15px;
       }
 
-      .footer-bottom-right .dot {
-        width: 4px;
-        height: 4px;
-        background: #555;
-        border-radius: 50%;
+      .footer-bottom-links {
+        display: flex;
+        gap: 25px;
+      }
+
+      .footer-bottom-links a {
+        color: #a0aec0;
+        text-decoration: none;
+      }
+
+      @media (max-width: 1200px) {
+        .hero-text {
+          left: 60px;
+        }
+        .explore {
+          padding-left: 60px;
+        }
+        .cartabek1 {
+          flex: 0 0 600px;
+        }
+        .rasmbek img {
+          width: 280px;
+        }
+        .ong {
+          width: 320px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .footer-links {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .menu {
+          display: none;
+        }
+        .hero {
+          height: 600px;
+        }
+        .hero-text {
+          left: 30px;
+          top: 200px;
+        }
+        .car-name {
+          font-size: 28px;
+        }
+        .info-card {
+          display: none;
+        }
+        .explore {
+          padding: 60px 20px 0;
+        }
+        .qatorlar {
+          padding: 0 20px;
+        }
+        .cartabek1 {
+          flex: 0 0 90%;
+          flex-direction: column;
+          height: auto;
+        }
+        .rasmbek img {
+          width: 100%;
+          height: 200px;
+        }
+        .ong {
+          width: 100%;
+          height: auto;
+        }
+        .pulbek1 {
+          width: 100%;
+        }
+        .reviews-section {
+          padding: 0 20px;
+        }
+        .reviews-header h2 {
+          font-size: 24px;
+        }
+        .review-card {
+          flex: 0 0 260px;
+        }
+        .whether {
+          width: 90%;
+          margin: 60px 20px;
+        }
+        .whether h1 {
+          font-size: 24px;
+        }
+        .whether p {
+          font-size: 13px;
+        }
+        .app-buttons {
+          flex-direction: column;
+        }
+        .footer-top {
+          flex-direction: column;
+        }
+        .footer-links {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .footer-bottom-links {
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .footer-links {
+          grid-template-columns: 1fr;
+        }
+        .footer-contacts {
+          flex-direction: column;
+        }
       }
     </style>
   </head>
+
   <body>
-    <section class="hero" id="hero">
+    <section class="hero">
       <div class="navbar">
-        <div class="logo">
-          <div class="car">
-            <i class="fa-solid fa-car-side" style="color: rgb(244, 241, 241)"></i>
+        <div class="logo-box">
+          <span class="logo-car">
+            <i class="fa-solid fa-car" style="color: #fff"></i>
+          </span>
+          <div class="logo">CarHut</div>
+          <div class="phone">
+            <span>+75 123 456 789</span>
           </div>
-          <span>CarHut</span>
         </div>
+
         <div class="menu">
-          <a href="#"> Home </a>
-          <a href="#"> Listings </a>
-          <a href="#"> Blog </a>
-          <a href="#"> Pages </a>
-          <a href="#"> About </a>
-          <a href="#"> Contact </a>
-          <a href="#" class="signin" id="signInBtn">Sign in </a>
-          <a class="sumbit" href="/yakuniy2/index.html">Submit Listing</a>
+          <a href="#">Home</a>
+          <a href="#">Listings</a>
+          <a href="#">Blog</a>
+          <a href="#">Pages</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
+          <a href="#" class="signin">Sign in</a>
+          <a class="sumbit" href="/yakuniy2/indexx.html">Submit Listing</a>
         </div>
       </div>
-      <div class="content">
-        <div class="price">$35,000</div>
-        <h1 class="title">Mercedes-Benz, C Class</h1>
-        <div class="details">
-          <div class="detail"><span id="fuel">Petrol</span></div>
-          <div class="detail"><span id="miles">100 Miles</span></div>
-          <div class="detail"><span id="gear">Automatic</span></div>
+
+      <div class="hero-text">
+        <div class="price">$165,000</div>
+        <div class="car-name">
+          Ranger Black –<br />
+          2021
         </div>
-        <button class="learn">Learn More ↗</button>
       </div>
-      <button class="slider prev">
-        <i class="fa-solid fa-arrow-left" style="color: rgb(0, 0, 0)"></i>
-      </button>
-      <button class="slider next">
-        <i class="fa-solid fa-arrow-right" style="color: rgb(0, 0, 0)"></i>
-      </button>
+
+      <div class="info-card">
+        <div class="info">
+          <div class="icon">
+            <i class="fa-solid fa-truck" style="color: #f4efef"></i>
+          </div>
+          <div class="label">Fuel Type</div>
+          <div class="value">Petrol</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i class="fa-solid fa-sun" style="color: #fdfbfb"></i>
+          </div>
+          <div class="label">Mileage</div>
+          <div class="value">250 Miles</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i
+              class="fa-solid fa-arrow-up-from-bracket"
+              style="color: #fbfafa"
+            ></i>
+          </div>
+          <div class="label">Transmission</div>
+          <div class="value">Manual</div>
+        </div>
+
+        <div class="info">
+          <div class="icon">
+            <i class="fa-regular fa-calendar" style="color: #fcfbfb"></i>
+          </div>
+          <div class="label">Year</div>
+          <div class="value">2021</div>
+        </div>
+
+        <button class="learn">Learn More</button>
+      </div>
+
+      <div class="slider">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </section>
-    <div class="modal" id="signInModal">
-      <div class="modal-box">
-        <h2>Sign In</h2>
-        <p style="margin-top: 10px; color: #555">
-          Please enter your details to sign in.
-        </p>
-        <input type="email" placeholder="Email" style="width: 100%; height: 40px; margin-top: 15px; padding: 0 12px; border: 1px solid #ddd; border-radius: 8px; outline: none;" />
-        <input type="password" placeholder="Password" style="width: 100%; height: 40px; margin-top: 10px; padding: 0 12px; border: 1px solid #ddd; border-radius: 8px; outline: none;" />
-        <button class="close" id="closeSignIn" style="width: 100%; margin-top: 20px">Sign In</button>
-        <button class="close" id="closeSignInBtn" style="width: 100%; margin-top: 10px; background: #eee; color: #333">Cancel</button>
+
+    <div class="explore">
+      <div class="vehicles">
+        <h1>Explore All Vehicles</h1>
       </div>
     </div>
-    <div class="modal">
-      <div class="modal-box">
-        <h2>Mercedes-Benz, C Class</h2>
-        <p>Premium avtomobil.</p>
-        <button class="close">Close</button>
+
+    <div class="qatorlar">
+      <div class="tepa">
+        <a href="#">In Stock</a>
+        <a href="#">New Cars</a>
+        <a href="#">Used Cars</a>
       </div>
-    </div>
-    <div class="Browse">
-      <div class="browse-container">
-        <div class="browse-header">
-          <h2 class="browse-title">Browse by Type</h2>
-          <a href="#" class="view-all">View All <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </div>
-        <div class="cards-grid">
-          <div class="card"><i class="fa-solid fa-car-side card-icon"></i><div class="card-text">SUV</div></div>
-          <div class="card"><i class="fa-solid fa-truck-pickup card-icon"></i><div class="card-text">Sedan</div></div>
-          <div class="card"><i class="fa-solid fa-car-rear card-icon"></i><div class="card-text">Hatchback</div></div>
-          <div class="card"><i class="fa-solid fa-van-shuttle card-icon"></i><div class="card-text">Coupe</div></div>
-          <div class="card"><i class="fa-solid fa-car-on" style="color: rgb(0, 0, 0)"></i><div class="card-text">Hybrid</div></div>
-          <div class="card"><i class="fa-solid fa-taxi" style="color: rgb(0, 0, 0)"></i><div class="card-text">Convertible</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="qidiruv">
-      <div class="vehiccles"><h1>Explore All Vehicles</h1></div>
-      <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
-    </div>
-    <div class="kattabek">
-      <div class="qatorbeklar">
-        <div class="tepabek">
-          <div class="ichm">
-            <div class="recentbek"><a href="#">Recent Cars</a></div>
-            <div class="recentbek2"><a href="#">Featured Cars</a></div>
-            <div class="recentbek3"><a href="#">Popular Cars</a></div>
-          </div>
-        </div>
-        <div class="obshiybek1">
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
-              </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
-              </div>
+
+      <div class="past">
+        <div class="carusel-track" id="track">
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=700&q=80"
+                alt="T-Cross"
+              />
             </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
+              </div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
+              </div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
+              </div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
-              </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
-              </div>
+
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=700&q=80"
+                alt="T-Cross"
+              />
             </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
               </div>
-            </div>
-          </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
               </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
               </div>
-            </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
               </div>
-            </div>
-          </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
               </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
-              </div>
-            </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="obshiybek2">
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
-              </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
-              </div>
+
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=700&q=80"
+                alt="T-Cross"
+              />
             </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
               </div>
-            </div>
-          </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
               </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
               </div>
-            </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
-              </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
-              </div>
+
+          <div class="cartabek1">
+            <div class="rasmbek">
+              <img
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=700&q=80"
+                alt="T-Cross"
+              />
             </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+            <div class="ong">
+              <div class="cross">
+                <h4>T-Cross – 2023</h4>
               </div>
-            </div>
-          </div>
-          <div class="kartabek1">
-            <div class="picturebek1"><img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=800&q=80" alt="" /></div>
-            <div class="camry"><h3>Toyota Camry New</h3></div>
-            <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
-            <div class="ibeklarim">
-              <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+              <div class="d5">
+                <h6>4.0 D5 PowerPulse Momentum 5dr AWD… Geartronic Estate</h6>
               </div>
-              <div class="yozuvbeklarim">
-                <div class="yozuvbek1"><p>20 Miles</p></div>
-                <div class="yozuvbek1"><p>Petrol</p></div>
-                <div class="yozuvbek1"><p>Automatic</p></div>
+              <div class="miles">
+                <p>
+                  <i class="fa-solid fa-gauge-high" style="color: #f1efef"></i>
+                </p>
+                <span>15 Miles</span>
               </div>
-            </div>
-            <div class="summabeklar">
-              <div class="ichkipul">
-                <div class="yozn1"><h3>$40,000</h3></div>
-                <div class="yozn2"><a href="#">View Details <span><i class="ri-arrow-right-up-fill"></i></span></a></div>
+              <div class="miles2">
+                <p>
+                  <i class="fa-solid fa-gas-pump" style="color: #f4f1f1"></i>
+                </p>
+                <span>Petrol</span>
+              </div>
+              <div class="miles3">
+                <p><i class="fa-solid fa-list" style="color: #f9f6f6"></i></p>
+                <span>CVT</span>
+              </div>
+              <div class="pulbek1">
+                <div class="dollar"><h3>$15,000</h3></div>
+                <div class="view">
+                  <h5>View Details</h5>
+                  <span>
+                    <i
+                      class="fa-solid fa-draw-polygon"
+                      style="color: #efeaea"
+                    ></i>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="bel1">
-      <div class="buyoq2">
-        <div class="s1"><h1>Online, in-person, everywhere</h1></div>
-        <div class="s2">
-          <p>
-            Choose from thousands of vehicles from multiple brands and buy
-            online with Click & Drive, or visit us at one of our dealerships
-            today.
-          </p>
-        </div>
-        <button>Get Started <span><i class="ri-arrow-right-up-fill"></i></span></button>
-      </div>
-      <div class="uyoq2">
-        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80" alt="" />
+
+      <div class="otkazish">
+        <button class="a1" id="prevBtn">
+          <i class="fa-solid fa-angle-left" style="color: #000"></i>
+        </button>
+        <button class="a2" id="nextBtn">
+          <i class="fa-solid fa-angle-right" style="color: #000"></i>
+        </button>
       </div>
     </div>
+
     <div class="orta">
-      <div class="choose"><h1>Why Choose Us?</h1></div>
+      <div class="choose">
+        <h1>Why Choose Us?</h1>
+      </div>
+
       <div class="barcha">
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
-          <div class="offers"><h4>Special Financing Offers</h4></div>
-          <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
+          <div class="ibek">
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
+          </div>
+          <div class="offers">
+            <h4>Special Financing Offers</h4>
+          </div>
+          <div class="stress">
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
+          </div>
         </div>
+
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
-          <div class="offers"><h4>Special Financing Offers</h4></div>
-          <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
+          <div class="ibek">
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
+          </div>
+          <div class="offers">
+            <h4>Special Financing Offers</h4>
+          </div>
+          <div class="stress">
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
+          </div>
         </div>
+
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
-          <div class="offers"><h4>Special Financing Offers</h4></div>
-          <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
+          <div class="ibek">
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
+          </div>
+          <div class="offers">
+            <h4>Special Financing Offers</h4>
+          </div>
+          <div class="stress">
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
+          </div>
         </div>
+
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
-          <div class="offers"><h4>Special Financing Offers</h4></div>
-          <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
-        </div>
-      </div>
-    </div>
-    <div class="qidiruv">
-      <div class="vehiccles"><h1>Specials</h1></div>
-      <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
-    </div>
-    <div class="carousel-wrap">
-      <div class="carousel-outer">
-        <div class="carousel-track" id="carouselTrack">
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80" alt="C-Class" /></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">C-Class – 2023</h3>
-              <p class="rasm-tavsif">4.0 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>50 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Petrol</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$150,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
+          <div class="ibek">
+            <p>
+              <i
+                class="fa-solid fa-wand-magic-sparkles"
+                style="color: rgb(0, 0, 0)"
+              ></i>
+            </p>
           </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1543465077-db45d34b88a5?auto=format&fit=crop&w=800&q=80" alt="Ford Transit" /><div class="rasm-badge">Great Price</div></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">Ford Transit – 2021</h3>
-              <p class="rasm-tavsif">4.0 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>2500 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Diesel</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Manual</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$22,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
+          <div class="offers">
+            <h4>Special Financing Offers</h4>
           </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80" alt="New GLC" /><div class="rasm-badge">Low Mileage</div></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">New GLC – 2023</h3>
-              <p class="rasm-tavsif">4.0 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>50 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Petrol</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$95,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=800&q=80" alt="Audi A6" /><div class="rasm-badge">Low Mileage</div></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">Audi A6 3.5 – New</h3>
-              <p class="rasm-tavsif">3.5 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>100 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Petrol</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$58,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="Car" /></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">BMW X5 – 2022</h3>
-              <p class="rasm-tavsif">3.0 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>80 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Diesel</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$72,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80" alt="Car" /></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">Volvo XC90 – 2023</h3>
-              <p class="rasm-tavsif">2.0 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>30 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Petrol</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$88,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=800&q=80" alt="Car" /></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">Range Rover – 2022</h3>
-              <p class="rasm-tavsif">4.4 D5 PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>60 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Diesel</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$120,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="rasm-karta">
-            <div class="rasm-img"><img src="https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=800&q=80" alt="Car" /><div class="rasm-badge">Great Price</div></div>
-            <div class="rasm-body">
-              <h3 class="rasm-nom">Tesla Model 3 – 2023</h3>
-              <p class="rasm-tavsif">Electric PowerPulse Momentum 5dr AW…</p>
-              <div class="rasm-info">
-                <div class="rasm-info-item"><i class="fa-solid fa-stopwatch"></i><span>10 Miles</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-gas-pump"></i><span>Electric</span></div>
-                <div class="rasm-info-item"><i class="fa-solid fa-table-cells"></i><span>Automatic</span></div>
-              </div>
-              <div class="rasm-past">
-                <span class="rasm-narx">$55,000</span>
-                <a href="#" class="rasm-link">View Details <i class="ri-arrow-right-up-fill"></i></a>
-              </div>
-            </div>
+          <div class="stress">
+            <p>
+              Our stress-free finance department that can find financial
+              solutions to save you money.
+            </p>
           </div>
         </div>
       </div>
-      <div class="carousel-nav">
-        <button class="carousel-btn" id="prevBtn"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="carousel-btn" id="nextBtn"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
     </div>
 
-    <section class="reviews-section">
-      <div class="reviews-container">
-        <div class="reviews-header">
-          <h2 class="reviews-title">What our customers say</h2>
-          <p class="reviews-rating">Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star reviews</p>
+    <div class="Browse">
+      <div class="dostlar">
+        <div class="type">
+          <h1>Browse by Type</h1>
         </div>
-        <div class="reviews-carousel-wrap">
-          <button class="rev-nav-btn rev-prev" id="revPrev"><i class="fa-solid fa-chevron-left"></i></button>
-          <div class="reviews-outer">
-            <div class="reviews-track" id="reviewsTrack">
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Sales process was simple and easy</h4>
-                <p class="rev-card-text">Sales process was simple and easy. Maximillion was friendly and I didn't feel...</p>
-                <div class="rev-author">Ali Tufan</div>
-              </div>
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star grey-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Good job for project</h4>
-                <p class="rev-card-text">Sales process was simple and easy. Maximillion was friendly and I didn't feel...</p>
-                <div class="rev-author">John Doe</div>
-              </div>
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Sales process was simple and easy</h4>
-                <p class="rev-card-text">At Volture what matters to us is making your car search and buying...</p>
-                <div class="rev-author">Brooklyn Simmons</div>
-              </div>
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Good job for project</h4>
-                <p class="rev-card-text">Sales process was simple and easy. Maximillion was friendly and I didn't feel...</p>
-                <div class="rev-author">Augusta Silva</div>
-              </div>
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Excellent service</h4>
-                <p class="rev-card-text">The team was very professional and helped me find the perfect car...</p>
-                <div class="rev-author">Michael Brown</div>
-              </div>
-              <div class="rev-card">
-                <div class="rev-top"><div class="rev-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><div class="rev-verified"><i class="fa-solid fa-circle-check"></i> Verified</div></div>
-                <h4 class="rev-card-title">Highly recommended</h4>
-                <p class="rev-card-text">I had a great experience buying my car here. The process was smooth...</p>
-                <div class="rev-author">Sarah Wilson</div>
-              </div>
-            </div>
-          </div>
-          <button class="rev-nav-btn rev-next" id="revNext"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="all">
+          <a href="#">View All</a>
+          <span><i class="ri-arrow-right-up-fill"></i></span>
         </div>
       </div>
-    </section>
-
-    <div class="qidiruv">
-      <div class="vehiccles"><h1>Our Team</h1></div>
-      <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
     </div>
 
-    <div class="hemans">
-      <div class="henry">
-        <div class="smilee"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="" /></div>
-        <div class="Courtneyy"><h4>Courtney Henry</h4></div>
-        <div class="managerr"><p>Development Manager</p></div>
+    <div class="quticha">
+      <div class="dostbek">
+        <div class="picture1">
+          <img
+            src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+            alt=""
+          />
+        </div>
+        <div class="picture2">
+          <img
+            src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80"
+            alt=""
+          />
+        </div>
       </div>
-      <div class="henry">
-        <div class="smilee"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="" /></div>
-        <div class="Courtneyy"><h4>Courtney Henry</h4></div>
-        <div class="managerr"><p>Development Manager</p></div>
-      </div>
-      <div class="henry">
-        <div class="smilee"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80" alt="" /></div>
-        <div class="Courtneyy"><h4>Courtney Henry</h4></div>
-        <div class="managerr"><p>Development Manager</p></div>
-      </div>
-      <div class="henry">
-        <div class="smilee"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="" /></div>
-        <div class="Courtneyy"><h4>Courtney Henry</h4></div>
-        <div class="managerr"><p>Development Manager</p></div>
+
+      <div class="dostbek2">
+        <div class="picture3">
+          <img
+            src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=700&q=80"
+            alt=""
+          />
+        </div>
+        <div class="picture4">
+          <img
+            src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=700&q=80"
+            alt=""
+          />
+        </div>
+        <div class="picture5">
+          <img
+            src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=700&q=80"
+            alt=""
+          />
+        </div>
       </div>
     </div>
 
-    <div class="orqaxon">
-      <div class="whether">
-        <h1>Shop Used Cars, Whether You're<br />On The Lot Or On The Go</h1>
-        <p>Download our app to save cars and create alerts, scan window stickers on our lot for more details, and even call dibs on a car by holding it for up to 7 days.</p>
-        <div class="app-buttons">
-          <a href="#" class="app-btn">
-            <i class="fa-brands fa-apple"></i>
-            <div class="btn-text"><span>Download on the</span><span>Apple Store</span></div>
-          </a>
-          <a href="#" class="app-btn">
-            <i class="fa-brands fa-google-play"></i>
-            <div class="btn-text"><span>Get it on</span><span>Google Play</span></div>
-          </a>
+    <div class="Browse">
+      <div class="dostlar">
+        <div class="type1">
+          <h1>Shop BoxCar Your Way</h1>
+        </div>
+        <div class="all">
+          <a href="#">View All</a>
+          <span><i class="ri-arrow-right-up-fill"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="qop">
+      <div class="usti">
+        <div class="ichm">
+          <div class="burchak1"><a href="#">New Cars For Sale</a></div>
+          <div class="burchak1"><a href="#">Used Cars For Sale</a></div>
+          <div class="burchak1"><a href="#">Browse By Type</a></div>
+          <div class="burchak1"><a href="#">Browse By Brand</a></div>
+        </div>
+      </div>
+
+      <div class="oyoq">
+        <div class="jigar1">
+          <div class="ford"><a href="#">Ford Cars</a></div>
+          <div class="honda1"><a href="#">Honda Cars</a></div>
+          <div class="honda1"><a href="#">Hyundai Cars</a></div>
+          <div class="honda1"><a href="#">Infiniti Cars</a></div>
+          <div class="honda1"><a href="#">Jaguar Cars</a></div>
+          <div class="honda1"><a href="#">Jeep Cars</a></div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford"><a href="#">Chrysler Cars</a></div>
+          <div class="honda1"><a href="#">Citroen Cars</a></div>
+          <div class="honda1"><a href="#">Cupra Cars</a></div>
+          <div class="honda1"><a href="#">Dacia Cars</a></div>
+          <div class="honda1"><a href="#">DS Cars</a></div>
+          <div class="honda1"><a href="#">Fiat Cars</a></div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford"><a href="#">Land Rover Cars</a></div>
+          <div class="honda1"><a href="#">Lexus Cars</a></div>
+          <div class="honda1"><a href="#">Mercedes-Benz Cars</a></div>
+          <div class="honda1"><a href="#">Mazda Cars</a></div>
+          <div class="honda1"><a href="#">MG Cars</a></div>
+          <div class="honda1"><a href="#">Kia Cars</a></div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford"><a href="#">Abarth Cars</a></div>
+          <div class="honda1"><a href="#">Romeo Cars</a></div>
+          <div class="honda1"><a href="#">Audi Cars</a></div>
+          <div class="honda1"><a href="#">Bentley Cars</a></div>
+          <div class="honda1"><a href="#">BMW Cars</a></div>
+          <div class="honda1"><a href="#">Chevrolet Cars</a></div>
+        </div>
+
+        <div class="jigar1">
+          <div class="ford"><a href="#">Ford Cars</a></div>
+          <div class="honda1"><a href="#">Honda Cars</a></div>
+          <div class="honda1"><a href="#">Hyundai Cars</a></div>
+          <div class="honda1"><a href="#">Infiniti Cars</a></div>
+          <div class="honda1"><a href="#">Jaguar Cars</a></div>
+          <div class="honda1"><a href="#">Jeep Cars</a></div>
         </div>
       </div>
     </div>
 
     <div class="dostlar">
-      <div class="type2"><h1>Explore Our Premium Brands</h1></div>
-      <div class="all"><a href="#">Show All Brands</a><span><i class="ri-arrow-right-up-fill"></i></span></div>
+      <div class="type2">
+        <h1>Explore Our Premium Brands</h1>
+      </div>
+      <div class="all">
+        <a href="#">Show All Brands</a>
+        <span><i class="ri-arrow-right-up-fill"></i></span>
+      </div>
     </div>
 
     <div class="brendbeklar">
       <div class="jahon">
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>Audi</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg"
+                alt="Audi"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="di"><h4>Audi</h4></div>
+            </div>
           </div>
         </div>
+
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bmw/bmw-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>BMW</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bmw/bmw-original.svg"
+                alt="BMW"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="di"><h4>BMW</h4></div>
+            </div>
           </div>
         </div>
+
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ford/ford-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>Ford</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ford/ford-original.svg"
+                alt="Ford"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="di"><h4>Ford</h4></div>
+            </div>
           </div>
         </div>
+
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mercedes/mercedes-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="diy"><h4>Mercedes Benz</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mercedes/mercedes-original.svg"
+                alt="Mercedes"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="diy"><h4>Mercedes Benz</h4></div>
+            </div>
           </div>
         </div>
+
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/peugeot/peugeot-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>Peugeot</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/peugeot/peugeot-original.svg"
+                alt="Peugeot"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="di"><h4>Peugeot</h4></div>
+            </div>
           </div>
         </div>
+
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>Audi</h4></div></div>
+            <div class="yuqori">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg"
+                alt="Audi"
+              />
+            </div>
+            <div class="tuyoq">
+              <div class="di"><h4>Audi</h4></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="backbek">
-      <div class="wejon"><h1>We make finding the right car simple</h1></div>
-      <button>Find Out More <span><i class="ri-arrow-right-up-fill"></i></span></button>
+    <div class="cacos">
+      <div class="chap1">
+        <div class="loan">
+          <h1>Auto Loan Calculator</h1>
+        </div>
+
+        <div class="payment">
+          <p>
+            Use this car payment calculator to estimate monthly payments on your
+            next new or used auto loan.
+          </p>
+        </div>
+
+        <div class="sonbeklar">
+          <div class="price1">
+            <div class="feel"><p>Price ($)</p></div>
+            <div class="feel2"><p>10000</p></div>
+          </div>
+          <div class="price1">
+            <div class="feel"><p>Price ($)</p></div>
+            <div class="feel2"><p>10000</p></div>
+          </div>
+        </div>
+
+        <div class="sonbeklar1">
+          <div class="price1">
+            <div class="feel"><p>Price ($)</p></div>
+            <div class="feel2"><p>10000</p></div>
+          </div>
+          <div class="price1">
+            <div class="feel"><p>Price ($)</p></div>
+            <div class="feel2"><p>10000</p></div>
+          </div>
+        </div>
+
+        <div class="tuyma">
+          <button>
+            Calculate <span><i class="ri-arrow-right-up-line"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="buyoq">
+        <img
+          src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80"
+          alt=""
+        />
+      </div>
+    </div>
+
+    <section class="reviews-section">
+      <div class="reviews-header">
+        <h2>What our customers say</h2>
+        <div class="reviews-rating">
+          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
+          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
+          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
+          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
+          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
+          <span
+            >Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star
+            reviews</span
+          >
+        </div>
+      </div>
+
+      <div class="reviews-carousel-wrapper">
+        <div class="reviews-track" id="reviewsTrack">
+          <div class="review-card">
+            <div class="review-stars">
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Sales process was simple and easy</div>
+            <div class="review-text">
+              Sales process was simple and easy. Maximillion was friendly and I
+              didn't feel...
+            </div>
+            <div class="review-author">Ali Tufan</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Good job for project</div>
+            <div class="review-text">
+              Sales process was simple and easy. Maximillion was friendly and I
+              didn't feel...
+            </div>
+            <div class="review-author">John Doe</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Sales process was simple and easy</div>
+            <div class="review-text">
+              At Volure what matters to us is making your car search and buying.
+            </div>
+            <div class="review-author">Brooklyn Simmons</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="star-filled"
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Good job for project</div>
+            <div class="review-text">
+              Sales process was simple and easy. Maximillion was friendly and I
+              didn't feel...
+            </div>
+            <div class="review-author">Augusta Silva</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Sales process was simple and easy</div>
+            <div class="review-text">
+              Sales process was simple and easy. Maximillion was friendly and I
+              didn't feel...
+            </div>
+            <div class="review-author">Jack Graham</div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-stars">
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="star-filled"><i class="fa-solid fa-star"></i></span>
+              <span class="verified"
+                ><i class="fa-regular fa-circle-check"></i> Verified</span
+              >
+            </div>
+            <div class="review-title">Excellent service</div>
+            <div class="review-text">
+              The team was very helpful and made the whole process smooth from
+              start to finish.
+            </div>
+            <div class="review-author">Sarah Johnson</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews-nav">
+        <button id="reviewsPrevBtn">
+          <i class="fa-solid fa-angle-left"></i>
+        </button>
+        <button id="reviewsNextBtn">
+          <i class="fa-solid fa-angle-right"></i>
+        </button>
+      </div>
+    </section>
+
+    <div class="Browse">
+      <div class="dostlar">
+        <div class="type1">
+          <h1>Our Team</h1>
+        </div>
+        <div class="all">
+          <a href="#">View All</a>
+          <span><i class="ri-arrow-right-up-fill"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="miyya">
+      <div class="odambeklar">
+        <div class="odam1">
+          <img
+            src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80"
+            alt=""
+          />
+
+          <div class="henry"><h3>Courtney Henry</h3></div>
+          <div class="development">Development Manager</div>
+        </div>
+
+        <div class="odam2">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            alt=""
+          />
+
+          <div class="henry"><h3>Courtney Henry</h3></div>
+          <div class="development">Development Manager</div>
+        </div>
+
+        <div class="odam2">
+          <img
+            src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80"
+            alt=""
+          />
+
+          <div class="henry"><h3>Courtney Henry</h3></div>
+          <div class="development">Development Manager</div>
+        </div>
+
+        <div class="odam2">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+            alt=""
+          />
+
+          <div class="henry"><h3>Courtney Henry</h3></div>
+          <div class="development">Development Manager</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="orqaxon">
+      <div class="whether">
+        <h1>Shop Used Cars, Whether You're<br />On The Lot Or On The Go</h1>
+        <p>
+          Download our app to save cars and create alerts, scan window stickers
+          on our lot for more details, and even call dibs on a car by holding it
+          for up to 7 days.
+        </p>
+        <div class="app-buttons">
+          <a href="#" class="app-btn">
+            <i class="fa-brands fa-apple"></i>
+            <div class="btn-text">
+              <span>Download on the</span>
+              <span>Apple Store</span>
+            </div>
+          </a>
+          <a href="#" class="app-btn">
+            <i class="fa-brands fa-google-play"></i>
+            <div class="btn-text">
+              <span>Get it on</span>
+              <span>Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="Browse">
+      <div class="dostlar">
+        <div class="type1">
+          <h1>Latest Blog Posts</h1>
+        </div>
+        <div class="all">
+          <a href="#">View All</a>
+          <span><i class="ri-arrow-right-up-fill"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sport">
+      <div class="alpina">
+        <img
+          src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80"
+          alt=""
+        />
+        <div class="sanabeklar">
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
+        </div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
+      </div>
+
+      <div class="alpina">
+        <img
+          src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80"
+          alt=""
+        />
+        <div class="sanabeklar">
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
+        </div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
+      </div>
+
+      <div class="alpina">
+        <img
+          src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80"
+          alt=""
+        />
+        <div class="sanabeklar">
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
+        </div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
+      </div>
     </div>
 
     <footer class="footer">
-      <div class="footer-top">
-        <div class="footer-top-left">
-          <h2>Join CarHut</h2>
-          <p>Receive pricing updates, shopping tips & more!</p>
-        </div>
-        <div class="footer-top-right">
-          <input type="email" placeholder="Your email address" />
-          <button>Sign Up</button>
-        </div>
-      </div>
+      <div class="footer-container">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <i class="fa-solid fa-car"></i>
+              <span>CarHut</span>
+            </div>
+            <p class="footer-desc">
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+              officia deserunt mollit anim id est
+            </p>
+            <div class="footer-contacts">
+              <a href="" class="contact-pill">
+                <i class="fa-solid fa-mobile-screen"></i>
+                +76 956 039 999
+              </a>
+              <a href="" class="contact-pill">
+                <i class="fa-regular fa-envelope"></i>
+                ali@boxcars.com
+              </a>
+            </div>
+          </div>
 
-      <div class="footer-middle">
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">FAQs</a></li>
-            <li><a href="#">Terms</a></li>
-            <li><a href="#">Contact Us</a></li>
-          </ul>
+          <div class="footer-newsletter">
+            <h3>Join CarHut</h3>
+            <p>Receive pricing updates, shopping tips & more!</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault()">
+              <input type="email" placeholder="Your email address" required />
+              <button type="submit">Sign Up</button>
+            </form>
+          </div>
         </div>
-        <div class="footer-col">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="#">Get in Touch</a></li>
-            <li><a href="#">Help center</a></li>
-            <li><a href="#">Live chat</a></li>
-            <li><a href="#">How it works</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Our Brands</h4>
-          <ul>
-            <li><a href="#">Toyota</a></li>
-            <li><a href="#">Porsche</a></li>
-            <li><a href="#">Audi</a></li>
-            <li><a href="#">BMW</a></li>
-            <li><a href="#">Ford</a></li>
-            <li><a href="#">Nissan</a></li>
-            <li><a href="#">Peugeot</a></li>
-            <li><a href="#">Volkswagen</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Vehicles Type</h4>
-          <ul>
-            <li><a href="#">Sedan</a></li>
-            <li><a href="#">Hatchback</a></li>
-            <li><a href="#">SUV</a></li>
-            <li><a href="#">Hybrid</a></li>
-            <li><a href="#">Electric</a></li>
-            <li><a href="#">Coupe</a></li>
-            <li><a href="#">Truck</a></li>
-            <li><a href="#">Convertible</a></li>
-          </ul>
-        </div>
-        <div class="footer-col footer-hours">
-          <h4>Sale Hours</h4>
-          <p>Monday – Friday: 09:00AM – 09:00 PM</p>
-          <p>Saturday: 09:00AM – 07:00PM</p>
-          <p>Sunday: Closed</p>
-          <div class="footer-social">
-            <h4>Connect With Us</h4>
-            <div class="footer-social-icons">
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#">Get in Touch</a></li>
+              <li><a href="#">Help center</a></li>
+              <li><a href="#">Live chat</a></li>
+              <li><a href="#">How it works</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Our Brands</h4>
+            <ul>
+              <li><a href="#">Toyota</a></li>
+              <li><a href="#">Porsche</a></li>
+              <li><a href="#">Audi</a></li>
+              <li><a href="#">BMW</a></li>
+              <li><a href="#">Ford</a></li>
+              <li><a href="#">Nissan</a></li>
+              <li><a href="#">Peugeot</a></li>
+              <li><a href="#">Volkswagen</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Vehicles Type</h4>
+            <ul>
+              <li><a href="#">Sedan</a></li>
+              <li><a href="#">Hatchback</a></li>
+              <li><a href="#">SUV</a></li>
+              <li><a href="#">Hybrid</a></li>
+              <li><a href="#">Electric</a></li>
+              <li><a href="#">Coupe</a></li>
+              <li><a href="#">Truck</a></li>
+              <li><a href="#">Convertible</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Our Mobile App</h4>
+            <div class="app-buttons-footer">
+              <a href="#" class="app-btn-footer">
+                <i class="fa-brands fa-apple"></i>
+                <div class="btn-text">
+                  <span>Download on the</span>
+                  <span>Apple Store</span>
+                </div>
+              </a>
+              <a href="#" class="app-btn-footer">
+                <i class="fa-brands fa-google-play"></i>
+                <div class="btn-text">
+                  <span>Get it on</span>
+                  <span>Google Play</span>
+                </div>
+              </a>
+            </div>
+
+            <h4 style="margin-top: 25px">Connect With Us</h4>
+            <div class="social-icons">
               <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#"><i class="fa-brands fa-twitter"></i></a>
               <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -1718,133 +2399,119 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="footer-bottom">
-        <div class="footer-bottom-left">
-          <p>© 2025 example.com. All rights reserved.</p>
-        </div>
-        <div class="footer-bottom-right">
-          <a href="#">Terms & Conditions</a>
-          <span class="dot"></span>
-          <a href="#">Privacy Notice</a>
+        <div class="footer-bottom">
+          <div class="copyright">© 2025 example.com. All rights reserved.</div>
+          <div class="footer-bottom-links">
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Notice</a>
+          </div>
         </div>
       </div>
     </footer>
 
     <script>
-      const track = document.getElementById("carouselTrack");
+      const track = document.getElementById("track");
       const prevBtn = document.getElementById("prevBtn");
       const nextBtn = document.getElementById("nextBtn");
-      const cards = track.children;
-      const visibleCards = 4;
+
+      const cards = document.querySelectorAll(".cartabek1");
       const totalCards = cards.length;
-      const maxIndex = totalCards - visibleCards;
+
       let currentIndex = 0;
 
-      function updateCarousel() {
-        const cardWidth = cards[0].getBoundingClientRect().width;
-        const gap = 14;
-        const moveX = (cardWidth + gap) * currentIndex;
-        track.style.transform = "translateX(-" + moveX + "px)";
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex >= maxIndex;
+      function getVisibleCards() {
+        const containerWidth = track.parentElement.offsetWidth;
+        const cardWidth = cards[0].offsetWidth + 30;
+        return Math.max(1, Math.floor(containerWidth / cardWidth));
       }
 
-      prevBtn.addEventListener("click", function () {
+      function getMaxIndex() {
+        return Math.max(0, totalCards - getVisibleCards());
+      }
+
+      function updateCarousel() {
+        const cardWidth = cards[0].offsetWidth + 30;
+        const moveAmount = -currentIndex * cardWidth;
+        track.style.transform = `translateX(${moveAmount}px)`;
+
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= getMaxIndex();
+      }
+
+      nextBtn.addEventListener("click", () => {
+        if (currentIndex < getMaxIndex()) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+
+      prevBtn.addEventListener("click", () => {
         if (currentIndex > 0) {
           currentIndex--;
           updateCarousel();
         }
       });
 
-      nextBtn.addEventListener("click", function () {
-        if (currentIndex < maxIndex) {
-          currentIndex++;
-          updateCarousel();
+      window.addEventListener("resize", () => {
+        if (currentIndex > getMaxIndex()) {
+          currentIndex = getMaxIndex();
         }
+        updateCarousel();
       });
 
-      window.addEventListener("resize", updateCarousel);
       updateCarousel();
 
-      document.addEventListener("DOMContentLoaded", function () {
-        const revTrack = document.getElementById("reviewsTrack");
-        const revPrev = document.getElementById("revPrev");
-        const revNext = document.getElementById("revNext");
+      const reviewsTrack = document.getElementById("reviewsTrack");
+      const reviewsPrevBtn = document.getElementById("reviewsPrevBtn");
+      const reviewsNextBtn = document.getElementById("reviewsNextBtn");
 
-        if (!revTrack || !revPrev || !revNext) return;
+      const reviewCards = document.querySelectorAll(".review-card");
+      const totalReviewCards = reviewCards.length;
 
-        const revCards = revTrack.children;
-        let revCurrentIndex = 0;
+      let reviewIndex = 0;
 
-        function getVisibleCount() {
-          if (window.innerWidth <= 550) return 1;
-          if (window.innerWidth <= 800) return 2;
-          if (window.innerWidth <= 1100) return 3;
-          return 4;
+      function getVisibleReviewCards() {
+        const containerWidth = reviewsTrack.parentElement.offsetWidth;
+        const cardWidth = reviewCards[0].offsetWidth + 24;
+        return Math.max(1, Math.floor(containerWidth / cardWidth));
+      }
+
+      function getMaxReviewIndex() {
+        return Math.max(0, totalReviewCards - getVisibleReviewCards());
+      }
+
+      function updateReviewsCarousel() {
+        const cardWidth = reviewCards[0].offsetWidth + 24;
+        const moveAmount = -reviewIndex * cardWidth;
+        reviewsTrack.style.transform = `translateX(${moveAmount}px)`;
+
+        reviewsPrevBtn.disabled = reviewIndex === 0;
+        reviewsNextBtn.disabled = reviewIndex >= getMaxReviewIndex();
+      }
+
+      reviewsNextBtn.addEventListener("click", () => {
+        if (reviewIndex < getMaxReviewIndex()) {
+          reviewIndex++;
+          updateReviewsCarousel();
         }
-
-        function updateRevCarousel() {
-          const visible = getVisibleCount();
-          const total = revCards.length;
-          const maxIdx = total - visible;
-
-          if (revCurrentIndex > maxIdx) revCurrentIndex = maxIdx;
-          if (revCurrentIndex < 0) revCurrentIndex = 0;
-
-          const cardWidth = revCards[0].getBoundingClientRect().width;
-          const gap = 20;
-          const moveX = (cardWidth + gap) * revCurrentIndex;
-
-          revTrack.style.transform = "translateX(-" + moveX + "px)";
-
-          revPrev.disabled = revCurrentIndex === 0;
-          revNext.disabled = revCurrentIndex >= maxIdx;
-        }
-
-        revPrev.addEventListener("click", function () {
-          if (revCurrentIndex > 0) {
-            revCurrentIndex--;
-            updateRevCarousel();
-          }
-        });
-
-        revNext.addEventListener("click", function () {
-          const visible = getVisibleCount();
-          if (revCurrentIndex < revCards.length - visible) {
-            revCurrentIndex++;
-            updateRevCarousel();
-          }
-        });
-
-        window.addEventListener("resize", updateRevCarousel);
-        setTimeout(updateRevCarousel, 100);
-
-        const signInBtn = document.getElementById("signInBtn");
-        const signInModal = document.getElementById("signInModal");
-        const closeSignIn = document.getElementById("closeSignIn");
-        const closeSignInBtn = document.getElementById("closeSignInBtn");
-
-        signInBtn.addEventListener("click", function (e) {
-          e.preventDefault();
-          signInModal.style.display = "flex";
-        });
-
-        closeSignIn.addEventListener("click", function () {
-          signInModal.style.display = "none";
-        });
-
-        closeSignInBtn.addEventListener("click", function () {
-          signInModal.style.display = "none";
-        });
-
-        signInModal.addEventListener("click", function (e) {
-          if (e.target === signInModal) {
-            signInModal.style.display = "none";
-          }
-        });
       });
+
+      reviewsPrevBtn.addEventListener("click", () => {
+        if (reviewIndex > 0) {
+          reviewIndex--;
+          updateReviewsCarousel();
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (reviewIndex > getMaxReviewIndex()) {
+          reviewIndex = getMaxReviewIndex();
+        }
+        updateReviewsCarousel();
+      });
+
+      updateReviewsCarousel();
     </script>
   </body>
 </html>
