@@ -37,7 +37,7 @@
         overflow: hidden;
         background:
           linear-gradient(rgba(70, 80, 95, 0.48), rgba(30, 40, 55, 0.48)),
-          url("/rasmlar/5527067eca25aa7aee38985bbf7c9e6cc48514dc.jpg");
+          url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80");
         background-size: cover;
         background-position: center;
       }
@@ -86,11 +86,24 @@
         transition: opacity 0.2s;
       }
 
-
       .signin {
         display: flex;
         align-items: center;
         gap: 5px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 10px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        font-family: Arial, sans-serif;
+        padding: 0;
+        transition: opacity 0.2s;
+      }
+
+      .signin:hover {
+        opacity: 0.7;
+        text-decoration: underline;
       }
 
       .submit {
@@ -105,7 +118,6 @@
           background 0.2s,
           color 0.2s;
       }
-
 
       .hero-text {
         position: absolute;
@@ -685,6 +697,7 @@
       .buyoq img {
         width: 715px;
         height: 670.75px;
+        object-fit: cover;
       }
 
       .reviews-section {
@@ -838,6 +851,14 @@
         height: 468.05999755859375px;
       }
 
+      .odam1 img,
+      .odam2 img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 16px;
+      }
+
       .henry {
         margin-top: 15px;
       }
@@ -858,8 +879,7 @@
         position: relative;
         color: #fff;
         overflow: hidden;
-        background:
-          url("/rambek2/3d28bfe586c1e7c46961e1a7cc9e7b021034332b\ \(1\).jpg");
+        background: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=80");
         background-size: cover;
         background-position: center;
         margin-left: 40px;
@@ -905,7 +925,9 @@
         text-decoration: none;
         padding: 10px 20px;
         border-radius: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
 
       .app-btn i {
@@ -948,6 +970,7 @@
         width: 447px;
         height: 298px;
         border-radius: 16px;
+        object-fit: cover;
       }
 
       .sanabeklar {
@@ -1020,8 +1043,6 @@
         text-decoration: none;
         transition: 0.3s;
       }
-
-      
 
       .contact-pill i {
         font-size: 14px;
@@ -1160,7 +1181,6 @@
         transition: 0.2s;
       }
 
-
       .footer-bottom {
         display: flex;
         justify-content: space-between;
@@ -1180,7 +1200,120 @@
 
       .footer-bottom-links a {
         color: #a0aec0;
-        text-decoration: n  one;
+        text-decoration: n one;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(4px);
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal-box {
+        background: #fff;
+        padding: 35px 40px;
+        border-radius: 14px;
+        width: 380px;
+        max-width: 90%;
+        position: relative;
+        color: #050b20;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: modalFade 0.3s ease;
+      }
+
+      @keyframes modalFade {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-box h2 {
+        margin-bottom: 6px;
+        font-size: 24px;
+        color: #050b20;
+      }
+
+      .modal-box .modal-sub {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 22px;
+      }
+
+      .modal-box input {
+        width: 100%;
+        padding: 12px 14px;
+        margin-bottom: 14px;
+        border: 1px solid #dfe3ea;
+        border-radius: 8px;
+        font-size: 14px;
+        outline: none;
+        transition: border 0.2s;
+      }
+
+      .modal-box input:focus {
+        border-color: #405ff2;
+      }
+
+      .modal-box button[type="submit"] {
+        width: 100%;
+        padding: 13px;
+        background: #405ff2;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .modal-box button[type="submit"]:hover {
+        background: #2f4bd6;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 12px;
+        right: 18px;
+        font-size: 26px;
+        cursor: pointer;
+        color: #999;
+        line-height: 1;
+        transition: color 0.2s;
+      }
+
+      .close-modal:hover {
+        color: #222;
+      }
+
+      .modal-switch {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+        margin-top: 16px;
+      }
+
+      .modal-switch a {
+        color: #405ff2;
+        text-decoration: none;
+        font-weight: 600;
       }
 
       @media (max-width: 1200px) {
@@ -1314,7 +1447,11 @@
           <a href="#">Pages</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
-          <a href="#" class="signin">Sign in</a>
+
+          <button class="signin" id="signInBtn">
+            <i class="fa-regular fa-user"></i> Sign in
+          </button>
+
           <button class="submit">Submit Listing</button>
         </div>
       </div>
@@ -1392,7 +1529,7 @@
           <div class="cartabek1">
             <div class="rasmbek">
               <img
-                src="/rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=600&q=80"
                 alt="T-Cross"
               />
             </div>
@@ -1434,11 +1571,10 @@
             </div>
           </div>
 
-
           <div class="cartabek1">
             <div class="rasmbek">
               <img
-                src="/rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&q=80"
                 alt="T-Cross"
               />
             </div>
@@ -1480,11 +1616,10 @@
             </div>
           </div>
 
-
           <div class="cartabek1">
             <div class="rasmbek">
               <img
-                src="/rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=600&q=80"
                 alt="T-Cross"
               />
             </div>
@@ -1526,11 +1661,10 @@
             </div>
           </div>
 
-
           <div class="cartabek1">
             <div class="rasmbek">
               <img
-                src="/rasmlar/acaf2e2b326396346b68dcac4025be7e9a24df21.jpg"
+                src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=600&q=80"
                 alt="T-Cross"
               />
             </div>
@@ -1688,14 +1822,16 @@
       <div class="dostbek">
         <div class="picture1">
           <img
-            src="/rasmlar/0834a9a13618984afe4e6f06a3e500246db02353.jpg"
+            src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=700&q=80"
             alt=""
+            style="width: 685px; height: 349px; object-fit: cover; border-radius: 16px"
           />
         </div>
         <div class="picture2">
           <img
-            src="/rasmlar/8e701cff7f065e7b6be57650912ab250ab386159.jpg"
+            src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=700&q=80"
             alt=""
+            style="width: 685px; height: 349px; object-fit: cover; border-radius: 16px"
           />
         </div>
       </div>
@@ -1703,20 +1839,23 @@
       <div class="dostbek2">
         <div class="picture3">
           <img
-            src="/rasmlar/c36fc004129f2f0dcd04df565fc3a67fc91ce0ca.jpg"
+            src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80"
             alt=""
+            style="width: 445px; height: 349px; object-fit: cover; border-radius: 16px"
           />
         </div>
         <div class="picture4">
           <img
-            src="/rasmlar/fcd87c97a6e47040f3e03e844a51decea6a0c19a (1).jpg"
+            src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=500&q=80"
             alt=""
+            style="width: 445px; height: 349px; object-fit: cover; border-radius: 16px"
           />
         </div>
         <div class="picture5">
           <img
-            src="/rasmlar/7874d753d2683f97c82bec7dd00c8480a79cb936.jpg"
+            src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=500&q=80"
             alt=""
+            style="width: 445px; height: 349px; object-fit: cover; border-radius: 16px"
           />
         </div>
       </div>
@@ -1792,7 +1931,6 @@
       </div>
     </div>
 
-
     <div class="dostlar">
       <div class="type2">
         <h1>Explore Our Premium Brands</h1>
@@ -1809,8 +1947,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/77867001930a7f83335c2e20a7c2b2aa202f7101 (4).jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/audi-11.svg"
+                alt="Audi"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1823,8 +1962,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/bf4f2015de9eeefd5cce4a73d57992f2bc84735e.jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/bmw-2.svg"
+                alt="BMW"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1837,8 +1977,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/057dafcdb2ebc38c7a15af8c45656bcf31dd651e.jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/ford-8.svg"
+                alt="Ford"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1851,8 +1992,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/9169ee755e42830825dc7da7172ff0d9f468751c.jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/mercedes-benz-9.svg"
+                alt="Mercedes"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1865,8 +2007,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/91bd4e40aa54a3bec35a6c90c8b6f0c9d7d17dfe.jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/peugeot-2.svg"
+                alt="Peugeot"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1879,8 +2022,9 @@
           <div class="aylana">
             <div class="yuqori">
               <img
-                src="/rasmlar/77867001930a7f83335c2e20a7c2b2aa202f7101 (4).jpg"
-                alt=""
+                src="https://cdn.worldvectorlogo.com/logos/audi-11.svg"
+                alt="Audi"
+                style="width: 90px; height: 90px; object-fit: contain"
               />
             </div>
             <div class="tuyoq">
@@ -1899,8 +2043,8 @@
 
         <div class="payment">
           <p>
-            Use this car payment calculator to estimate monthly payments on
-            your next new or used auto loan.
+            Use this car payment calculator to estimate monthly payments on your
+            next new or used auto loan.
           </p>
         </div>
 
@@ -1934,7 +2078,10 @@
       </div>
 
       <div class="buyoq">
-        <img src="/rasmlar/photo_2026-10-02_13-46-03.jpg" alt="" />
+        <img
+          src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80"
+          alt=""
+        />
       </div>
     </div>
 
@@ -1987,11 +2134,21 @@
 
           <div class="review-card">
             <div class="review-stars">
-              <span><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i></span>
-              <span><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i></span>
-              <span><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i></span>
-              <span><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i></span>
-              <span><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
+              <span
+                ><i class="fa-regular fa-star" style="color: rgb(0, 0, 0)"></i
+              ></span>
               <span class="verified"
                 ><i class="fa-regular fa-circle-check"></i> Verified</span
               >
@@ -2027,8 +2184,7 @@
             </div>
             <div class="review-title">Sales process was simple and easy</div>
             <div class="review-text">
-              At Volure what matters to us is making your car search and
-              buying.
+              At Volure what matters to us is making your car search and buying.
             </div>
             <div class="review-author">Brooklyn Simmons</div>
           </div>
@@ -2127,28 +2283,40 @@
     <div class="miyya">
       <div class="odambeklar">
         <div class="odam1">
-          <img src="/rambek2/58e681242e36fd862b0651a734c8cc8b1b9477a1.jpg" alt="">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"
+            alt=""
+          />
 
           <div class="henry"><h3>Courtney Henry</h3></div>
           <div class="development">Development Manager</div>
         </div>
 
         <div class="odam2">
-          <img src="/rambek2/68170533b6fb93b8fd32787dc7ec101c686066c7.jpg" alt="">
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80"
+            alt=""
+          />
 
           <div class="henry"><h3>Courtney Henry</h3></div>
           <div class="development">Development Manager</div>
         </div>
 
         <div class="odam2">
-          <img src="/rambek2/f4deb3983f1196a216d39a0f991c890ac9115385.jpg" alt="">
+          <img
+            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80"
+            alt=""
+          />
 
           <div class="henry"><h3>Courtney Henry</h3></div>
           <div class="development">Development Manager</div>
         </div>
 
         <div class="odam2">
-          <img src="/rambek2/1dba0ee27e82cf5aa56c0317d3cd2053d376f1b2.jpg" alt="">
+          <img
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80"
+            alt=""
+          />
 
           <div class="henry"><h3>Courtney Henry</h3></div>
           <div class="development">Development Manager</div>
@@ -2158,8 +2326,12 @@
 
     <div class="orqaxon">
       <div class="whether">
-        <h1>Shop Used Cars, Whether You're<br>On The Lot Or On The Go</h1>
-        <p>Download our app to save cars and create alerts, scan window stickers on our lot for more details, and even call dibs on a car by holding it for up to 7 days.</p>
+        <h1>Shop Used Cars, Whether You're<br />On The Lot Or On The Go</h1>
+        <p>
+          Download our app to save cars and create alerts, scan window stickers
+          on our lot for more details, and even call dibs on a car by holding it
+          for up to 7 days.
+        </p>
         <div class="app-buttons">
           <a href="#" class="app-btn">
             <i class="fa-brands fa-apple"></i>
@@ -2193,42 +2365,53 @@
 
     <div class="sport">
       <div class="alpina">
-        <img src="/rambek2/762823045b2cc4dcac8feed9fdbb31748038ded7 (2).jpg" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&q=80"
+          alt=""
+        />
         <div class="sanabeklar">
-        <div class="d1"><p>admin</p></div>
-        <span>November 22, 2023</span>
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
         </div>
-        
-        <div class="d2"><h3>2024 BMW ALPINA XB7 with exclusive details,
-extraordinary</h3></div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
       </div>
 
       <div class="alpina">
-        <img src="/rambek2/5e2c0c28c1149f2208ee9615ec7385715380f9bf.jpg" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80"
+          alt=""
+        />
         <div class="sanabeklar">
-        <div class="d1"><p>admin</p></div>
-        <span>November 22, 2023</span>
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
         </div>
-        
-        <div class="d2"><h3>2024 BMW ALPINA XB7 with exclusive details,
-extraordinary</h3></div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
       </div>
 
       <div class="alpina">
-        <img src="/rambek2/e96a51266f281278abd5680796c3daeed42c3c8b.jpg" alt="">
+        <img
+          src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80"
+          alt=""
+        />
         <div class="sanabeklar">
-        <div class="d1"><p>admin</p></div>
-        <span>November 22, 2023</span>
+          <div class="d1"><p>admin</p></div>
+          <span>November 22, 2023</span>
         </div>
-        
-        <div class="d2"><h3>2024 BMW ALPINA XB7 with exclusive details,
-extraordinary</h3></div>
+
+        <div class="d2">
+          <h3>2024 BMW ALPINA XB7 with exclusive details, extraordinary</h3>
+        </div>
       </div>
     </div>
 
     <footer class="footer">
       <div class="footer-container">
-        
         <div class="footer-top">
           <div class="footer-brand">
             <div class="footer-logo">
@@ -2236,7 +2419,8 @@ extraordinary</h3></div>
               <span>CarHut</span>
             </div>
             <p class="footer-desc">
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+              officia deserunt mollit anim id est
             </p>
             <div class="footer-contacts">
               <a href="" class="contact-pill">
@@ -2253,7 +2437,7 @@ extraordinary</h3></div>
           <div class="footer-newsletter">
             <h3>Join CarHut</h3>
             <p>Receive pricing updates, shopping tips & more!</p>
-            <form class="newsletter-form" onsubmit="event.preventDefault();">
+            <form class="newsletter-form" onsubmit="event.preventDefault()">
               <input type="email" placeholder="Your email address" required />
               <button type="submit">Sign Up</button>
             </form>
@@ -2329,8 +2513,8 @@ extraordinary</h3></div>
                 </div>
               </a>
             </div>
-            
-            <h4 style="margin-top: 25px;">Connect With Us</h4>
+
+            <h4 style="margin-top: 25px">Connect With Us</h4>
             <div class="social-icons">
               <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
               <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -2341,17 +2525,30 @@ extraordinary</h3></div>
         </div>
 
         <div class="footer-bottom">
-          <div class="copyright">
-            © 2025 example.com. All rights reserved.
-          </div>
+          <div class="copyright">© 2025 example.com. All rights reserved.</div>
           <div class="footer-bottom-links">
             <a href="#">Terms & Conditions</a>
             <a href="#">Privacy Notice</a>
           </div>
         </div>
-
       </div>
     </footer>
+
+    <div class="modal-overlay" id="signInModal">
+      <div class="modal-box">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <h2>Sign In</h2>
+        <p class="modal-sub">CarHut hisobingizga kiring</p>
+        <form id="signInForm">
+          <input type="email" placeholder="Email manzilingiz" required />
+          <input type="password" placeholder="Parolingiz" required />
+          <button type="submit">Sign In</button>
+        </form>
+        <p class="modal-switch">
+          Hisobingiz yo'qmi? <a href="#" id="goSignUp">Sign Up</a>
+        </p>
+      </div>
+    </div>
 
     <script>
       const track = document.getElementById("track");
@@ -2405,7 +2602,6 @@ extraordinary</h3></div>
 
       updateCarousel();
 
-
       const reviewsTrack = document.getElementById("reviewsTrack");
       const reviewsPrevBtn = document.getElementById("reviewsPrevBtn");
       const reviewsNextBtn = document.getElementById("reviewsNextBtn");
@@ -2456,6 +2652,45 @@ extraordinary</h3></div>
       });
 
       updateReviewsCarousel();
+
+      const signInBtn = document.getElementById("signInBtn");
+      const signInModal = document.getElementById("signInModal");
+      const closeModal = document.getElementById("closeModal");
+      const signInForm = document.getElementById("signInForm");
+      const goSignUp = document.getElementById("goSignUp");
+
+      signInBtn.addEventListener("click", () => {
+        signInModal.classList.add("active");
+      });
+
+      closeModal.addEventListener("click", () => {
+        signInModal.classList.remove("active");
+      });
+
+      signInModal.addEventListener("click", (e) => {
+        if (e.target === signInModal) {
+          signInModal.classList.remove("active");
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && signInModal.classList.contains("active")) {
+          signInModal.classList.remove("active");
+        }
+      });
+
+      signInForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const email = signInForm.querySelector('input[type="email"]').value;
+        alert(`Xush kelibsiz, ${email}! (Demo sign in)`);
+        signInForm.reset();
+        signInModal.classList.remove("active");
+      });
+
+      goSignUp.addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("Sign Up sahifasi (demo)");
+      });
     </script>
   </body>
 </html>
