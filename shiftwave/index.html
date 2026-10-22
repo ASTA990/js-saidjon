@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GM 38 | Admin Obzvon</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Arial,sans-serif;background:#0b1020;color:#fff;
+  min-height:100vh;padding:25px;
+}
+.container{max-width:1050px;margin:auto}
+header{text-align:center;padding:25px 0}
+header h1{font-size:32px;color:#63a4ff}
+header p{color:#9aa9c5;margin-top:10px}
+.layout{display:grid;grid-template-columns:270px 1fr;gap:20px}
+.panel,.quiz{
+  background:#141c30;border:1px solid #263653;
+  border-radius:16px;padding:22px;
+}
+h2{font-size:19px;margin-bottom:18px}
+label{display:block;color:#b9c7df;margin:14px 0 7px}
+input,select{
+  width:100%;padding:12px;border-radius:9px;
+  border:1px solid #344563;background:#0b1020;
+  color:white;outline:none;
+}
+button{
+  border:0;border-radius:9px;padding:12px 15px;
+  cursor:pointer;font-weight:bold;transition:.2s;
+}
+button:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.primary{background:#397cf6;color:white;width:100%;margin-top:15px}
+.secondary{background:#273650;color:white}
+.good{background:#16865d;color:white}
+.bad{background:#b83d50;color:white}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.stat{background:#0b1020;padding:13px;border-radius:10px;text-align:center}
+.stat strong{display:block;font-size:24px;color:#63a4ff;margin-bottom:5px}
+.stat span{font-size:12px;color:#9aa9c5}
+.progress{height:7px;background:#263653;border-radius:10px;margin-bottom:20px;overflow:hidden}
+#progress{height:100%;width:0;background:#63a4ff;transition:.2s}
+.topline{display:flex;justify-content:space-between;gap:10px;color:#9aa9c5;font-size:13px;margin-bottom:20px}
+#question{font-size:23px;line-height:1.5;margin-bottom:22px}
+#answer{display:none;background:#0b1020;padding:16px;border-radius:10px;line-height:1.6;margin:15px 0;border:1px solid #344563}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.actions button{flex:1;min-width:120px}
+#feedback{margin-top:15px;color:#63a4ff;line-height:1.5}
+.hidden{display:none!important}
+.footer{color:#71819e;text-align:center;margin-top:25px;font-size:12px}
+#timer{color:#ffc65c;font-weight:bold}
+@media(max-width:700px){
+ body{padding:12px}.layout{grid-template-columns:1fr}
+ .stats{gap:6px}.stat{padding:10px}
+ #question{font-size:20px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>⚡ GRAND MOBILE 38</h1>
+<p>ADMIN OBZVON PANELI</p>
+</header>
+
+<div class="layout">
+<aside class="panel">
+<h2>👤 Nomzod ma'lumotlari</h2>
+<label>Nomzod ismi (IC)</label>
+<input id="candidate" placeholder="Masalan: Alex Smith">
+<label>Obzvon turi</label>
+<select id="category">
+<option value="all">Umumiy qoidalar</option>
+<option value="rp">RP atamalari</option>
+<option value="admin">Admin vazifalari</option>
+</select>
+<label>Har savolga vaqt</label>
+<select id="duration">
+<option value="15">15 soniya</option>
+<option value="30" selected>30 soniya</option>
+<option value="60">60 soniya</option>
+</select>
+<button class="primary" onclick="startQuiz()">🚀 Obzvonni boshlash</button>
+<hr style="border-color:#263653;margin:20px 0">
+<h2>📊 Natijalar</h2>
+<div class="stats">
+<div class="stat"><strong id="correct">0</strong><span>To‘g‘ri</span></div>
+<div class="stat"><strong id="wrong">0</strong><span>Noto‘g‘ri</span></div>
+<div class="stat"><strong id="total">0</strong><span>Jami</span></div>
+</div>
+<p id="candidateInfo" style="color:#9aa9c5;font-size:13px">Nomzod kiritilmagan</p>
+<button class="secondary" style="width:100%;margin-top:15px" onclick="resetQuiz()">🔄 Qayta boshlash</button>
+</aside>
+
+<main class="quiz">
+<div class="stats">
+<div class="stat"><strong id="number">0/0</strong><span>Savol</span></div>
+<div class="stat"><strong id="percent">0%</strong><span>Natija</span></div>
+<div class="stat"><strong id="timer">30s</strong><span>Qolgan vaqt</span></div>
+</div>
+
+<div class="progress"><div id="progress"></div></div>
+<div class="topline">
+<span id="status">Boshlashga tayyor</span>
+<span id="type">Umumiy</span>
+</div>
+
+<h2 id="question">Obzvonni boshlash uchun chap tomondagi tugmani bosing.</h2>
+<div id="answer"></div>
+<p id="feedback"></p>
+
+<div class="actions">
+<button class="secondary" onclick="showAnswer()">👁 Javobni ko‘rish</button>
+<button class="good" onclick="mark(true)">✓ To‘g‘ri</button>
+<button class="bad" onclick="mark(false)">✕ Noto‘g‘ri</button>
+</div>
+<div class="actions">
+<button class="secondary" onclick="previousQuestion()">← Oldingi</button>
+<button class="primary" style="margin-top:0" onclick="nextQuestion()">Keyingi savol →</button>
+</div>
+<button class="primary" onclick="finishQuiz()">🏁 Obzvonni yakunlash</button>
+<div id="result" class="hidden" style="margin-top:22px;background:#0b1020;padding:18px;border-radius:12px;line-height:1.8"></div>
+</main>
+</div>
+<p class="footer">GM 38 • Admin Obzvon • Natijalar ushbu brauzer sessiyasida saqlanadi</p>
+</div>
+
+<script>
+const questions = [
+{c:"all",q:"DM nima?",a:"Deathmatch — RP sababisiz o‘yinchiga hujum qilish yoki uni o‘ldirish."},
+{c:"all",q:"DB nima?",a:"Drive By — transport vositasidan foydalanib qoidabuzarlik bilan zarar yetkazish."},
+{c:"all",q:"MG nima?",a:"Metagaming — OOC ma’lumotni IC vaziyatda ishlatish."},
+{c:"all",q:"PG nima?",a:"Powergaming — o‘yin imkoniyatlaridan noreal foydalanish yoki imkonsiz harakat qilish."},
+{c:"all",q:"RK nima?",a:"Revenge Kill — o‘limdan keyin qasos olish maqsadida qaytib hujum qilish."},
+{c:"all",q:"TK nima?",a:"Team Kill — o‘z jamoasi yoki tashkiloti a’zosiga hujum qilish yoki uni o‘ldirish."},
+{c:"all",q:"SK nima?",a:"Spawn Kill — o‘yinchi paydo bo‘ladigan joyda uni hujum qilib o‘ldirish."},
+{c:"all",q:"RP nima?",a:"RolePlay — o‘z qahramoni rolini o‘ynash va o‘yin dunyosidagi vaziyatlarga mos harakat qilish."},
+{c:"all",q:"OOC nima?",a:"Out Of Character — o‘yin ichidagi qahramon emas, haqiqiy o‘yinchi bilan bog‘liq ma’lumot."},
+{c:"all",q:"IC nima?",a:"In Character — o‘yin ichidagi qahramon va uning dunyosiga tegishli ma’lumot."},
+{c:"all",q:"RP Escape nima?",a:"RP vaziyatidan qochish yoki uni davom ettirishdan qasddan bo‘yin tovlash."},
+{c:"all",q:"Adminning asosiy vazifasi nima?",a:"Server qoidalariga rioya qilinishini kuzatish, murojaatlarni tekshirish va qoidalarga muvofiq yordam berish."},
+{c:"all",q:"Admin shikoyatni ko‘rganda nima qilishi kerak?",a:"Dalillarni tekshirish, ikkala tomonni tinglash va server qoidalariga asoslanib xolis qaror chiqarish."},
+{c:"all",q:"Admin o‘z do‘stiga imtiyoz berishi mumkinmi?",a:"Yo‘q. Admin barcha o‘yinchilarga xolis munosabatda bo‘lishi kerak."},
+{c:"all",q:"O‘yinchi admin bilan kelishmasa, nima qilishi mumkin?",a:"Belgilangan shikoyat tartibidan foydalanib, dalillar bilan murojaat qilishi mumkin."},
+{c:"rp",q:"FearRP nima?",a:"Xavfli vaziyatda qahramon o‘z hayotidan qo‘rqishini realistik ko‘rsatishi."},
+{c:"rp",q:"NonRP nima?",a:"RP qoidalariga yoki realistik vaziyatga mos kelmaydigan harakat."},
+{c:"rp",q:"Bunny hopping nima?",a:"Tezroq harakatlanish uchun ketma-ket sakrab yurish."},
+{c:"rp",q:"O‘yinchi qoidabuzarlik qilsa, admin nima qiladi?",a:"Vaziyatni tekshiradi, dalillarni yig‘adi va tegishli qoida bo‘yicha chorani belgilaydi."},
+{c:"rp",q:"Admin jazoni o‘zicha o‘ylab topishi mumkinmi?",a:"Yo‘q. Jazo serverning amaldagi qoidalariga muvofiq bo‘lishi kerak."},
+{c:"admin",q:"Admin vakolatidan shaxsiy manfaat uchun foydalanishi mumkinmi?",a:"Yo‘q. Vakolat faqat xizmat vazifalari doirasida ishlatiladi."},
+{c:"admin",q:"Dalil yetarli bo‘lmasa, nima qilish kerak?",a:"Shoshilinch jazo bermasdan, qo‘shimcha dalillarni tekshirish va vaziyatni aniqlashtirish."},
+{c:"admin",q:"O‘yinchi haqorat qilsa, qanday yo‘l tutish kerak?",a:"Haqoratni tasdiqlovchi dalillarni tekshirib, tegishli server qoidasi bo‘yicha chora ko‘rish."},
+{c:"admin",q:"Admin boshqa adminning xatosini ko‘rsa nima qiladi?",a:"Vaziyatni dalillar bilan tegishli yuqori lavozimli xodimga yoki belgilangan tartibda xabar qiladi."},
+{c:"admin",q:"Server qoidalarini qayerdan tekshirish kerak?",a:"38-server uchun amal qiladigan rasmiy qoidalar va server ma’muriyati e’lon qilgan hujjatlardan."}
+];
+
+let deck=[], index=0, correct=0, wrong=0, answers={}, timeLeft=30, timerId=null, running=false;
+
+function getDeck(){
+ const c=document.getElementById("category").value;
+ return questions.filter(x=>c==="all"||x.c===c);
+}
+function startQuiz(){
+ clearInterval(timerId);
+ deck=getDeck().sort(()=>Math.random()-.5);
+ index=0;correct=0;wrong=0;answers={};
+ timeLeft=Number(document.getElementById("duration").value);
+ running=true;
+ document.getElementById("candidateInfo").textContent=
+ document.getElementById("candidate").value.trim()||"Ismsiz nomzod";
+ document.getElementById("result").classList.add("hidden");
+ showQuestion();
+}
+function showQuestion(){
+ if(!deck.length){finishQuiz();return}
+ if(index>=deck.length){finishQuiz();return}
+ const q=deck[index];
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("answer").style.display="none";
+ document.getElementById("answer").textContent="Javob: "+q.a;
+ document.getElementById("feedback").textContent=
+ answers[index]===undefined?"Nomzodning javobini tinglang.":answers[index]?"✓ To‘g‘ri deb belgilangan":"✕ Noto‘g‘ri deb belgilangan";
+ document.getElementById("number").textContent=(index+1)+"/"+deck.length;
+ document.getElementById("status").textContent="Obzvon davom etmoqda";
+ document.getElementById("type").textContent=q.c==="all"?"Umumiy":q.c==="rp"?"RP atamalari":"Admin vazifalari";
+ document.getElementById("progress").style.width=(index/deck.length*100)+"%";
+ updateStats();
+ startTimer();
+}
+function showAnswer(){
+ if(!deck.length||!running)return;
+ document.getElementById("answer").style.display="block";
+}
+function mark(value){
+ if(!running||!deck.length)return;
+ answers[index]=value;
+ correct=Object.values(answers).filter(v=>v===true).length;
+ wrong=Object.values(answers).filter(v=>v===false).length;
+ updateStats();
+ document.getElementById("feedback").textContent=value?"✓ To‘g‘ri deb belgilandi":"✕ Noto‘g‘ri deb belgilandi";
+}
+function updateStats(){
+ document.getElementById("correct").textContent=correct;
+ document.getElementById("wrong").textContent=wrong;
+ document.getElementById("total").textContent=Object.keys(answers).length;
+ document.getElementById("percent").textContent=
+ Object.keys(answers).length?Math.round(correct/Object.keys(answers).length*100)+"%":"0%";
+}
+function startTimer(){
+ clearInterval(timerId);
+ timeLeft=Number(document.getElementById("duration").value);
+ document.getElementById("timer").textContent=timeLeft+"s";
+ if(!running)return;
+ timerId=setInterval(()=>{
+  timeLeft--;
+  document.getElementById("timer").textContent=timeLeft+"s";
+  if(timeLeft<=0){
+   clearInterval(timerId);
+   if(answers[index]===undefined){
+    document.getElementById("feedback").textContent="⏰ Vaqt tugadi. Javob baholanmadi.";
+   }
+  }
+ },1000);
+}
+function nextQuestion(){
+ if(!running||!deck.length)return;
+ if(index<deck.length-1){index++;showQuestion()}
+ else finishQuiz();
+}
+function previousQuestion(){
+ if(!running||index<=0)return;
+ index--;showQuestion();
+}
+function finishQuiz(){
+ clearInterval(timerId);running=false;
+ document.getElementById("status").textContent="Obzvon yakunlandi";
+ document.getElementById("progress").style.width="100%";
+ const n=Object.keys(answers).length;
+ const pct=n?Math.round(correct/n*100):0;
+ const result=document.getElementById("result");
+ result.classList.remove("hidden");
+ result.innerHTML="<h2>🏁 Yakuniy natija</h2>"+
+ "<p>Nomzod: "+escapeHTML(document.getElementById("candidate").value.trim()||"Ismsiz nomzod")+"</p>"+
+ "<p>Jami savollar: "+deck.length+"</p>"+
+ "<p>Baholangan: "+n+"</p>"+
+ "<p>To‘g‘ri: "+correct+" | Noto‘g‘ri: "+wrong+"</p>"+
+ "<p>Foiz: "+pct+"%</p>"+
+ "<p style='margin-top:10px;color:#ffc65c'>Yakuniy qarorni server qoidalari va obzvon talablariga qarab qabul qiling.</p>"+
+ "<button class='secondary' style='margin-top:12px' onclick='window.print()'>Natijani chop etish</button>";
+ document.getElementById("question").textContent="Obzvon yakunlandi!";
+ document.getElementById("answer").style.display="none";
+ document.getElementById("feedback").textContent="Natijalar tayyor.";
+ document.getElementById("timer").textContent="—";
+}
+function escapeHTML(s){
+ return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function resetQuiz(){
+ clearInterval(timerId);running=false;deck=[];index=0;correct=0;wrong=0;answers={};
+ document.getElementById("question").textContent="Obzvonni boshlash uchun chap tomondagi tugmani bosing.";
+ document.getElementById("answer").style.display="none";
+ document.getElementById("feedback").textContent="";
+ document.getElementById("number").textContent="0/0";
+ document.getElementById("timer").textContent="30s";
+ document.getElementById("progress").style.width="0%";
+ document.getElementById("status").textContent="Boshlashga tayyor";
+ document.getElementById("result").classList.add("hidden");
+ updateStats();
+}
+</script>
+</body>
+</html>
