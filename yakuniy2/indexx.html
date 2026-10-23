@@ -16,18 +16,48 @@
       rel="stylesheet"
     />
     <style>
+      /* --- DARK/LIGHT MODE UCHUN O'ZGARUVCHILAR --- */
+      :root {
+        --bg-color: #ffffff;
+        --text-color: #050b20;
+        --card-bg: #ffffff;
+        --border-color: #e9e9e9;
+        --nav-bg: rgba(20, 27, 34, 0.38);
+        --section-bg: #f9fbfc;
+        --footer-bg: #ffffff;
+        --input-bg: #f9fafb;
+      }
+
+      body.dark-mode {
+        --bg-color: #121212;
+        --text-color: #e0e0e0;
+        --card-bg: #1e1e1e;
+        --border-color: #333333;
+        --nav-bg: rgba(0, 0, 0, 0.7);
+        --section-bg: #181818;
+        --footer-bg: #121212;
+        --input-bg: #2c2c2c;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
+        transition: background-color 0.3s, color 0.3s;
       }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+
       .hero {
         width: 100%;
         height: 100vh;
         position: relative;
         background-image:
-          linear-gradient(rgba(20, 27, 34, 0.38), rgba(20, 27, 34, 0.38)),
+          linear-gradient(var(--nav-bg), var(--nav-bg)),
           url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80");
         background-size: cover;
         background-position: center;
@@ -44,6 +74,7 @@
         justify-content: space-between;
         padding: 0 38px;
         border-bottom: 1px solid rgba(239, 230, 230, 0.16);
+        z-index: 10;
       }
       .logo {
         display: flex;
@@ -84,6 +115,14 @@
         font-size: 10px;
         cursor: pointer;
         transition: 0.25s;
+      }
+      .theme-toggle {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        margin-left: 10px;
       }
       .content {
         position: absolute;
@@ -145,6 +184,7 @@
         justify-content: center;
         cursor: pointer;
         transition: 0.2s;
+        z-index: 5;
       }
       .prev {
         left: 40px;
@@ -164,23 +204,23 @@
       .modal-box {
         width: 380px;
         padding: 30px;
-        background: white;
+        background: var(--card-bg);
         border-radius: 15px;
         text-align: center;
-        color: #222;
+        color: var(--text-color);
       }
       .close {
         margin-top: 20px;
         padding: 10px 25px;
         border: 0;
         border-radius: 8px;
-        background: #222;
-        color: white;
+        background: var(--text-color);
+        color: var(--bg-color);
         cursor: pointer;
       }
       .Browse {
         width: 100%;
-        background: #fff;
+        background: var(--bg-color);
         padding: 80px 0;
         display: flex;
         flex-direction: column;
@@ -201,12 +241,12 @@
       .browse-title {
         font-size: 32px;
         font-weight: 700;
-        color: #111;
+        color: var(--text-color);
         letter-spacing: -0.5px;
       }
       .view-all {
         font-size: 13px;
-        color: #111;
+        color: var(--text-color);
         text-decoration: none;
         font-weight: 500;
         display: flex;
@@ -219,7 +259,7 @@
         gap: 20px;
       }
       .card {
-        border: 1px solid #e5e7eb;
+        border: 1px solid var(--border-color);
         border-radius: 12px;
         padding: 24px 20px;
         display: flex;
@@ -227,21 +267,21 @@
         align-items: center;
         justify-content: center;
         gap: 12px;
-        background: #fff;
+        background: var(--card-bg);
       }
       .card-icon {
         font-size: 28px;
-        color: #111;
+        color: var(--text-color);
       }
       .card-text {
         font-size: 14px;
-        color: #111;
+        color: var(--text-color);
       }
       .qidiruv {
         width: 100%;
         height: 180px;
         position: relative;
-        background-color: #f9fbfc;
+        background-color: var(--section-bg);
       }
       .vehiccles {
         top: 115px;
@@ -253,72 +293,75 @@
         left: 1200px;
         top: 133px;
         text-decoration: none;
-        color: #050b20;
+        color: var(--text-color);
       }
       .kattabek {
         width: 100%;
-        height: 1116.219970703125px;
+        padding: 0 50px;
+        background-color: var(--bg-color);
       }
       .qatorbeklar {
-        width: 1400px;
-        height: 1016.219970703125px;
-        margin-left: 50px;
-        margin-top: 15px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 15px auto;
       }
       .tepabek {
-        width: 1400px;
-        height: 40.88999938964844px;
+        width: 100%;
+        height: 40px;
       }
       .ichm {
         width: 354px;
-        height: 39.88999938964844px;
+        height: 39px;
         display: flex;
         justify-content: space-between;
       }
       .recentbek a,
       .recentbek2 a,
       .recentbek3 a {
-        color: #050b20;
+        color: var(--text-color);
         text-decoration: none;
       }
-      .obshiybek1 {
-        width: 1400px;
-        height: 432.80999755859375px;
+      .obshiybek1,
+      .obshiybek2 {
+        width: 100%;
         margin-top: 50px;
         display: flex;
         justify-content: space-around;
+        gap: 20px;
+        flex-wrap: wrap;
       }
       .kartabek1 {
         width: 327.5px;
-        height: 432.80999755859375px;
+        height: 432.8px;
         border-radius: 16px;
-        border: 1px solid #e9e9e9;
+        border: 1px solid var(--border-color);
+        background: var(--card-bg);
       }
       .picturebek1 img {
-        width: 327.5px;
-        height: 218.3300018310547px;
+        width: 100%;
+        height: 218.33px;
         border-top-left-radius: 16px;
         border-top-right-radius: 16px;
         object-fit: cover;
       }
       .camry {
-        color: #050b20;
+        color: var(--text-color);
         margin-top: 17px;
         margin-left: 31px;
       }
       .momentum p {
-        color: #050b20;
+        color: var(--text-color);
         font-size: 14px;
         margin-left: 31px;
         margin-top: 6px;
       }
       .ibeklarim {
         width: 265.5px;
-        height: 69.29000091552734px;
+        height: 69.29px;
         margin-left: 31px;
         margin-top: 4px;
-        border-bottom: 1px solid #e9e9e9;
-        border-top: 1px solid #e9e9e9;
+        border-bottom: 1px solid var(--border-color);
+        border-top: 1px solid var(--border-color);
       }
       .ibekjonlar {
         width: 228px;
@@ -336,11 +379,11 @@
       }
       .yozuvbek1 p {
         font-size: 14px;
-        color: #050b20;
+        color: var(--text-color);
       }
       .summabeklar {
         width: 266px;
-        height: 56.400001525878906px;
+        height: 56.4px;
         margin-left: 31px;
         margin-top: 4px;
       }
@@ -353,101 +396,101 @@
       }
       .ichkipul a {
         text-decoration: none;
-      }
-      .obshiybek2 {
-        width: 1400px;
-        height: 432.80999755859375px;
-        margin-top: 30px;
-        display: flex;
-        justify-content: space-around;
+        color: var(--text-color);
       }
       .bel1 {
-        width: 1400px;
-        height: 579.530029296875px;
-        margin-left: 60px;
+        width: 100%;
+        max-width: 1400px;
+        margin: 60px auto;
         display: flex;
         justify-content: space-between;
+        padding: 0 20px;
+        flex-wrap: wrap;
+        gap: 30px;
+        background-color: var(--bg-color);
       }
       .buyoq2 {
-        width: 700px;
-        height: 579.530029296875px;
+        width: 45%;
+        min-width: 300px;
       }
       .s1 {
         margin-top: 140px;
       }
       .s1 h1 {
         font-size: 40px;
-        color: #050b20;
+        color: var(--text-color);
       }
       .s2 {
         margin-top: 19px;
+        color: var(--text-color);
       }
       .buyoq2 button {
-        width: 158.94000244140625px;
-        height: 53.220001220703125px;
+        width: 158.94px;
+        height: 53.22px;
         border-radius: 12px;
-        background-color: #050b20;
-        color: wheat;
+        background-color: var(--text-color);
+        color: var(--bg-color);
         margin-top: 25px;
         border: none;
+        cursor: pointer;
+      }
+      .uyoq2 {
+        width: 45%;
+        min-width: 300px;
       }
       .uyoq2 img {
-        width: 700px;
-        height: 579.530029296875px;
+        width: 100%;
+        height: 579.53px;
         object-fit: cover;
         border-radius: 16px;
       }
       .orta {
-        width: 1500px;
-        height: 489.5px;
-        margin-top: 105px;
-        background-color: #f9fbfc;
+        width: 100%;
+        padding: 60px 20px;
+        background-color: var(--section-bg);
         position: relative;
       }
       .choose {
-        width: 325.7066955566406px;
-        height: 40px;
-        left: 200px;
-        top: 115px;
-        position: absolute;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto 40px auto;
+      }
+      .choose h1 {
+        color: var(--text-color);
       }
       .barcha {
-        width: 1383.78px;
-        height: 173px;
-        position: absolute;
-        top: 200px;
-        left: 100px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
       }
       .yozuvlar {
-        width: 311.2799987792969px;
-        height: 173px;
-      }
-      .ibek {
-        width: 51px;
-        height: 60px;
+        flex: 1 1 200px;
+        color: var(--text-color);
       }
       .ibek p {
         font-size: 40px;
+        color: var(--text-color);
       }
-      .offers {
-        width: 228.20721435546875px;
-        height: 24px;
+      .offers h4 {
         margin-top: 20px;
+        color: var(--text-color);
       }
       .stress {
-        width: 311.2799987792969px;
-        height: 55.5px;
         margin-top: 14px;
+        color: var(--text-color);
       }
       .carousel-wrap {
         width: 100%;
         padding: 40px 0 60px;
-        background: #fff;
+        background: var(--bg-color);
       }
       .carousel-outer {
-        width: 1400px;
+        width: 90%;
+        max-width: 1400px;
         margin: 0 auto;
         overflow: hidden;
       }
@@ -458,10 +501,10 @@
       }
       .rasm-karta {
         flex: 0 0 calc((100% - 42px) / 4);
-        border: 1px solid #e9e9e9;
+        border: 1px solid var(--border-color);
         border-radius: 12px;
         overflow: hidden;
-        background: #fff;
+        background: var(--card-bg);
         display: flex;
         flex-direction: column;
       }
@@ -497,7 +540,7 @@
       .rasm-nom {
         font-size: 15px;
         font-weight: 700;
-        color: #050b20;
+        color: var(--text-color);
         margin-bottom: 4px;
       }
       .rasm-tavsif {
@@ -511,8 +554,8 @@
       .rasm-info {
         display: flex;
         justify-content: space-between;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         padding: 10px 0;
         margin-bottom: 12px;
       }
@@ -521,7 +564,7 @@
         align-items: center;
         gap: 4px;
         font-size: 11px;
-        color: #555;
+        color: var(--text-color);
       }
       .rasm-info-item i {
         font-size: 13px;
@@ -536,7 +579,7 @@
       .rasm-narx {
         font-size: 17px;
         font-weight: 700;
-        color: #050b20;
+        color: var(--text-color);
       }
       .rasm-link {
         font-size: 11px;
@@ -548,7 +591,8 @@
         gap: 3px;
       }
       .carousel-nav {
-        width: 1400px;
+        width: 90%;
+        max-width: 1400px;
         margin: 25px auto 0;
         display: flex;
         gap: 8px;
@@ -556,27 +600,26 @@
       .carousel-btn {
         width: 36px;
         height: 36px;
-        border: 1px solid #ddd;
+        border: 1px solid var(--border-color);
         border-radius: 50%;
-        background: #fff;
+        background: var(--bg-color);
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        color: #333;
+        color: var(--text-color);
         font-size: 13px;
         transition: 0.2s;
       }
-
       .reviews-section {
         width: 100%;
         padding: 80px 0;
-        background-color: #f9fbfc;
+        background-color: var(--section-bg);
         overflow: hidden;
       }
       .reviews-container {
-        width: 1400px;
-        max-width: 95%;
+        width: 90%;
+        max-width: 1400px;
         margin: 0 auto;
         position: relative;
       }
@@ -585,16 +628,17 @@
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 40px;
+        color: var(--text-color);
       }
       .reviews-title {
         font-size: 32px;
         font-weight: 700;
-        color: #050b20;
+        color: var(--text-color);
         letter-spacing: -0.5px;
       }
       .reviews-rating {
         font-size: 13px;
-        color: #555;
+        color: var(--text-color);
         margin-bottom: 5px;
       }
       .reviews-carousel-wrap {
@@ -612,11 +656,11 @@
       }
       .rev-card {
         flex: 0 0 calc((100% - 60px) / 4);
-        background: #fff;
+        background: var(--card-bg);
         border-radius: 16px;
         padding: 24px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--border-color);
         display: flex;
         flex-direction: column;
       }
@@ -641,20 +685,16 @@
         align-items: center;
         gap: 4px;
       }
-      .rev-verified i {
-        color: #888;
-        font-size: 12px;
-      }
       .rev-card-title {
         font-size: 15px;
         font-weight: 700;
-        color: #050b20;
+        color: var(--text-color);
         margin-bottom: 8px;
         line-height: 1.3;
       }
       .rev-card-text {
         font-size: 13px;
-        color: #666;
+        color: #888;
         line-height: 1.5;
         margin-bottom: 20px;
         flex-grow: 1;
@@ -662,7 +702,7 @@
       .rev-author {
         font-size: 13px;
         font-weight: 600;
-        color: #050b20;
+        color: var(--text-color);
         margin-top: auto;
       }
       .rev-nav-btn {
@@ -671,74 +711,69 @@
         width: 38px;
         height: 38px;
         border-radius: 50%;
-        background: #fff;
-        border: 1px solid #eee;
+        background: var(--bg-color);
+        border: 1px solid var(--border-color);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #333;
+        color: var(--text-color);
         font-size: 14px;
         transition: 0.3s;
+        cursor: pointer;
+        z-index: 5;
       }
-
-      .rev-prev {
-        left: 0;
-      }
-      .rev-next {
-        right: 0;
-      }
+      .rev-prev { left: 0; }
+      .rev-next { right: 0; }
 
       .hemans {
-        width: 1410px;
-        height: 468.05999755859375px;
+        width: 90%;
+        max-width: 1410px;
+        margin: 50px auto;
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+        background-color: var(--bg-color);
       }
-
       .henry {
-        width: 327.5px;
-        height: 468.05999755859375px;
+        flex: 1 1 200px;
+        min-width: 250px;
       }
-
       .henry .smilee img {
-        width: 327.5px;
+        width: 100%;
         height: 380px;
         object-fit: cover;
         border-radius: 16px;
       }
-
       .Courtneyy {
         margin-top: 10px;
       }
-
       .Courtneyy P {
         font-size: 20px;
+        color: var(--text-color);
       }
-
       .managerr {
         margin-top: 4px;
       }
-
       .managerr p {
         font-size: 14px;
+        color: var(--text-color);
       }
-
       .orqaxon {
-        width: 1440px;
+        width: 95%;
+        max-width: 1440px;
         height: 527.5px;
         position: relative;
         overflow: hidden;
-        background: linear-gradient(rgba(20,27,34,0.55), rgba(20,27,34,0.55)),
+        background: linear-gradient(rgba(20, 27, 34, 0.55), rgba(20, 27, 34, 0.55)),
           url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80");
         background-size: cover;
         background-position: center;
-        margin-left: 40px;
+        margin: 115px auto;
         border-radius: 16px;
-        margin-top: 115px;
       }
-
       .whether {
-        width: 627.3699951171875px;
+        max-width: 627px;
         position: absolute;
         top: 0;
         left: 0;
@@ -746,14 +781,12 @@
         font-size: 20px;
         color: white;
       }
-
       .whether h1 {
         font-size: 38px;
         line-height: 1.3;
         margin-bottom: 20px;
         font-weight: 700;
       }
-
       .whether p {
         font-size: 15px;
         line-height: 1.6;
@@ -761,12 +794,11 @@
         max-width: 550px;
         margin-bottom: 25px;
       }
-
       .app-buttons {
         display: flex;
         gap: 15px;
+        flex-wrap: wrap;
       }
-
       .app-btn {
         display: flex;
         align-items: center;
@@ -778,87 +810,86 @@
         border-radius: 8px;
         transition: transform 0.2s, box-shadow 0.2s;
       }
-
       .app-btn i {
         font-size: 24px;
         color: white;
       }
-
       .app-btn .btn-text {
         display: flex;
         flex-direction: column;
         line-height: 1.2;
       }
-
       .app-btn .btn-text span {
         font-size: 10px;
         opacity: 0.7;
         color: wheat;
       }
-
       .app-btn .btn-text span {
         font-size: 14px;
         font-weight: bold;
         color: white;
       }
-
+      
       .brendbeklar {
         width: 100%;
-        height: 310.5899963378906px;
+        padding: 40px 0;
+        background: var(--bg-color);
       }
-
       .jahon {
-        width: 1430px;
-        height: 180.58999633789062px;
-        margin-top: 15px;
-        margin-left: 90px;
+        width: 90%;
+        max-width: 1430px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 20px;
       }
-
       .audi {
         width: 209px;
-        height: 180.58999633789062px;
-        border: 1px solid #e9e9e9;
+        height: 180.59px;
+        border: 1px solid var(--border-color);
         border-radius: 16px;
+        background: var(--card-bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
       }
-
       .aylana {
         width: 100px;
-        height: 128.58999633789062px;
-        margin-top: 26px;
-        margin-left: 54px;
+        height: 128.59px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
       }
-
       .aylana img {
         width: 100px;
         height: 100px;
         object-fit: contain;
       }
-
       .dostlar {
-        width: 1399.5px;
-        height: 40px;
-        margin-top: 115px;
-        margin-left: 100px;
+        width: 90%;
+        max-width: 1399.5px;
+        margin: 50px auto;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
       }
-
-      .type {
-        width: 307.4495544433594px;
-        height: 40px;
+      .type2 h1 {
+        color: var(--text-color);
       }
-
-      .all {
-        width: 79.19999694824219px;
-        height: 15px;
-        margin-top: 23px;
+      .all a {
+        color: var(--text-color);
+        text-decoration: none;
       }
 
       .backbek {
         width: 100%;
-        height: 648.219970703125px;
+        height: 648.22px;
         position: relative;
         background-image:
           linear-gradient(rgba(20, 27, 34, 0.38), rgba(20, 27, 34, 0.38)),
@@ -867,37 +898,35 @@
         background-position: center;
         color: white;
       }
-
       .wejon {
-        width: 697.34375px;
+        width: 697.34px;
         height: 210px;
         position: absolute;
         top: 175px;
         left: 275px;
       }
-
       .wejon h1 {
         font-size: 70px;
         color: #ffffff;
       }
-
       .backbek button {
-        width: 296.4800109863281px;
-        height: 63.220001220703125px;
+        width: 296.48px;
+        height: 63.22px;
         border: 1px solid #ffffff;
         position: absolute;
         border-radius: 16px;
-        background-color: rgb(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.1);
         top: 410px;
         left: 275px;
         color: white;
+        cursor: pointer;
       }
 
       .footer {
         width: 100%;
-        background: #ffffff;
+        background: var(--footer-bg);
         padding: 60px 0 0;
-        color: #111;
+        color: var(--text-color);
       }
       .footer-top {
         width: 85%;
@@ -907,78 +936,78 @@
         justify-content: space-between;
         align-items: center;
         padding-bottom: 40px;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid var(--border-color);
+        flex-wrap: wrap;
+        gap: 20px;
       }
       .footer-top-left h2 {
         font-size: 28px;
         font-weight: 700;
-        color: #111;
+        color: var(--text-color);
         margin-bottom: 6px;
       }
       .footer-top-left p {
         font-size: 14px;
-        color: #555;
+        color: #888;
       }
       .footer-top-right {
         display: flex;
         align-items: center;
         gap: 12px;
+        flex-wrap: wrap;
       }
       .footer-top-right input {
         width: 320px;
         height: 48px;
         padding: 0 16px;
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--border-color);
         border-radius: 8px;
         font-size: 14px;
-        background: #f9fafb;
+        background: var(--input-bg);
+        color: var(--text-color);
       }
-
       .footer-top-right button {
         height: 48px;
         padding: 0 28px;
-        background: #050b20;
-        color: #fff;
+        background: var(--text-color);
+        color: var(--bg-color);
         border: none;
         border-radius: 8px;
         font-size: 14px;
         font-weight: 600;
         transition: 0.2s;
+        cursor: pointer;
       }
-
       .footer-middle {
         width: 85%;
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 30px;
         padding: 50px 0;
       }
       .footer-col h4 {
         font-size: 15px;
         font-weight: 700;
-        color: #111;
+        color: var(--text-color);
         margin-bottom: 20px;
       }
-
       .footer-col ul {
         list-style: none;
       }
-
       .footer-col ul li {
         margin-bottom: 12px;
       }
       .footer-col ul li a {
         font-size: 13px;
-        color: #555;
+        color: #888;
         text-decoration: none;
         transition: 0.2s;
       }
-
       .footer-hours p {
         font-size: 13px;
-        color: #555;
+        color: #888;
         margin-bottom: 10px;
       }
       .footer-social {
@@ -987,7 +1016,7 @@
       .footer-social h4 {
         font-size: 15px;
         font-weight: 700;
-        color: #111;
+        color: var(--text-color);
         margin-bottom: 15px;
       }
       .footer-social-icons {
@@ -995,23 +1024,24 @@
         gap: 18px;
       }
       .footer-social-icons a {
-        color: #111;
+        color: var(--text-color);
         font-size: 16px;
       }
-
       .footer-bottom {
         width: 85%;
         max-width: 1200px;
         margin: 0 auto;
         padding: 25px 0;
-        border-top: 1px solid #e5e7eb;
+        border-top: 1px solid var(--border-color);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
       }
       .footer-bottom-left p {
         font-size: 13px;
-        color: #555;
+        color: #888;
       }
       .footer-bottom-right {
         display: flex;
@@ -1020,16 +1050,115 @@
       }
       .footer-bottom-right a {
         font-size: 13px;
-        color: #555;
+        color: #888;
         text-decoration: none;
         transition: 0.2s;
       }
-
       .footer-bottom-right .dot {
         width: 4px;
         height: 4px;
         background: #555;
         border-radius: 50%;
+      }
+
+      /* --- RESPONSIVE QISMI --- */
+      @media (max-width: 1024px) {
+        .menu a:not(.signin) {
+          display: none;
+        }
+        .content {
+          left: 5%;
+          width: 90%;
+        }
+        .vehiccles, .qidiruv a {
+          position: static;
+          margin: 20px auto;
+          display: block;
+          text-align: center;
+        }
+        .qidiruv {
+          height: auto;
+          padding: 40px 0;
+        }
+        .bel1 {
+          flex-direction: column-reverse;
+        }
+        .buyoq2, .uyoq2 {
+          width: 100%;
+        }
+        .s1 {
+          margin-top: 20px;
+        }
+        .uyoq2 img {
+          height: 400px;
+        }
+        .whether {
+          margin: 40px;
+          position: static;
+        }
+        .orqaxon {
+          height: auto;
+          padding-bottom: 40px;
+        }
+        .wejon {
+          position: static;
+          margin: 100px 20px;
+          width: auto;
+        }
+        .backbek button {
+          position: static;
+          margin: 0 20px 100px 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 0 20px;
+        }
+        .rasm-karta {
+          flex: 0 0 calc((100% - 14px) / 2);
+        }
+        .rev-card {
+          flex: 0 0 calc((100% - 20px) / 1);
+        }
+        .rev-nav-btn {
+          display: none;
+        }
+        .reviews-carousel-wrap {
+          padding: 0;
+        }
+        .wejon h1 {
+          font-size: 40px;
+          padding: 0 20px;
+        }
+        .backbek {
+          height: 400px;
+        }
+        .footer-top-right input {
+          width: 100%;
+        }
+        .footer-top-right {
+          width: 100%;
+        }
+        .footer-top-right button {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .rasm-karta {
+          flex: 0 0 100%;
+        }
+        .obshiybek1, .obshiybek2 {
+          flex-direction: column;
+          align-items: center;
+        }
+        .title {
+          font-size: 32px;
+        }
+        .slider {
+          display: none;
+        }
       }
     </style>
   </head>
@@ -1051,6 +1180,7 @@
           <a href="#"> Contact </a>
           <a href="#" class="signin" id="signInBtn">Sign in </a>
           <button class="submit">Submit Listing</button>
+          <button class="theme-toggle" id="themeToggle"><i class="fa-solid fa-moon"></i></button>
         </div>
       </div>
       <div class="content">
@@ -1070,6 +1200,7 @@
         <i class="fa-solid fa-arrow-right" style="color: rgb(0, 0, 0)"></i>
       </button>
     </section>
+    
     <div class="modal" id="signInModal">
       <div class="modal-box">
         <h2>Sign In</h2>
@@ -1089,6 +1220,7 @@
         <button class="close">Close</button>
       </div>
     </div>
+    
     <div class="Browse">
       <div class="browse-container">
         <div class="browse-header">
@@ -1105,10 +1237,12 @@
         </div>
       </div>
     </div>
+    
     <div class="qidiruv">
       <div class="vehiccles"><h1>Explore All Vehicles</h1></div>
       <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
     </div>
+    
     <div class="kattabek">
       <div class="qatorbeklar">
         <div class="tepabek">
@@ -1125,9 +1259,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1148,9 +1282,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1171,9 +1305,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1194,9 +1328,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1219,9 +1353,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1242,9 +1376,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1265,9 +1399,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1288,9 +1422,9 @@
             <div class="momentum"><p>3.5 D5 PowerPulse Momentum 5dr AW… Geartronic Estate</p></div>
             <div class="ibeklarim">
               <div class="ibekjonlar">
-                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: rgb(0, 0, 0)"></i></div>
-                <div class="ibek3"><i class="fa-solid fa-table-cells"></i></div>
+                <div class="ibek1"><i class="fa-solid fa-stopwatch" style="color: var(--text-color)"></i></div>
+                <div class="ibek2"><i class="fa-solid fa-gas-pump" style="color: var(--text-color)"></i></div>
+                <div class="ibek3"><i class="fa-solid fa-table-cells" style="color: var(--text-color)"></i></div>
               </div>
               <div class="yozuvbeklarim">
                 <div class="yozuvbek1"><p>20 Miles</p></div>
@@ -1308,6 +1442,7 @@
         </div>
       </div>
     </div>
+    
     <div class="bel1">
       <div class="buyoq2">
         <div class="s1"><h1>Online, in-person, everywhere</h1></div>
@@ -1324,35 +1459,38 @@
         <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=900&q=80" alt="" />
       </div>
     </div>
+    
     <div class="orta">
       <div class="choose"><h1>Why Choose Us?</h1></div>
       <div class="barcha">
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
+          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--text-color)"></i></p></div>
           <div class="offers"><h4>Special Financing Offers</h4></div>
           <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
         </div>
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
+          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--text-color)"></i></p></div>
           <div class="offers"><h4>Special Financing Offers</h4></div>
           <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
         </div>
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
+          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--text-color)"></i></p></div>
           <div class="offers"><h4>Special Financing Offers</h4></div>
           <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
         </div>
         <div class="yozuvlar">
-          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: rgb(0, 0, 0)"></i></p></div>
+          <div class="ibek"><p><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--text-color)"></i></p></div>
           <div class="offers"><h4>Special Financing Offers</h4></div>
           <div class="stress"><p>Our stress-free finance department that can find financial solutions to save you money.</p></div>
         </div>
       </div>
     </div>
+    
     <div class="qidiruv">
       <div class="vehiccles"><h1>Specials</h1></div>
       <a href="">View All <i class="ri-arrow-right-up-fill"></i></a>
     </div>
+    
     <div class="carousel-wrap">
       <div class="carousel-outer">
         <div class="carousel-track" id="carouselTrack">
@@ -1599,38 +1737,38 @@
       <div class="jahon">
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg" alt="" /></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/audi/000000" alt="Audi" /></div>
             <div class="tuyoq"><div class="di"><h4>Audi</h4></div></div>
           </div>
         </div>
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bmw/bmw-original.svg" alt="" /></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/bmw/000000" alt="BMW" /></div>
             <div class="tuyoq"><div class="di"><h4>BMW</h4></div></div>
           </div>
         </div>
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ford/ford-original.svg" alt="" /></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/ford/000000" alt="Ford" /></div>
             <div class="tuyoq"><div class="di"><h4>Ford</h4></div></div>
           </div>
         </div>
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mercedes/mercedes-original.svg" alt="" /></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/mercedes/000000" alt="Mercedes" /></div>
             <div class="tuyoq"><div class="diy"><h4>Mercedes Benz</h4></div></div>
           </div>
         </div>
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/peugeot/peugeot-original.svg" alt="" /></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/peugeot/000000" alt="Peugeot" /></div>
             <div class="tuyoq"><div class="di"><h4>Peugeot</h4></div></div>
           </div>
         </div>
         <div class="audi">
           <div class="aylana">
-            <div class="yuqori"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg" alt="" /></div>
-            <div class="tuyoq"><div class="di"><h4>Audi</h4></div></div>
+            <div class="yuqori"><img src="https://cdn.simpleicons.org/toyota/000000" alt="Toyota" /></div>
+            <div class="tuyoq"><div class="di"><h4>Toyota</h4></div></div>
           </div>
         </div>
       </div>
@@ -1839,6 +1977,18 @@
         signInModal.addEventListener("click", function (e) {
           if (e.target === signInModal) {
             signInModal.style.display = "none";
+          }
+        });
+
+        const themeToggle = document.getElementById("themeToggle");
+        const body = document.body;
+
+        themeToggle.addEventListener("click", function () {
+          body.classList.toggle("dark-mode");
+          if (body.classList.contains("dark-mode")) {
+            themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+          } else {
+            themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
           }
         });
       });

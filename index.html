@@ -30,6 +30,11 @@
         background: #fff;
       }
 
+      body.dark-mode {
+        background: #121212;
+        color: #fff;
+      }
+
       .hero {
         height: 800px;
         position: relative;
@@ -43,11 +48,13 @@
       }
 
       .navbar {
-        height: 75px;
+        height: 80px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 38px;
+        padding: 0 40px;
+        position: relative;
+        z-index: 100;
       }
 
       .logo-box {
@@ -60,71 +67,165 @@
         display: flex;
         align-items: center;
         gap: 7px;
-        font-size: 15px;
+        font-size: 20px;
         font-weight: bold;
+        color: #fff;
+        text-decoration: none;
       }
 
       .logo-car {
         font-size: 25px;
+        color: #fff;
       }
 
       .phone {
-        font-size: 9px;
-        opacity: 0.9;
-      }
-
-      .menu {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-      }
-
-      .menu a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 10px;
-        transition: opacity 0.2s;
-      }
-
-      .signin {
+        font-size: 13px;
+        padding-left: 18px;
+        border-left: 1px solid rgba(255,255,255,0.3);
         display: flex;
         align-items: center;
         gap: 5px;
       }
 
-      .submit {
-        color: #fff;
-        background: transparent;
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        border-radius: 20px;
-        padding: 9px 18px;
-        font-size: 9px;
-      }
-
-      .sumbit {
+      .menu {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 28px;
+      }
+
+      .menu a {
         color: #fff;
         text-decoration: none;
-        font-size: 9px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .menu a i {
+        font-size: 10px;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .theme-toggle {
         background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+
+      .signin {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .submit-btn {
+        color: #fff;
         border: 1px solid rgba(255, 255, 255, 0.7);
-        border-radius: 20px;
-        padding: 6px 14px 6px 6px;
+        border-radius: 30px;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
         transition: 0.3s;
       }
 
-      .sumbit:hover {
-        background: rgba(255, 255, 255, 0.15);
+      .hamburger {
+        display: none;
+        font-size: 24px;
+        color: #fff;
       }
 
-      .sumbit img {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        object-fit: cover;
-        display: block;
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal-overlay.active {
+        display: flex;
+      }
+
+      .modal {
+        background: #fff;
+        padding: 40px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      body.dark-mode .modal {
+        background: #2a2a2a;
+        color: #fff;
+      }
+
+      .modal h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #050b20;
+      }
+
+      body.dark-mode .modal h2 {
+        color: #fff;
+      }
+
+      .modal form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .modal input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      body.dark-mode .modal input {
+        background: #3a3a3a;
+        border-color: #555;
+        color: #fff;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        color: #888;
+      }
+
+      body.dark-mode .close-modal {
+        color: #ccc;
       }
 
       .hero-text {
@@ -154,8 +255,6 @@
         padding: 35px 30px;
         background: rgba(255, 255, 255, 0.12);
         border-radius: 12px;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
       }
 
       .info {
@@ -169,7 +268,6 @@
 
       .label {
         font-size: 9px;
-        opacity: 0.75;
       }
 
       .value {
@@ -188,8 +286,6 @@
         background: #fff;
         color: #222;
         font-size: 9px;
-        cursor: pointer;
-        transition: background 0.2s;
       }
 
       .slider {
@@ -222,7 +318,6 @@
         max-width: 1660px;
         margin: 0 auto;
         padding: 0 40px;
-        overflow: hidden;
       }
 
       .tepa {
@@ -240,6 +335,10 @@
         font-weight: 600;
       }
 
+      body.dark-mode .tepa a {
+        color: #fff;
+      }
+
       .tepa a:hover {
         text-decoration: underline;
       }
@@ -253,8 +352,6 @@
       .carusel-track {
         display: flex;
         gap: 30px;
-        transition: transform 0.4s ease;
-        will-change: transform;
       }
 
       .cartabek1 {
@@ -263,7 +360,6 @@
         border-radius: 16px;
         display: flex;
         justify-content: space-between;
-        overflow: hidden;
       }
 
       .rasmbek img {
@@ -361,15 +457,20 @@
       }
 
       .orta {
-        width: 1500px;
+        width: 100%;
+        max-width: 1500px;
         height: 489.5px;
-        margin-top: 105px;
+        margin: 105px auto 0;
         background-color: #f9fbfc;
         position: relative;
       }
 
+      body.dark-mode .orta {
+        background-color: #1e1e1e;
+      }
+
       .choose {
-        width: 325.7066955566406px;
+        width: 325px;
         height: 40px;
         left: 200px;
         top: 115px;
@@ -377,17 +478,19 @@
       }
 
       .barcha {
-        width: 1383.78px;
+        width: 100%;
+        max-width: 1383px;
         height: 173px;
         position: absolute;
         top: 200px;
         left: 100px;
         display: flex;
         justify-content: space-between;
+        padding-right: 50px;
       }
 
       .yozuvlar {
-        width: 311.2799987792969px;
+        width: 311px;
         height: 173px;
       }
 
@@ -400,39 +503,68 @@
         font-size: 40px;
       }
 
+      body.dark-mode .ibek p i {
+        color: #fff !important;
+      }
+
       .offers {
-        width: 228.20721435546875px;
+        width: 228px;
         height: 24px;
         margin-top: 20px;
       }
 
+      .offers h4 {
+        color: #050b20;
+      }
+
+      body.dark-mode .offers h4 {
+        color: #fff;
+      }
+
       .stress {
-        width: 311.2799987792969px;
-        height: 55.5px;
+        width: 311px;
+        height: 55px;
         margin-top: 14px;
       }
 
+      .stress p {
+        color: #050b20;
+      }
+
+      body.dark-mode .stress p {
+        color: #ccc;
+      }
+
       .Browse {
-        width: 1420px;
-        height: 180px;
+        width: 100%;
+        max-width: 1420px;
+        margin: 0 auto;
       }
 
       .dostlar {
-        width: 1399.5px;
+        width: 100%;
+        max-width: 1400px;
         height: 40px;
-        margin-top: 115px;
-        margin-left: 100px;
+        margin: 115px auto 0;
+        padding: 0 10px;
         display: flex;
         justify-content: space-between;
       }
 
-      .type {
-        width: 307.4495544433594px;
-        height: 40px;
+      .type h1,
+      .type1 h1,
+      .type2 h1 {
+        color: #050b20;
+      }
+
+      body.dark-mode .type h1,
+      body.dark-mode .type1 h1,
+      body.dark-mode .type2 h1 {
+        color: #fff;
       }
 
       .all {
-        width: 79.19999694824219px;
+        width: 79px;
         height: 15px;
         margin-top: 23px;
       }
@@ -443,22 +575,28 @@
         text-decoration: none;
       }
 
+      body.dark-mode .all a {
+        color: #fff;
+      }
+
       .quticha {
-        width: 1400.0098876953125px;
-        height: 728.4400024414062px;
-        margin-left: 100px;
+        width: 100%;
+        max-width: 1400px;
+        height: 728px;
+        margin: 0 auto;
+        padding: 0 10px;
       }
 
       .dostbek {
-        width: 1400.0098876953125px;
-        height: 349.4800109863281px;
+        width: 100%;
+        height: 349px;
         display: flex;
         justify-content: space-between;
       }
 
       .dostbek2 {
-        width: 1400.0098876953125px;
-        height: 348.95001220703125px;
+        width: 100%;
+        height: 348px;
         margin-top: 30px;
         display: flex;
         justify-content: space-between;
@@ -474,43 +612,41 @@
 
       .picture1,
       .picture2 {
-        width: 685px;
-        height: 349.48px;
+        width: 49%;
+        height: 349px;
       }
 
       .picture3,
       .picture4,
       .picture5 {
-        width: 450px;
-        height: 348.95px;
-      }
-
-      .type1 {
-        width: 370.4495544433594px;
-        height: 40px;
+        width: 32%;
+        height: 348px;
       }
 
       .qop {
-        width: 1400px;
+        width: 100%;
+        max-width: 1400px;
         height: 300px;
-        margin-left: 100px;
+        margin: 0 auto;
+        padding: 0 10px;
       }
 
       .usti {
-        width: 1400px;
-        height: 49.59000015258789px;
+        width: 100%;
+        height: 49px;
       }
 
       .ichm {
-        width: 810.4800033569336px;
-        height: 49.59000015258789px;
+        width: 100%;
+        max-width: 810px;
+        height: 49px;
         display: flex;
         justify-content: space-between;
       }
 
       .burchak1 {
-        width: 135.1300048828125px;
-        height: 49.59000015258789px;
+        width: 135px;
+        height: 49px;
         position: relative;
       }
 
@@ -522,26 +658,30 @@
         color: #050b20;
       }
 
+      body.dark-mode .burchak1 a {
+        color: #fff;
+      }
+
       .burchak1 a:hover {
         text-decoration: underline;
       }
 
       .oyoq {
-        width: 1383px;
-        height: 216.5px;
+        width: 100%;
+        height: 216px;
         margin-top: 35px;
         display: flex;
         justify-content: space-between;
       }
 
       .jigar1 {
-        width: 262.4100036621094px;
-        height: 216.5px;
+        width: 262px;
+        height: 216px;
       }
 
       .ford {
-        width: 262.4100036621094px;
-        height: 27.75px;
+        width: 262px;
+        height: 27px;
         position: relative;
       }
 
@@ -553,9 +693,13 @@
         position: absolute;
       }
 
+      body.dark-mode .ford a {
+        color: #fff;
+      }
+
       .honda1 {
-        width: 262.4100036621094px;
-        height: 27.75px;
+        width: 262px;
+        height: 27px;
         position: relative;
         margin-top: 10px;
       }
@@ -568,78 +712,96 @@
         position: absolute;
       }
 
-      .type2 {
-        width: 470px;
-        height: 40px;
+      body.dark-mode .honda1 a {
+        color: #fff;
       }
 
       .brendbeklar {
         width: 100%;
-        height: 310.5899963378906px;
+        height: 310px;
       }
 
       .jahon {
-        width: 1430px;
-        height: 180.58999633789062px;
-        margin-top: 15px;
-        margin-left: 90px;
+        width: 100%;
+        max-width: 1430px;
+        height: 180px;
+        margin: 15px auto 0;
         display: flex;
         justify-content: space-around;
       }
 
       .audi {
         width: 209px;
-        height: 180.58999633789062px;
+        height: 180px;
         border: 1px solid #e9e9e9;
         border-radius: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      body.dark-mode .audi {
+        border-color: #333;
       }
 
       .aylana {
-        width: 100px;
-        height: 128.58999633789062px;
-        margin-top: 26px;
-        margin-left: 54px;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
       }
 
       .yuqori {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .yuqori img {
-        width: 90px;
-        height: 100px;
-        object-fit: contain;
+      .yuqori svg {
+        width: 100%;
+        height: 100%;
       }
 
-      .tuyoq {
-        width: 100px;
-        height: 28.59px;
+      body.dark-mode .yuqori svg circle,
+      body.dark-mode .yuqori svg path,
+      body.dark-mode .yuqori svg ellipse,
+      body.dark-mode .yuqori svg text {
+        stroke: #fff !important;
+        fill: none;
+      }
+      
+      body.dark-mode .yuqori svg text {
+        fill: #fff !important;
+        stroke: none !important;
       }
 
-      .di {
-        width: 38.87737274169922px;
-        height: 21.600000381469727px;
-        margin-top: 6px;
-        margin-left: 30px;
+      .tuyoq h4 {
+        font-size: 16px;
+        color: #050b20;
+        font-weight: 600;
       }
 
-      .diy {
-        width: 130px;
-        height: 21.600000381469727px;
-        margin-top: 6px;
+      body.dark-mode .tuyoq h4 {
+        color: #fff;
       }
 
       .cacos {
-        width: 1430px;
-        height: 670.75px;
-        margin-left: 60px;
+        width: 100%;
+        max-width: 1430px;
+        height: 670px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
       }
 
       .loan {
-        width: 411.0600280761719px;
+        width: 411px;
         height: 40px;
         margin-top: 140px;
         margin-left: 100px;
@@ -650,9 +812,13 @@
         color: #050b20;
       }
 
+      body.dark-mode .loan h1 {
+        color: #fff;
+      }
+
       .payment {
-        width: 579.5399780273438px;
-        height: 55.5px;
+        width: 579px;
+        height: 55px;
         margin-left: 100px;
         margin-top: 19px;
       }
@@ -662,30 +828,42 @@
         color: #050b20;
       }
 
+      body.dark-mode .payment p {
+        color: #ccc;
+      }
+
       .sonbeklar {
-        width: 579.5399780273438px;
-        height: 57.75px;
+        width: 579px;
+        height: 57px;
         margin-left: 100px;
         display: flex;
         justify-content: space-between;
       }
 
       .price1 {
-        width: 275.19000244140625px;
-        height: 57.75px;
+        width: 275px;
+        height: 57px;
         border-radius: 12px;
         background-color: #ffffff;
       }
 
+      body.dark-mode .price1 {
+        background-color: #2a2a2a;
+      }
+
       .chap1 {
         width: 715px;
-        height: 670.75px;
+        height: 670px;
         background-color: #eef1fb;
       }
 
+      body.dark-mode .chap1 {
+        background-color: #1e1e1e;
+      }
+
       .feel {
-        width: 51.35625076293945px;
-        height: 24.049999237060547px;
+        width: 51px;
+        height: 24px;
         margin-top: 4px;
         margin-left: 14px;
       }
@@ -696,8 +874,8 @@
       }
 
       .feel2 {
-        width: 46.209564208984375px;
-        height: 27.75px;
+        width: 46px;
+        height: 27px;
         margin-left: 14px;
       }
 
@@ -706,9 +884,13 @@
         color: #050b20;
       }
 
+      body.dark-mode .feel2 p {
+        color: #fff;
+      }
+
       .sonbeklar1 {
-        width: 579.5399780273438px;
-        height: 57.75px;
+        width: 579px;
+        height: 57px;
         margin-left: 100px;
         display: flex;
         justify-content: space-between;
@@ -716,8 +898,8 @@
       }
 
       .tuyma button {
-        width: 584.3900146484375px;
-        height: 55.75px;
+        width: 584px;
+        height: 55px;
         background-color: #405ff2;
         border-radius: 16px;
         margin-left: 97px;
@@ -729,7 +911,7 @@
 
       .buyoq img {
         width: 715px;
-        height: 670.75px;
+        height: 670px;
         object-fit: cover;
       }
 
@@ -755,12 +937,20 @@
         color: #050b20;
       }
 
+      body.dark-mode .reviews-header h2 {
+        color: #fff;
+      }
+
       .reviews-rating {
         font-size: 14px;
         color: #555;
         display: flex;
         align-items: center;
         gap: 6px;
+      }
+
+      body.dark-mode .reviews-rating {
+        color: #ccc;
       }
 
       .reviews-rating i {
@@ -791,6 +981,11 @@
         border: 1px solid #eef1f6;
       }
 
+      body.dark-mode .review-card {
+        background: #1e1e1e;
+        border-color: #333;
+      }
+
       .review-stars {
         display: flex;
         align-items: center;
@@ -818,9 +1013,17 @@
         gap: 4px;
       }
 
+      body.dark-mode .review-stars .verified {
+        color: #ccc;
+      }
+
       .review-stars .verified i {
         color: #555;
         font-size: 12px;
+      }
+
+      body.dark-mode .review-stars .verified i {
+        color: #aaa;
       }
 
       .review-title {
@@ -828,6 +1031,10 @@
         font-weight: 700;
         color: #050b20;
         margin-bottom: 6px;
+      }
+
+      body.dark-mode .review-title {
+        color: #fff;
       }
 
       .review-text {
@@ -838,11 +1045,19 @@
         flex: 1;
       }
 
+      body.dark-mode .review-text {
+        color: #bbb;
+      }
+
       .review-author {
         font-size: 13px;
         font-weight: 600;
         color: #050b20;
         margin-top: auto;
+      }
+
+      body.dark-mode .review-author {
+        color: #fff;
       }
 
       .reviews-nav {
@@ -866,27 +1081,35 @@
         color: #050b20;
       }
 
+      body.dark-mode .reviews-nav button {
+        background: #2a2a2a;
+        border-color: #444;
+        color: #fff;
+      }
+
       .miyya {
         width: 100%;
-        height: 468.05999755859375px;
+        height: 468px;
       }
 
       .odambeklar {
-        width: 1399.8px;
-        height: 468.05999755859375px;
-        margin-left: 100px;
+        width: 100%;
+        max-width: 1399px;
+        height: 468px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
+        padding: 0 10px;
       }
 
       .odam1 {
-        width: 327.5px;
-        height: 468.05999755859375px;
+        width: 23%;
+        height: 468px;
       }
 
       .odam1 img,
       .odam2 img {
-        width: 327.5px;
+        width: 100%;
         height: 380px;
         object-fit: cover;
         border-radius: 12px;
@@ -896,32 +1119,44 @@
         margin-top: 15px;
       }
 
+      .henry h3 {
+        color: #050b20;
+      }
+
+      body.dark-mode .henry h3 {
+        color: #fff;
+      }
+
       .odam2 {
-        width: 327.5px;
-        height: 468.05999755859375px;
-        margin-left: 30px;
+        width: 23%;
+        height: 468px;
       }
 
       .development {
         margin-top: 4px;
+        color: #050b20;
+      }
+
+      body.dark-mode .development {
+        color: #ccc;
       }
 
       .orqaxon {
-        width: 1440px;
-        height: 527.5px;
+        width: 100%;
+        max-width: 1440px;
+        height: 527px;
         position: relative;
         color: #fff;
         overflow: hidden;
         background: url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80");
         background-size: cover;
         background-position: center;
-        margin-left: 40px;
+        margin: 115px auto 0;
         border-radius: 16px;
-        margin-top: 115px;
       }
 
       .whether {
-        width: 627.3699951171875px;
+        width: 627px;
         position: absolute;
         top: 0;
         left: 0;
@@ -958,9 +1193,7 @@
         text-decoration: none;
         padding: 10px 20px;
         border-radius: 8px;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
+        transition: transform 0.2s, box-shadow 0.2s;
       }
 
       .app-btn i {
@@ -987,20 +1220,22 @@
       }
 
       .sport {
-        width: 1430px;
-        height: 441.0899963378906px;
-        margin-left: 60px;
+        width: 100%;
+        max-width: 1430px;
+        height: 441px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-around;
+        padding: 0 10px;
       }
 
       .alpina {
-        width: 447px;
-        height: 411.0899963378906px;
+        width: 32%;
+        height: 411px;
       }
 
       .alpina img {
-        width: 447px;
+        width: 100%;
         height: 298px;
         border-radius: 16px;
         object-fit: cover;
@@ -1008,10 +1243,28 @@
 
       .sanabeklar {
         width: 208px;
-        height: 28.625px;
+        height: 28px;
         display: flex;
         justify-content: space-between;
         margin-top: 19px;
+      }
+
+      .sanabeklar p,
+      .sanabeklar span {
+        color: #050b20;
+      }
+
+      body.dark-mode .sanabeklar p,
+      body.dark-mode .sanabeklar span {
+        color: #ccc;
+      }
+
+      .d2 h3 {
+        color: #050b20;
+      }
+
+      body.dark-mode .d2 h3 {
+        color: #fff;
       }
 
       .footer {
@@ -1254,16 +1507,124 @@
         }
       }
 
+      @media (max-width: 1024px) {
+        .menu {
+          gap: 15px;
+        }
+        .menu a {
+          font-size: 12px;
+        }
+        .submit-btn {
+          padding: 8px 16px;
+          font-size: 12px;
+        }
+        .signin span {
+          display: none;
+        }
+        .choose {
+          left: 50px;
+        }
+        .barcha {
+          left: 50px;
+          flex-wrap: wrap;
+          height: auto;
+          gap: 20px;
+          padding-right: 20px;
+        }
+        .barcha .yozuvlar {
+          width: 45%;
+          margin-bottom: 20px;
+        }
+        .orta {
+          height: auto;
+          padding-bottom: 50px;
+        }
+        .jahon {
+          flex-wrap: wrap;
+          height: auto;
+          gap: 20px;
+        }
+        .audi {
+          margin-bottom: 20px;
+        }
+      }
+
       @media (max-width: 992px) {
         .footer-links {
           grid-template-columns: repeat(3, 1fr);
         }
+        .cacos {
+          flex-direction: column;
+          height: auto;
+        }
+        .chap1 {
+          width: 100%;
+          height: auto;
+          padding-bottom: 50px;
+        }
+        .buyoq img {
+          width: 100%;
+          height: auto;
+        }
+        .loan, .payment, .sonbeklar, .sonbeklar1 {
+          margin-left: 50px;
+          width: 90%;
+        }
+        .tuyma button {
+          margin-left: 50px;
+          width: 90%;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hamburger {
+          display: block;
+        }
+        .menu {
+          position: absolute;
+          top: 80px;
+          left: 0;
+          width: 100%;
+          background: rgba(70, 80, 95, 0.98);
+          flex-direction: column;
+          padding: 20px;
+          gap: 20px;
+          display: none;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+          z-index: 100;
+        }
+        .menu.active {
+          display: flex;
+        }
+        .menu a {
+          font-size: 16px;
+        }
+        .phone {
+          display: none;
+        }
+        .submit-btn {
+          display: none;
+        }
+        .odambeklar {
+          flex-wrap: wrap;
+          height: auto;
+          gap: 30px;
+        }
+        .odam1, .odam2 {
+          width: 45%;
+        }
+        .sport {
+          flex-direction: column;
+          height: auto;
+          gap: 30px;
+          align-items: center;
+        }
+        .alpina {
+          width: 90%;
+        }
       }
 
       @media (max-width: 768px) {
-        .menu {
-          display: none;
-        }
         .hero {
           height: 600px;
         }
@@ -1334,14 +1695,76 @@
         .footer-bottom-links {
           justify-content: center;
         }
+        .dostbek, .dostbek2 {
+          flex-direction: column;
+          height: auto;
+          gap: 15px;
+        }
+        .picture1, .picture2, .picture3, .picture4, .picture5 {
+          width: 100%;
+        }
+        .ichm {
+          flex-wrap: wrap;
+          height: auto;
+          gap: 15px;
+        }
+        .oyoq {
+          flex-wrap: wrap;
+          height: auto;
+          gap: 20px;
+        }
+        .jigar1 {
+          width: 45%;
+        }
       }
 
       @media (max-width: 480px) {
+        .navbar {
+          padding: 0 20px;
+          height: 70px;
+        }
+        .logo {
+          font-size: 18px;
+        }
+        .logo-car {
+          font-size: 20px;
+        }
+        .menu {
+          top: 70px;
+        }
         .footer-links {
           grid-template-columns: 1fr;
         }
         .footer-contacts {
           flex-direction: column;
+        }
+        .odam1, .odam2 {
+          width: 100%;
+        }
+        .barcha .yozuvlar {
+          width: 100%;
+        }
+        .loan h1 {
+          font-size: 28px;
+        }
+        .loan, .payment, .sonbeklar, .sonbeklar1 {
+          margin-left: 20px;
+          width: 90%;
+        }
+        .tuyma button {
+          margin-left: 20px;
+          width: 90%;
+        }
+        .sonbeklar, .sonbeklar1 {
+          flex-direction: column;
+          height: auto;
+          gap: 15px;
+        }
+        .price1 {
+          width: 100%;
+        }
+        .jigar1 {
+          width: 100%;
         }
       }
     </style>
@@ -1351,24 +1774,39 @@
     <section class="hero">
       <div class="navbar">
         <div class="logo-box">
-          <span class="logo-car">
-            <i class="fa-solid fa-car" style="color: #fff"></i>
-          </span>
-          <div class="logo">CarHut</div>
+          <a href="#" class="logo">
+            <span class="logo-car">
+              <i class="fa-solid fa-car" style="color: #fff"></i>
+            </span>
+            <span>CarHut</span>
+          </a>
           <div class="phone">
+            <i class="fa-solid fa-mobile-screen-button"></i>
             <span>+75 123 456 789</span>
           </div>
         </div>
 
-        <div class="menu">
-          <a href="#">Home</a>
-          <a href="#">Listings</a>
-          <a href="#">Blog</a>
-          <a href="#">Pages</a>
+        <div class="menu" id="navMenu">
+          <a href="#">Home <i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#">Listings <i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#">Blog <i class="fa-solid fa-chevron-down"></i></a>
+          <a href="#">Pages <i class="fa-solid fa-chevron-down"></i></a>
           <a href="#">About</a>
           <a href="#">Contact</a>
-          <a href="#" class="signin">Sign in</a>
-          <a class="sumbit" href="/yakuniy2/indexx.html">Submit Listing </a>
+        </div>
+
+        <div class="nav-right">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a href="#" class="signin" id="signInBtn">
+            <i class="fa-regular fa-user"></i>
+            <span>Sign in</span>
+          </a>
+          <a href="./yakuniy2/indexx.html" class="submit-btn">Sumbit Listing</a>
+          <div class="hamburger" id="hamburger">
+            <i class="fa-solid fa-bars"></i>
+          </div>
         </div>
       </div>
 
@@ -1857,13 +2295,15 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg"
-                alt="Audi"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="45" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="60" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="75" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="di"><h4>Audi</h4></div>
+              <h4>Audi</h4>
             </div>
           </div>
         </div>
@@ -1871,13 +2311,13 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bmw/bmw-original.svg"
-                alt="BMW"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#000" stroke-width="4"/>
+                <path d="M50 20 L50 80 M20 50 L80 50" stroke="#000" stroke-width="4"/>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="di"><h4>BMW</h4></div>
+              <h4>BMW</h4>
             </div>
           </div>
         </div>
@@ -1885,13 +2325,13 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ford/ford-original.svg"
-                alt="Ford"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <ellipse cx="50" cy="50" rx="35" ry="20" fill="none" stroke="#000" stroke-width="4"/>
+                <text x="50" y="57" font-family="Arial" font-size="20" font-weight="bold" fill="#000" text-anchor="middle" font-style="italic">Ford</text>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="di"><h4>Ford</h4></div>
+              <h4>Ford</h4>
             </div>
           </div>
         </div>
@@ -1899,13 +2339,13 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mercedes/mercedes-original.svg"
-                alt="Mercedes"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="35" fill="none" stroke="#000" stroke-width="4"/>
+                <path d="M50 20 L65 50 L50 80 L35 50 Z" fill="none" stroke="#000" stroke-width="4"/>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="diy"><h4>Mercedes Benz</h4></div>
+              <h4>Mercedes Benz</h4>
             </div>
           </div>
         </div>
@@ -1913,13 +2353,12 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/peugeot/peugeot-original.svg"
-                alt="Peugeot"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 15 L80 40 L65 85 L35 85 L20 40 Z" fill="none" stroke="#000" stroke-width="4"/>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="di"><h4>Peugeot</h4></div>
+              <h4>Peugeot</h4>
             </div>
           </div>
         </div>
@@ -1927,13 +2366,15 @@
         <div class="audi">
           <div class="aylana">
             <div class="yuqori">
-              <img
-                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/audi/audi-original.svg"
-                alt="Audi"
-              />
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="45" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="60" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle cx="75" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+              </svg>
             </div>
             <div class="tuyoq">
-              <div class="di"><h4>Audi</h4></div>
+              <h4>Audi</h4>
             </div>
           </div>
         </div>
@@ -2439,6 +2880,18 @@
       </div>
     </footer>
 
+    <div class="modal-overlay" id="signInModal">
+      <div class="modal">
+        <button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        <h2>Sign In</h2>
+        <form id="signInForm">
+          <input type="email" placeholder="Email address" required />
+          <input type="password" placeholder="Password" required />
+          <button type="submit">Sign In</button>
+        </form>
+      </div>
+    </div>
+
     <script>
       const track = document.getElementById("track");
       const prevBtn = document.getElementById("prevBtn");
@@ -2541,6 +2994,55 @@
       });
 
       updateReviewsCarousel();
+
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = themeToggle.querySelector('i');
+      const body = document.body;
+
+      themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+          themeIcon.classList.remove('fa-moon');
+          themeIcon.classList.add('fa-sun');
+        } else {
+          themeIcon.classList.remove('fa-sun');
+          themeIcon.classList.add('fa-moon');
+        }
+      });
+
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
+
+      hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+      });
+
+      const signInBtn = document.getElementById('signInBtn');
+      const signInModal = document.getElementById('signInModal');
+      const closeModal = document.getElementById('closeModal');
+      const signInForm = document.getElementById('signInForm');
+
+      signInBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        signInModal.classList.add('active');
+      });
+
+      closeModal.addEventListener('click', () => {
+        signInModal.classList.remove('active');
+      });
+
+      signInModal.addEventListener('click', (e) => {
+        if (e.target === signInModal) {
+          signInModal.classList.remove('active');
+        }
+      });
+
+      signInForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Muvaffaqiyatli kirdingiz!');
+        signInModal.classList.remove('active');
+        signInForm.reset();
+      });
     </script>
   </body>
 </html>
