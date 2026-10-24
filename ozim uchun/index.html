@@ -1,371 +1,826 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bloomy | Gul do‘koni</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap');
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bloomy | Gul do‘koni</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;700&display=swap");
 
-:root {
-  --bg: #0b1010;
-  --card: #141d1a;
-  --pink: #ff8da8;
-  --text: #fff5f4;
-  --muted: #a9b3ad;
-  --border: #293630;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-}
-a { color: inherit; text-decoration: none; }
-button, input, select, textarea { font: inherit; }
-button { cursor: pointer; }
+      :root {
+        --bg: #0b1010;
+        --card: #141d1a;
+        --pink: #ff8da8;
+        --text: #fff5f4;
+        --muted: #a9b3ad;
+        --border: #293630;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+      }
 
-.container { width: 92%; max-width: 1150px; margin: auto; }
-header {
-  position: sticky; top: 0; z-index: 10;
-  background: #0b1010ed;
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(15px);
-}
-nav {
-  min-height: 75px; display: flex;
-  justify-content: space-between; align-items: center; gap: 20px;
-}
-.logo { font-size: 25px; font-weight: 700; color: var(--pink); }
-.logo span { color: white; }
-nav ul { display: flex; gap: 25px; list-style: none; }
-nav a:hover { color: var(--pink); }
-.btn {
-  border: none; border-radius: 10px; padding: 13px 20px;
-  background: var(--pink); color: #241118;
-  font-weight: 700; transition: .25s;
-}
-.btn:hover { transform: translateY(-3px); }
-.outline {
-  background: transparent; border: 1px solid var(--pink);
-  color: var(--pink);
-}
-.hero {
-  min-height: 570px; display: grid;
-  grid-template-columns: 1fr 1fr; gap: 35px;
-  align-items: center; padding-top: 45px; padding-bottom: 45px;
-}
-.eyebrow { color: var(--pink); letter-spacing: 3px; font-size: 12px; }
-h1, h2 { font-family: 'Playfair Display', serif; }
-h1 { font-size: clamp(42px, 5vw, 68px); line-height: 1.12; margin: 20px 0; }
-.gradient {
-  background: linear-gradient(90deg, #ff9bb5, #f8d5c3);
-  color: transparent; background-clip: text;
-}
-.hero p, .section-desc { color: var(--muted); line-height: 1.9; }
-.hero-buttons { display: flex; gap: 12px; margin-top: 25px; flex-wrap: wrap; }
-.hero img {
-  width: 100%; height: 450px; object-fit: cover;
-  border-radius: 180px 180px 20px 20px;
-  border: 1px solid #ffffff20;
-}
-.benefits {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 20px; padding: 25px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.benefit { color: var(--muted); font-size: 13px; }
-.benefit b { display: block; color: white; margin-bottom: 5px; }
-section { scroll-margin-top: 90px; }
-.shop, .about, .reviews, .contact { padding: 80px 0; }
-.heading { margin-bottom: 28px; }
-.heading h2 { font-size: clamp(30px, 4vw, 45px); margin: 10px 0; }
-.toolbar { display: flex; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-.field {
-  background: #101715; color: white; border: 1px solid var(--border);
-  padding: 12px 14px; border-radius: 10px; outline: none;
-}
-.field:focus { border-color: var(--pink); }
-#search { flex: 1; min-width: 190px; }
-.categories { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
-.chip {
-  background: var(--card); color: white;
-  border: 1px solid var(--border); padding: 9px 15px;
-  border-radius: 30px;
-}
-.chip.active, .chip:hover { background: var(--pink); color: #241118; }
-.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
-.product {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; overflow: hidden; transition: .25s;
-}
-.product:hover { transform: translateY(-5px); border-color: #8c5665; }
-.product-image { height: 220px; position: relative; }
-.product-image img { width: 100%; height: 100%; object-fit: cover; }
-.fav {
-  position: absolute; top: 10px; right: 10px;
-  background: #101715e8; color: white;
-  border: none; border-radius: 50%; width: 36px; height: 36px;
-  font-size: 20px;
-}
-.fav.active { color: var(--pink); }
-.product-info { padding: 15px; }
-.product-info small { color: var(--pink); }
-.product-info h3 { margin: 7px 0; }
-.product-info p { color: var(--muted); font-size: 13px; min-height: 40px; }
-.price { font-weight: 700; margin: 12px 0; }
-.add { width: 100%; margin-top: 8px; }
-.promo {
-  margin: 0 auto 50px; padding: 45px;
-  background: linear-gradient(120deg, #1d2a22, #291921);
-  border: 1px solid var(--border); border-radius: 22px;
-}
-.promo h2 { font-size: 38px; margin: 15px 0; }
-.promo p { color: var(--muted); margin-bottom: 20px; line-height: 1.8; }
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
-.about-grid img { width: 100%; height: 350px; object-fit: cover; border-radius: 18px; }
-.about-grid p { color: var(--muted); line-height: 1.9; margin: 15px 0; }
-.review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-.review { padding: 22px; background: var(--card); border: 1px solid var(--border); border-radius: 15px; }
-.stars { color: #ffd477; }
-.review p { color: var(--muted); line-height: 1.8; margin: 15px 0; }
-.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.contact-grid p { color: var(--muted); line-height: 1.9; }
-form { display: grid; gap: 13px; }
-textarea { resize: vertical; min-height: 100px; }
-footer { border-top: 1px solid var(--border); padding: 30px 0; color: var(--muted); text-align: center; }
-.overlay {
-  position: fixed; inset: 0; background: #0009;
-  z-index: 19; display: none;
-}
-.overlay.show { display: block; }
-.drawer {
-  position: fixed; top: 0; right: -450px; z-index: 20;
-  width: min(420px, 100%); height: 100vh; overflow-y: auto;
-  background: #111917; padding: 25px; transition: .3s;
-  border-left: 1px solid var(--border);
-}
-.drawer.open { right: 0; }
-.drawer-head { display: flex; justify-content: space-between; margin-bottom: 20px; }
-.cart-item { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-.cart-item img { width: 65px; height: 70px; object-fit: cover; border-radius: 8px; }
-.cart-item div { flex: 1; }
-.cart-item p { color: var(--muted); font-size: 13px; }
-.qty { display: flex; align-items: center; gap: 10px; margin-top: 7px; }
-.qty button, .remove { background: var(--card); color: white; border: 1px solid var(--border); padding: 4px 9px; border-radius: 6px; }
-.remove { color: var(--pink); }
-.total { display: flex; justify-content: space-between; padding: 20px 0; font-weight: 700; }
-.drawer .btn { width: 100%; }
-.close { background: none; color: white; border: 1px solid var(--border); border-radius: 8px; padding: 5px 12px; font-size: 20px; }
-.toast {
-  position: fixed; bottom: 20px; left: 50%; z-index: 30;
-  background: var(--pink); color: #241118; padding: 13px 20px;
-  border-radius: 10px; font-weight: 700;
-  transform: translate(-50%, 100px); transition: .3s;
-}
-.toast.show { transform: translate(-50%, 0); }
-@media(max-width:850px) {
-  nav ul { gap: 12px; font-size: 13px; }
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .benefits { grid-template-columns: repeat(2, 1fr); }
-  .product-image { height: 240px; }
-}
-@media(max-width:600px) {
-  nav { flex-wrap: wrap; padding: 15px 0; }
-  nav ul { order: 3; width: 100%; overflow-x: auto; padding: 5px 0; }
-  .hero, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-  .hero { padding-top: 35px; }
-  .hero img { height: 350px; }
-  .grid { gap: 10px; }
-  .product-image { height: 170px; }
-  .product-info { padding: 10px; }
-  .product-info h3 { font-size: 14px; }
-  .product-info p { font-size: 12px; }
-  .promo { padding: 25px; }
-  .promo h2 { font-size: 30px; }
-  .review-grid { grid-template-columns: 1fr; }
-  .about-grid img { height: 280px; }
-}
-</style>
-</head>
-<body>
+      .container {
+        width: 92%;
+        max-width: 1150px;
+        margin: auto;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #0b1010ed;
+        border-bottom: 1px solid var(--border);
+        backdrop-filter: blur(15px);
+      }
+      nav {
+        min-height: 75px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+      .logo {
+        font-size: 25px;
+        font-weight: 700;
+        color: var(--pink);
+      }
+      .logo span {
+        color: white;
+      }
+      nav ul {
+        display: flex;
+        gap: 25px;
+        list-style: none;
+      }
+      nav a:hover {
+        color: var(--pink);
+      }
+      .btn {
+        border: none;
+        border-radius: 10px;
+        padding: 13px 20px;
+        background: var(--pink);
+        color: #241118;
+        font-weight: 700;
+        transition: 0.25s;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+      .outline {
+        background: transparent;
+        border: 1px solid var(--pink);
+        color: var(--pink);
+      }
+      .hero {
+        min-height: 570px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+        align-items: center;
+        padding-top: 45px;
+        padding-bottom: 45px;
+      }
+      .eyebrow {
+        color: var(--pink);
+        letter-spacing: 3px;
+        font-size: 12px;
+      }
+      h1,
+      h2 {
+        font-family: "Playfair Display", serif;
+      }
+      h1 {
+        font-size: clamp(42px, 5vw, 68px);
+        line-height: 1.12;
+        margin: 20px 0;
+      }
+      .gradient {
+        background: linear-gradient(90deg, #ff9bb5, #f8d5c3);
+        color: transparent;
+        background-clip: text;
+      }
+      .hero p,
+      .section-desc {
+        color: var(--muted);
+        line-height: 1.9;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+      }
+      .hero img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        border-radius: 180px 180px 20px 20px;
+        border: 1px solid #ffffff20;
+      }
+      .benefits {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+        padding: 25px 0;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .benefit {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .benefit b {
+        display: block;
+        color: white;
+        margin-bottom: 5px;
+      }
+      section {
+        scroll-margin-top: 90px;
+      }
+      .shop,
+      .about,
+      .reviews,
+      .contact {
+        padding: 80px 0;
+      }
+      .heading {
+        margin-bottom: 28px;
+      }
+      .heading h2 {
+        font-size: clamp(30px, 4vw, 45px);
+        margin: 10px 0;
+      }
+      .toolbar {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .field {
+        background: #101715;
+        color: white;
+        border: 1px solid var(--border);
+        padding: 12px 14px;
+        border-radius: 10px;
+        outline: none;
+      }
+      .field:focus {
+        border-color: var(--pink);
+      }
+      #search {
+        flex: 1;
+        min-width: 190px;
+      }
+      .categories {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+      }
+      .chip {
+        background: var(--card);
+        color: white;
+        border: 1px solid var(--border);
+        padding: 9px 15px;
+        border-radius: 30px;
+      }
+      .chip.active,
+      .chip:hover {
+        background: var(--pink);
+        color: #241118;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+      }
+      .product {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: 0.25s;
+      }
+      .product:hover {
+        transform: translateY(-5px);
+        border-color: #8c5665;
+      }
+      .product-image {
+        height: 220px;
+        position: relative;
+      }
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .fav {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #101715e8;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        font-size: 20px;
+      }
+      .fav.active {
+        color: var(--pink);
+      }
+      .product-info {
+        padding: 15px;
+      }
+      .product-info small {
+        color: var(--pink);
+      }
+      .product-info h3 {
+        margin: 7px 0;
+      }
+      .product-info p {
+        color: var(--muted);
+        font-size: 13px;
+        min-height: 40px;
+      }
+      .price {
+        font-weight: 700;
+        margin: 12px 0;
+      }
+      .add {
+        width: 100%;
+        margin-top: 8px;
+      }
+      .promo {
+        margin: 0 auto 50px;
+        padding: 45px;
+        background: linear-gradient(120deg, #1d2a22, #291921);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+      }
+      .promo h2 {
+        font-size: 38px;
+        margin: 15px 0;
+      }
+      .promo p {
+        color: var(--muted);
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+        align-items: center;
+      }
+      .about-grid img {
+        width: 100%;
+        height: 350px;
+        object-fit: cover;
+        border-radius: 18px;
+      }
+      .about-grid p {
+        color: var(--muted);
+        line-height: 1.9;
+        margin: 15px 0;
+      }
+      .review-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .review {
+        padding: 22px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+      }
+      .stars {
+        color: #ffd477;
+      }
+      .review p {
+        color: var(--muted);
+        line-height: 1.8;
+        margin: 15px 0;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .contact-grid p {
+        color: var(--muted);
+        line-height: 1.9;
+      }
+      form {
+        display: grid;
+        gap: 13px;
+      }
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 30px 0;
+        color: var(--muted);
+        text-align: center;
+      }
+      .overlay {
+        position: fixed;
+        inset: 0;
+        background: #0009;
+        z-index: 19;
+        display: none;
+      }
+      .overlay.show {
+        display: block;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: -450px;
+        z-index: 20;
+        width: min(420px, 100%);
+        height: 100vh;
+        overflow-y: auto;
+        background: #111917;
+        padding: 25px;
+        transition: 0.3s;
+        border-left: 1px solid var(--border);
+      }
+      .drawer.open {
+        right: 0;
+      }
+      .drawer-head {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+      .cart-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .cart-item img {
+        width: 65px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .cart-item div {
+        flex: 1;
+      }
+      .cart-item p {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .qty {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 7px;
+      }
+      .qty button,
+      .remove {
+        background: var(--card);
+        color: white;
+        border: 1px solid var(--border);
+        padding: 4px 9px;
+        border-radius: 6px;
+      }
+      .remove {
+        color: var(--pink);
+      }
+      .total {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        font-weight: 700;
+      }
+      .drawer .btn {
+        width: 100%;
+      }
+      .close {
+        background: none;
+        color: white;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 5px 12px;
+        font-size: 20px;
+      }
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        z-index: 30;
+        background: var(--pink);
+        color: #241118;
+        padding: 13px 20px;
+        border-radius: 10px;
+        font-weight: 700;
+        transform: translate(-50%, 100px);
+        transition: 0.3s;
+      }
+      .toast.show {
+        transform: translate(-50%, 0);
+      }
+      @media (max-width: 850px) {
+        nav ul {
+          gap: 12px;
+          font-size: 13px;
+        }
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .benefits {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .product-image {
+          height: 240px;
+        }
+      }
+      @media (max-width: 600px) {
+        nav {
+          flex-wrap: wrap;
+          padding: 15px 0;
+        }
+        nav ul {
+          order: 3;
+          width: 100%;
+          overflow-x: auto;
+          padding: 5px 0;
+        }
+        .hero,
+        .about-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          padding-top: 35px;
+        }
+        .hero img {
+          height: 350px;
+        }
+        .grid {
+          gap: 10px;
+        }
+        .product-image {
+          height: 170px;
+        }
+        .product-info {
+          padding: 10px;
+        }
+        .product-info h3 {
+          font-size: 14px;
+        }
+        .product-info p {
+          font-size: 12px;
+        }
+        .promo {
+          padding: 25px;
+        }
+        .promo h2 {
+          font-size: 30px;
+        }
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+        .about-grid img {
+          height: 280px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="container">
+        <a href="#home" class="logo">❀ <span>Bloomy</span></a>
+        <ul>
+          <li><a href="#home">Bosh sahifa</a></li>
+          <li><a href="#shop">Do‘kon</a></li>
+          <li><a href="#about">Biz haqimizda</a></li>
+          <li><a href="#reviews">Fikrlar</a></li>
+          <li><a href="#contact">Aloqa</a></li>
+        </ul>
+        <button class="btn" id="openCart">
+          🛍 Savat (<span id="count">0</span>)
+        </button>
+      </nav>
+    </header>
 
-<header>
-  <nav class="container">
-    <a href="#home" class="logo">❀ <span>Bloomy</span></a>
-    <ul>
-      <li><a href="#home">Bosh sahifa</a></li>
-      <li><a href="#shop">Do‘kon</a></li>
-      <li><a href="#about">Biz haqimizda</a></li>
-      <li><a href="#reviews">Fikrlar</a></li>
-      <li><a href="#contact">Aloqa</a></li>
-    </ul>
-    <button class="btn" id="openCart">🛍 Savat (<span id="count">0</span>)</button>
-  </nav>
-</header>
+    <main>
+      <section class="container hero" id="home">
+        <div>
+          <div class="eyebrow">TABIATNING NOZIK SOVG‘ASI</div>
+          <h1>
+            Gullar bilan<br /><span class="gradient">baxt ulashing.</span>
+          </h1>
+          <p>
+            Har bir gul — alohida tuyg‘u. Yaqinlaringizga mehr, tabassum va
+            unutilmas xotiralar sovg‘a qiling.
+          </p>
+          <div class="hero-buttons">
+            <a href="#shop" class="btn">Gullarni ko‘rish ↗</a>
+            <a href="#about" class="btn outline">Biz haqimizda</a>
+          </div>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=1000&q=85"
+          alt="Chiroyli gul buketi"
+        />
+      </section>
 
-<main>
-<section class="container hero" id="home">
-  <div>
-    <div class="eyebrow">TABIATNING NOZIK SOVG‘ASI</div>
-    <h1>Gullar bilan<br><span class="gradient">baxt ulashing.</span></h1>
-    <p>Har bir gul — alohida tuyg‘u. Yaqinlaringizga mehr, tabassum va unutilmas xotiralar sovg‘a qiling.</p>
-    <div class="hero-buttons">
-      <a href="#shop" class="btn">Gullarni ko‘rish ↗</a>
-      <a href="#about" class="btn outline">Biz haqimizda</a>
-    </div>
-  </div>
-  <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=1000&q=85" alt="Chiroyli gul buketi">
-</section>
+      <div class="container">
+        <div class="benefits">
+          <div class="benefit"><b>♧ Tez yetkazish</b>Toshkent bo‘ylab</div>
+          <div class="benefit"><b>✧ Sifat kafolati</b>Yangi gullar</div>
+          <div class="benefit"><b>♡ Mehr bilan</b>Har bir buketga e’tibor</div>
+          <div class="benefit"><b>☎ Aloqa</b>Sizga yordam beramiz</div>
+        </div>
+      </div>
 
-<div class="container">
-  <div class="benefits">
-    <div class="benefit"><b>♧ Tez yetkazish</b>Toshkent bo‘ylab</div>
-    <div class="benefit"><b>✧ Sifat kafolati</b>Yangi gullar</div>
-    <div class="benefit"><b>♡ Mehr bilan</b>Har bir buketga e’tibor</div>
-    <div class="benefit"><b>☎ Aloqa</b>Sizga yordam beramiz</div>
-  </div>
-</div>
+      <section class="container shop" id="shop">
+        <div class="heading">
+          <div class="eyebrow">SIZ UCHUN TANLADIK</div>
+          <h2>Gullar <span class="gradient">kolleksiyasi</span></h2>
+          <p class="section-desc">
+            Eng go‘zal lahzalar uchun eng nafis gullar.
+          </p>
+        </div>
 
-<section class="container shop" id="shop">
-  <div class="heading">
-    <div class="eyebrow">SIZ UCHUN TANLADIK</div>
-    <h2>Gullar <span class="gradient">kolleksiyasi</span></h2>
-    <p class="section-desc">Eng go‘zal lahzalar uchun eng nafis gullar.</p>
-  </div>
+        <div class="toolbar">
+          <input class="field" id="search" placeholder="🔎 Gul qidirish..." />
+          <select class="field" id="sort">
+            <option value="popular">Mashhur</option>
+            <option value="low">Arzonidan</option>
+            <option value="high">Qimmatidan</option>
+          </select>
+        </div>
+        <div class="categories" id="categories">
+          <button class="chip active" data-cat="Barchasi">Barchasi</button>
+          <button class="chip" data-cat="Atirgul">Atirgullar</button>
+          <button class="chip" data-cat="Lola">Lolalar</button>
+          <button class="chip" data-cat="Pion">Pionlar</button>
+          <button class="chip" data-cat="Buket">Buketlar</button>
+        </div>
+        <div class="grid" id="products"></div>
+      </section>
 
-  <div class="toolbar">
-    <input class="field" id="search" placeholder="🔎 Gul qidirish...">
-    <select class="field" id="sort">
-      <option value="popular">Mashhur</option>
-      <option value="low">Arzonidan</option>
-      <option value="high">Qimmatidan</option>
-    </select>
-  </div>
-  <div class="categories" id="categories">
-    <button class="chip active" data-cat="Barchasi">Barchasi</button>
-    <button class="chip" data-cat="Atirgul">Atirgullar</button>
-    <button class="chip" data-cat="Lola">Lolalar</button>
-    <button class="chip" data-cat="Pion">Pionlar</button>
-    <button class="chip" data-cat="Buket">Buketlar</button>
-  </div>
-  <div class="grid" id="products"></div>
-</section>
+      <section class="container promo">
+        <div class="eyebrow">MAXSUS TAKLIF</div>
+        <h2>
+          Oddiy kunni ham<br /><span class="gradient"
+            >bayramga aylantiring.</span
+          >
+        </h2>
+        <p>
+          Yaqin insoningizni xursand qilish uchun alohida sabab shart emas.
+          Bugun unga gul sovg‘a qiling!
+        </p>
+        <a class="btn" href="#shop">Buket tanlash ↗</a>
+      </section>
 
-<section class="container promo">
-  <div class="eyebrow">MAXSUS TAKLIF</div>
-  <h2>Oddiy kunni ham<br><span class="gradient">bayramga aylantiring.</span></h2>
-  <p>Yaqin insoningizni xursand qilish uchun alohida sabab shart emas. Bugun unga gul sovg‘a qiling!</p>
-  <a class="btn" href="#shop">Buket tanlash ↗</a>
-</section>
+      <section class="container about" id="about">
+        <div class="about-grid">
+          <img
+            src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=900&q=85"
+            alt="Gullar do‘koni"
+          />
+          <div>
+            <div class="eyebrow">BIZNING HIKOYAMIZ</div>
+            <h2 style="font-size: 40px; margin-top: 12px">
+              Gullar — bu shunchaki sovg‘a emas.
+            </h2>
+            <p>
+              Bloomy’da har bir buket mehr va e’tibor bilan tayyorlanadi. Biz
+              gullar orqali insonlar o‘rtasidagi samimiy tuyg‘ularni ifodalashga
+              ishonamiz.
+            </p>
+            <p>
+              Tug‘ilgan kun, uchrashuv yoki shunchaki “seni o‘yladim” deyish
+              uchun — sizga mos gullar bizda bor.
+            </p>
+            <a href="#contact" class="btn">Biz bilan bog‘lanish</a>
+          </div>
+        </div>
+      </section>
 
-<section class="container about" id="about">
-  <div class="about-grid">
-    <img src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?auto=format&fit=crop&w=900&q=85" alt="Gullar do‘koni">
-    <div>
-      <div class="eyebrow">BIZNING HIKOYAMIZ</div>
-      <h2 style="font-size:40px;margin-top:12px">Gullar — bu shunchaki sovg‘a emas.</h2>
-      <p>Bloomy’da har bir buket mehr va e’tibor bilan tayyorlanadi. Biz gullar orqali insonlar o‘rtasidagi samimiy tuyg‘ularni ifodalashga ishonamiz.</p>
-      <p>Tug‘ilgan kun, uchrashuv yoki shunchaki “seni o‘yladim” deyish uchun — sizga mos gullar bizda bor.</p>
-      <a href="#contact" class="btn">Biz bilan bog‘lanish</a>
-    </div>
-  </div>
-</section>
+      <section class="container reviews" id="reviews">
+        <div class="heading">
+          <div class="eyebrow">MIJOZLAR FIKRI</div>
+          <h2>Mehr bilan yozilgan <span class="gradient">fikrlar</span></h2>
+        </div>
+        <div class="review-grid">
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Buket juda chiroyli! Onamga sovg‘a qildim, juda xursand
+              bo‘ldilar.”
+            </p>
+            <b>Madina</b>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>“Saytdan tanlash oson, gullar esa rasmdagidek nafis ekan.”</p>
+            <b>Azizbek</b>
+          </article>
+          <article class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Qadoqlanishi va ranglar uyg‘unligi juda yoqdi. Tavsiya qilaman!”
+            </p>
+            <b>Nilufar</b>
+          </article>
+        </div>
+      </section>
 
-<section class="container reviews" id="reviews">
-  <div class="heading">
-    <div class="eyebrow">MIJOZLAR FIKRI</div>
-    <h2>Mehr bilan yozilgan <span class="gradient">fikrlar</span></h2>
-  </div>
-  <div class="review-grid">
-    <article class="review"><div class="stars">★★★★★</div><p>“Buket juda chiroyli! Onamga sovg‘a qildim, juda xursand bo‘ldilar.”</p><b>Madina</b></article>
-    <article class="review"><div class="stars">★★★★★</div><p>“Saytdan tanlash oson, gullar esa rasmdagidek nafis ekan.”</p><b>Azizbek</b></article>
-    <article class="review"><div class="stars">★★★★★</div><p>“Qadoqlanishi va ranglar uyg‘unligi juda yoqdi. Tavsiya qilaman!”</p><b>Nilufar</b></article>
-  </div>
-</section>
+      <section class="container contact" id="contact">
+        <div class="heading">
+          <div class="eyebrow">BIZ DOIM ALOQADAMIZ</div>
+          <h2>Keling, <span class="gradient">suhbatlashamiz.</span></h2>
+        </div>
+        <div class="contact-grid">
+          <div>
+            <p>Telefon: +998 90 123 45 67</p>
+            <p>Email: hello@bloomy.uz</p>
+            <p>Manzil: Toshkent shahri, O‘zbekiston</p>
+            <p>Ish vaqti: 09:00 — 22:00</p>
+          </div>
+          <form id="contactForm">
+            <input class="field" name="name" placeholder="Ismingiz" required />
+            <input
+              class="field"
+              name="phone"
+              placeholder="Telefon raqamingiz"
+              required
+            />
+            <textarea
+              class="field"
+              name="message"
+              placeholder="Xabaringiz..."
+              required
+            ></textarea>
+            <button class="btn">Xabar yuborish ↗</button>
+            <small style="color: var(--muted)"
+              >Namuna forma: haqiqiy xabar yuborish uchun server kerak.</small
+            >
+          </form>
+        </div>
+      </section>
+    </main>
 
-<section class="container contact" id="contact">
-  <div class="heading">
-    <div class="eyebrow">BIZ DOIM ALOQADAMIZ</div>
-    <h2>Keling, <span class="gradient">suhbatlashamiz.</span></h2>
-  </div>
-  <div class="contact-grid">
-    <div>
-      <p>Telefon: +998 90 123 45 67</p>
-      <p>Email: hello@bloomy.uz</p>
-      <p>Manzil: Toshkent shahri, O‘zbekiston</p>
-      <p>Ish vaqti: 09:00 — 22:00</p>
-    </div>
-    <form id="contactForm">
-      <input class="field" name="name" placeholder="Ismingiz" required>
-      <input class="field" name="phone" placeholder="Telefon raqamingiz" required>
-      <textarea class="field" name="message" placeholder="Xabaringiz..." required></textarea>
-      <button class="btn">Xabar yuborish ↗</button>
-      <small style="color:var(--muted)">Namuna forma: haqiqiy xabar yuborish uchun server kerak.</small>
-    </form>
-  </div>
-</section>
-</main>
+    <footer>
+      <div class="container">
+        <div class="logo">❀ <span>Bloomy</span></div>
+        <p>Gullar bilan baxt ulashing ♡</p>
+        <p>© <span id="year"></span> Bloomy Flower Shop</p>
+      </div>
+    </footer>
 
-<footer><div class="container">
-  <div class="logo">❀ <span>Bloomy</span></div>
-  <p>Gullar bilan baxt ulashing ♡</p>
-  <p>© <span id="year"></span> Bloomy Flower Shop</p>
-</div></footer>
+    <div class="overlay" id="overlay"></div>
+    <aside class="drawer" id="drawer">
+      <div class="drawer-head">
+        <h2>Savatcha 🛍</h2>
+        <button class="close" id="closeCart">×</button>
+      </div>
+      <div id="cartItems"></div>
+      <div class="total"><span>Jami:</span><span id="total">0 so‘m</span></div>
+      <button class="btn" id="checkout">Buyurtma berish →</button>
+    </aside>
+    <div class="toast" id="toast"></div>
 
-<div class="overlay" id="overlay"></div>
-<aside class="drawer" id="drawer">
-  <div class="drawer-head"><h2>Savatcha 🛍</h2><button class="close" id="closeCart">×</button></div>
-  <div id="cartItems"></div>
-  <div class="total"><span>Jami:</span><span id="total">0 so‘m</span></div>
-  <button class="btn" id="checkout">Buyurtma berish →</button>
-</aside>
-<div class="toast" id="toast"></div>
+    <script>
+      const flowers = [
+        {
+          id: 1,
+          name: "Qizil atirgul",
+          cat: "Atirgul",
+          price: 150000,
+          desc: "Muhabbat ramzi",
+          img: "https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 2,
+          name: "Pushti atirgul",
+          cat: "Atirgul",
+          price: 130000,
+          desc: "Nozik va nafis",
+          img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 3,
+          name: "Bahor lolalari",
+          cat: "Lola",
+          price: 120000,
+          desc: "Bahor kayfiyati",
+          img: "https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 4,
+          name: "Aralash buket",
+          cat: "Buket",
+          price: 180000,
+          desc: "Ranglar uyg‘unligi",
+          img: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 5,
+          name: "Pionlar orzusi",
+          cat: "Pion",
+          price: 220000,
+          desc: "Hashamatli gullar",
+          img: "https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 6,
+          name: "Romantik buket",
+          cat: "Buket",
+          price: 250000,
+          desc: "Unutilmas lahzalar",
+          img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 7,
+          name: "Oq atirgullar",
+          cat: "Atirgul",
+          price: 145000,
+          desc: "Poklik va samimiyat",
+          img: "https://images.unsplash.com/photo-1548094967-e25a127d1e0b?auto=format&fit=crop&w=700&q=80",
+        },
+        {
+          id: 8,
+          name: "Rangli lolalar",
+          cat: "Lola",
+          price: 135000,
+          desc: "Quvonch ulashing",
+          img: "https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80",
+        },
+      ];
 
-<script>
-const flowers = [
-  {id:1,name:'Qizil atirgul',cat:'Atirgul',price:150000,desc:'Muhabbat ramzi',img:'https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=700&q=80'},
-  {id:2,name:'Pushti atirgul',cat:'Atirgul',price:130000,desc:'Nozik va nafis',img:'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80'},
-  {id:3,name:'Bahor lolalari',cat:'Lola',price:120000,desc:'Bahor kayfiyati',img:'https://images.unsplash.com/photo-1457089328109-e5d9bd499191?auto=format&fit=crop&w=700&q=80'},
-  {id:4,name:'Aralash buket',cat:'Buket',price:180000,desc:'Ranglar uyg‘unligi',img:'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?auto=format&fit=crop&w=700&q=80'},
-  {id:5,name:'Pionlar orzusi',cat:'Pion',price:220000,desc:'Hashamatli gullar',img:'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?auto=format&fit=crop&w=700&q=80'},
-  {id:6,name:'Romantik buket',cat:'Buket',price:250000,desc:'Unutilmas lahzalar',img:'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=700&q=80'},
-  {id:7,name:'Oq atirgullar',cat:'Atirgul',price:145000,desc:'Poklik va samimiyat',img:'https://images.unsplash.com/photo-1548094967-e25a127d1e0b?auto=format&fit=crop&w=700&q=80'},
-  {id:8,name:'Rangli lolalar',cat:'Lola',price:135000,desc:'Quvonch ulashing',img:'https://images.unsplash.com/photo-1520763185298-1b434c919102?auto=format&fit=crop&w=700&q=80'}
-];
+      const $ = (s) => document.querySelector(s);
+      const money = (n) => new Intl.NumberFormat("uz-UZ").format(n) + " so‘m";
+      let cart = JSON.parse(localStorage.getItem("bloomyCart") || "[]");
+      let favorites = JSON.parse(
+        localStorage.getItem("bloomyFavorites") || "[]",
+      );
+      let category = "Barchasi";
 
-const $ = s => document.querySelector(s);
-const money = n => new Intl.NumberFormat('uz-UZ').format(n) + ' so‘m';
-let cart = JSON.parse(localStorage.getItem('bloomyCart') || '[]');
-let favorites = JSON.parse(localStorage.getItem('bloomyFavorites') || '[]');
-let category = 'Barchasi';
+      function save() {
+        localStorage.setItem("bloomyCart", JSON.stringify(cart));
+        localStorage.setItem("bloomyFavorites", JSON.stringify(favorites));
+      }
+      function notify(message) {
+        $("#toast").textContent = message;
+        $("#toast").classList.add("show");
+        setTimeout(() => $("#toast").classList.remove("show"), 2200);
+      }
+      function renderProducts() {
+        let list = flowers.filter(
+          (p) =>
+            (category === "Barchasi" || p.cat === category) &&
+            (p.name + p.cat)
+              .toLowerCase()
+              .includes($("#search").value.toLowerCase()),
+        );
+        if ($("#sort").value === "low") list.sort((a, b) => a.price - b.price);
+        if ($("#sort").value === "high") list.sort((a, b) => b.price - a.price);
 
-function save() {
-  localStorage.setItem('bloomyCart', JSON.stringify(cart));
-  localStorage.setItem('bloomyFavorites', JSON.stringify(favorites));
-}
-function notify(message) {
-  $('#toast').textContent = message;
-  $('#toast').classList.add('show');
-  setTimeout(() => $('#toast').classList.remove('show'), 2200);
-}
-function renderProducts() {
-  let list = flowers.filter(p =>
-    (category === 'Barchasi' || p.cat === category) &&
-    (p.name + p.cat).toLowerCase().includes($('#search').value.toLowerCase())
-  );
-  if ($('#sort').value === 'low') list.sort((a,b) => a.price-b.price);
-  if ($('#sort').value === 'high') list.sort((a,b) => b.price-a.price);
-
-  $('#products').innerHTML = list.map(p => `
+        $("#products").innerHTML =
+          list
+            .map(
+              (p) => `
     <article class="product">
       <div class="product-image">
         <img src="${p.img}" alt="${p.name}" loading="lazy">
-        <button class="fav ${favorites.includes(p.id)?'active':''}" data-fav="${p.id}">
-          ${favorites.includes(p.id)?'♥':'♡'}
+        <button class="fav ${favorites.includes(p.id) ? "active" : ""}" data-fav="${p.id}">
+          ${favorites.includes(p.id) ? "♥" : "♡"}
         </button>
       </div>
       <div class="product-info">
@@ -376,33 +831,40 @@ function renderProducts() {
         <button class="btn add" data-add="${p.id}">＋ Savatga qo‘shish</button>
       </div>
     </article>
-  `).join('') || '<p>Gullar topilmadi 🌷</p>';
+  `,
+            )
+            .join("") || "<p>Gullar topilmadi 🌷</p>";
 
-  document.querySelectorAll('[data-add]').forEach(b =>
-    b.onclick = () => add(+b.dataset.add)
-  );
-  document.querySelectorAll('[data-fav]').forEach(b =>
-    b.onclick = () => toggleFavorite(+b.dataset.fav)
-  );
-}
-function add(id) {
-  const item = cart.find(i => i.id === id);
-  if (item) item.qty++;
-  else cart.push({id,qty:1});
-  save(); renderCart(); notify('Gul savatchaga qo‘shildi ♡');
-}
-function toggleFavorite(id) {
-  favorites = favorites.includes(id)
-    ? favorites.filter(x => x !== id)
-    : [...favorites,id];
-  save(); renderProducts();
-  notify('Sevimlilar yangilandi ♡');
-}
-function renderCart() {
-  $('#count').textContent = cart.reduce((s,i) => s+i.qty,0);
-  $('#cartItems').innerHTML = cart.length ? cart.map(i => {
-    const p = flowers.find(f => f.id === i.id);
-    return `<div class="cart-item">
+        document
+          .querySelectorAll("[data-add]")
+          .forEach((b) => (b.onclick = () => add(+b.dataset.add)));
+        document
+          .querySelectorAll("[data-fav]")
+          .forEach((b) => (b.onclick = () => toggleFavorite(+b.dataset.fav)));
+      }
+      function add(id) {
+        const item = cart.find((i) => i.id === id);
+        if (item) item.qty++;
+        else cart.push({ id, qty: 1 });
+        save();
+        renderCart();
+        notify("Gul savatchaga qo‘shildi ♡");
+      }
+      function toggleFavorite(id) {
+        favorites = favorites.includes(id)
+          ? favorites.filter((x) => x !== id)
+          : [...favorites, id];
+        save();
+        renderProducts();
+        notify("Sevimlilar yangilandi ♡");
+      }
+      function renderCart() {
+        $("#count").textContent = cart.reduce((s, i) => s + i.qty, 0);
+        $("#cartItems").innerHTML = cart.length
+          ? cart
+              .map((i) => {
+                const p = flowers.find((f) => f.id === i.id);
+                return `<div class="cart-item">
       <img src="${p.img}" alt="${p.name}">
       <div><b>${p.name}</b><p>${money(p.price)}</p>
         <div class="qty">
@@ -413,66 +875,82 @@ function renderCart() {
       </div>
       <button class="remove" data-remove="${p.id}">×</button>
     </div>`;
-  }).join('') : '<p style="color:var(--muted)">Savatcha bo‘sh 🌷</p>';
+              })
+              .join("")
+          : '<p style="color:var(--muted)">Savatcha bo‘sh 🌷</p>';
 
-  const total = cart.reduce((s,i) =>
-    s + flowers.find(p => p.id === i.id).price * i.qty, 0);
-  $('#total').textContent = money(total);
+        const total = cart.reduce(
+          (s, i) => s + flowers.find((p) => p.id === i.id).price * i.qty,
+          0,
+        );
+        $("#total").textContent = money(total);
 
-  document.querySelectorAll('[data-change]').forEach(b => b.onclick = () => {
-    const item = cart.find(i => i.id === +b.dataset.change);
-    item.qty += +b.dataset.delta;
-    if (item.qty <= 0) cart = cart.filter(i => i.id !== item.id);
-    save(); renderCart();
-  });
-  document.querySelectorAll('[data-remove]').forEach(b => b.onclick = () => {
-    cart = cart.filter(i => i.id !== +b.dataset.remove);
-    save(); renderCart();
-  });
-}
-function openCart() {
-  $('#drawer').classList.add('open');
-  $('#overlay').classList.add('show');
-}
-function closeCart() {
-  $('#drawer').classList.remove('open');
-  $('#overlay').classList.remove('show');
-}
+        document.querySelectorAll("[data-change]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              const item = cart.find((i) => i.id === +b.dataset.change);
+              item.qty += +b.dataset.delta;
+              if (item.qty <= 0) cart = cart.filter((i) => i.id !== item.id);
+              save();
+              renderCart();
+            }),
+        );
+        document.querySelectorAll("[data-remove]").forEach(
+          (b) =>
+            (b.onclick = () => {
+              cart = cart.filter((i) => i.id !== +b.dataset.remove);
+              save();
+              renderCart();
+            }),
+        );
+      }
+      function openCart() {
+        $("#drawer").classList.add("open");
+        $("#overlay").classList.add("show");
+      }
+      function closeCart() {
+        $("#drawer").classList.remove("open");
+        $("#overlay").classList.remove("show");
+      }
 
-$('#categories').addEventListener('click', e => {
-  const b = e.target.closest('[data-cat]');
-  if (!b) return;
-  category = b.dataset.cat;
-  document.querySelectorAll('.chip').forEach(x =>
-    x.classList.toggle('active', x === b)
-  );
-  renderProducts();
-});
-$('#search').addEventListener('input', renderProducts);
-$('#sort').addEventListener('change', renderProducts);
-$('#openCart').onclick = openCart;
-$('#closeCart').onclick = closeCart;
-$('#overlay').onclick = closeCart;
+      $("#categories").addEventListener("click", (e) => {
+        const b = e.target.closest("[data-cat]");
+        if (!b) return;
+        category = b.dataset.cat;
+        document
+          .querySelectorAll(".chip")
+          .forEach((x) => x.classList.toggle("active", x === b));
+        renderProducts();
+      });
+      $("#search").addEventListener("input", renderProducts);
+      $("#sort").addEventListener("change", renderProducts);
+      $("#openCart").onclick = openCart;
+      $("#closeCart").onclick = closeCart;
+      $("#overlay").onclick = closeCart;
 
-$('#checkout').onclick = () => {
-  if (!cart.length) return notify('Avval gul tanlang 🌷');
-  const name = prompt('Ismingizni kiriting:');
-  if (!name) return;
-  const phone = prompt('Telefon raqamingizni kiriting:');
-  if (!phone) return;
-  const total = $('#total').textContent;
-  alert(`Rahmat, ${name}!\nBuyurtma summasi: ${total}\nTelefon: ${phone}\n\nBu demo buyurtma. Haqiqiy buyurtmalar uchun server ulash kerak.`);
-  cart = [];
-  save(); renderCart(); closeCart();
-};
-$('#contactForm').onsubmit = e => {
-  e.preventDefault();
-  notify('Forma tayyor! Haqiqiy xabar yuborish uchun server kerak.');
-  e.target.reset();
-};
-$('#year').textContent = new Date().getFullYear();
-renderProducts();
-renderCart();
-</script>
-</body>
+      $("#checkout").onclick = () => {
+        if (!cart.length) return notify("Avval gul tanlang 🌷");
+        const name = prompt("Ismingizni kiriting:");
+        if (!name) return;
+        const phone = prompt("Telefon raqamingizni kiriting:");
+        if (!phone) return;
+        const total = $("#total").textContent;
+        alert(
+          `Rahmat, ${name}!\nBuyurtma summasi: ${total}\nTelefon: ${phone}\n\nBu demo buyurtma. Haqiqiy buyurtmalar uchun server ulash kerak.`,
+        );
+        cart = [];
+        save();
+        renderCart();
+        closeCart();
+      };
+      $("#contactForm").onsubmit = (e) => {
+        e.preventDefault();
+        notify("Forma tayyor! Haqiqiy xabar yuborish uchun server kerak.");
+        e.target.reset();
+      };
+      $("#year").textContent = new Date().getFullYear();
+      renderProducts();
+      renderCart();
+    </script>
+  </body>
 </html>
