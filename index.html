@@ -81,7 +81,7 @@
       .phone {
         font-size: 13px;
         padding-left: 18px;
-        border-left: 1px solid rgba(255,255,255,0.3);
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
         display: flex;
         align-items: center;
         gap: 5px;
@@ -123,7 +123,6 @@
         justify-content: center;
       }
 
-
       .signin {
         display: flex;
         align-items: center;
@@ -140,8 +139,6 @@
         padding: 10px 22px;
         font-size: 13px;
         font-weight: 500;
-        cursor: pointer;
-        transition: 0.3s;
       }
 
       .hamburger {
@@ -217,7 +214,6 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        background: transparent;
         border: none;
         font-size: 20px;
         cursor: pointer;
@@ -236,7 +232,6 @@
 
       .price {
         font-size: 24px;
-        font-weight: bold;
         margin-bottom: 16px;
       }
 
@@ -283,7 +278,6 @@
         height: 70px;
         border: none;
         border-radius: 10px;
-        background: #fff;
         color: #222;
         font-size: 9px;
       }
@@ -318,6 +312,7 @@
         max-width: 1660px;
         margin: 0 auto;
         padding: 0 40px;
+        transition: 1.2s;
       }
 
       .tepa {
@@ -428,7 +423,6 @@
         align-items: center;
         gap: 8px;
         color: #fff;
-        cursor: pointer;
       }
 
       .view h5 {
@@ -775,7 +769,7 @@
         stroke: #fff !important;
         fill: none;
       }
-      
+
       body.dark-mode .yuqori svg text {
         fill: #fff !important;
         stroke: none !important;
@@ -1193,7 +1187,9 @@
         text-decoration: none;
         padding: 10px 20px;
         border-radius: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
       }
 
       .app-btn i {
@@ -1365,7 +1361,6 @@
         background-color: rgba(255, 255, 255, 0.05);
         color: #fff;
         font-size: 14px;
-        outline: none;
       }
 
       .newsletter-form input {
@@ -1381,7 +1376,6 @@
         color: #fff;
         font-size: 15px;
         font-weight: 600;
-        transition: 0.3s;
       }
 
       .footer-links {
@@ -1412,7 +1406,6 @@
         color: #a0aec0;
         text-decoration: none;
         font-size: 14px;
-        transition: 0.2s;
       }
 
       .app-buttons-footer {
@@ -1431,8 +1424,6 @@
         text-decoration: none;
         padding: 8px 15px;
         border-radius: 8px;
-        transition: 0.2s;
-        width: fit-content;
       }
 
       .app-btn-footer i {
@@ -1443,12 +1434,10 @@
       .app-btn-footer .btn-text {
         display: flex;
         flex-direction: column;
-        line-height: 1.2;
       }
 
       .app-btn-footer .btn-text span {
         font-size: 9px;
-        opacity: 0.7;
       }
 
       .app-btn-footer .btn-text span {
@@ -1475,7 +1464,6 @@
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         font-size: 13px;
         color: #a0aec0;
-        flex-wrap: wrap;
         gap: 15px;
       }
 
@@ -1566,7 +1554,10 @@
           width: 100%;
           height: auto;
         }
-        .loan, .payment, .sonbeklar, .sonbeklar1 {
+        .loan,
+        .payment,
+        .sonbeklar,
+        .sonbeklar1 {
           margin-left: 50px;
           width: 90%;
         }
@@ -1610,7 +1601,8 @@
           height: auto;
           gap: 30px;
         }
-        .odam1, .odam2 {
+        .odam1,
+        .odam2 {
           width: 45%;
         }
         .sport {
@@ -1695,12 +1687,17 @@
         .footer-bottom-links {
           justify-content: center;
         }
-        .dostbek, .dostbek2 {
+        .dostbek,
+        .dostbek2 {
           flex-direction: column;
           height: auto;
           gap: 15px;
         }
-        .picture1, .picture2, .picture3, .picture4, .picture5 {
+        .picture1,
+        .picture2,
+        .picture3,
+        .picture4,
+        .picture5 {
           width: 100%;
         }
         .ichm {
@@ -1738,7 +1735,8 @@
         .footer-contacts {
           flex-direction: column;
         }
-        .odam1, .odam2 {
+        .odam1,
+        .odam2 {
           width: 100%;
         }
         .barcha .yozuvlar {
@@ -1747,7 +1745,10 @@
         .loan h1 {
           font-size: 28px;
         }
-        .loan, .payment, .sonbeklar, .sonbeklar1 {
+        .loan,
+        .payment,
+        .sonbeklar,
+        .sonbeklar1 {
           margin-left: 20px;
           width: 90%;
         }
@@ -1755,7 +1756,8 @@
           margin-left: 20px;
           width: 90%;
         }
-        .sonbeklar, .sonbeklar1 {
+        .sonbeklar,
+        .sonbeklar1 {
           flex-direction: column;
           height: auto;
           gap: 15px;
@@ -1793,16 +1795,21 @@
           <a href="#">Pages <i class="fa-solid fa-chevron-down"></i></a>
           <a href="#">About</a>
           <a href="#">Contact</a>
+          <a href="#" class="signin" id="signInBtn">
+            <i class="fa-regular fa-user"></i>
+            <span>Sign in</span> </a
+          >
         </div>
 
         <div class="nav-right">
-          <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle Dark Mode"
+          >
             <i class="fa-solid fa-moon"></i>
           </button>
-          <a href="#" class="signin" id="signInBtn">
-            <i class="fa-regular fa-user"></i>
-            <span>Sign in</span>
-          </a>
+
           <a href="./yakuniy2/indexx.html" class="submit-btn">Sumbit Listing</a>
           <div class="hamburger" id="hamburger">
             <i class="fa-solid fa-bars"></i>
@@ -2296,10 +2303,38 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="45" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="60" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="75" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle
+                  cx="30"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="45"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="60"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="75"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
               </svg>
             </div>
             <div class="tuyoq">
@@ -2312,8 +2347,19 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="30" fill="none" stroke="#000" stroke-width="4"/>
-                <path d="M50 20 L50 80 M20 50 L80 50" stroke="#000" stroke-width="4"/>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="30"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <path
+                  d="M50 20 L50 80 M20 50 L80 50"
+                  stroke="#000"
+                  stroke-width="4"
+                />
               </svg>
             </div>
             <div class="tuyoq">
@@ -2326,8 +2372,27 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <ellipse cx="50" cy="50" rx="35" ry="20" fill="none" stroke="#000" stroke-width="4"/>
-                <text x="50" y="57" font-family="Arial" font-size="20" font-weight="bold" fill="#000" text-anchor="middle" font-style="italic">Ford</text>
+                <ellipse
+                  cx="50"
+                  cy="50"
+                  rx="35"
+                  ry="20"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <text
+                  x="50"
+                  y="57"
+                  font-family="Arial"
+                  font-size="20"
+                  font-weight="bold"
+                  fill="#000"
+                  text-anchor="middle"
+                  font-style="italic"
+                >
+                  Ford
+                </text>
               </svg>
             </div>
             <div class="tuyoq">
@@ -2340,8 +2405,20 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="50" cy="50" r="35" fill="none" stroke="#000" stroke-width="4"/>
-                <path d="M50 20 L65 50 L50 80 L35 50 Z" fill="none" stroke="#000" stroke-width="4"/>
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="35"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <path
+                  d="M50 20 L65 50 L50 80 L35 50 Z"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
               </svg>
             </div>
             <div class="tuyoq">
@@ -2354,7 +2431,12 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 15 L80 40 L65 85 L35 85 L20 40 Z" fill="none" stroke="#000" stroke-width="4"/>
+                <path
+                  d="M50 15 L80 40 L65 85 L35 85 L20 40 Z"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
               </svg>
             </div>
             <div class="tuyoq">
@@ -2367,10 +2449,38 @@
           <div class="aylana">
             <div class="yuqori">
               <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="30" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="45" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="60" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
-                <circle cx="75" cy="50" r="15" fill="none" stroke="#000" stroke-width="4"/>
+                <circle
+                  cx="30"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="45"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="60"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
+                <circle
+                  cx="75"
+                  cy="50"
+                  r="15"
+                  fill="none"
+                  stroke="#000"
+                  stroke-width="4"
+                />
               </svg>
             </div>
             <div class="tuyoq">
@@ -2435,11 +2545,6 @@
       <div class="reviews-header">
         <h2>What our customers say</h2>
         <div class="reviews-rating">
-          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
-          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
-          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
-          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
-          <i class="fa-solid fa-star" style="color: rgb(0, 0, 0)"></i>
           <span
             >Rated 4.7 / 5 based on 28,370 reviews Showing our 4 & 5 star
             reviews</span
@@ -2882,7 +2987,9 @@
 
     <div class="modal-overlay" id="signInModal">
       <div class="modal">
-        <button class="close-modal" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+        <button class="close-modal" id="closeModal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
         <h2>Sign In</h2>
         <form id="signInForm">
           <input type="email" placeholder="Email address" required />
@@ -2995,52 +3102,52 @@
 
       updateReviewsCarousel();
 
-      const themeToggle = document.getElementById('themeToggle');
-      const themeIcon = themeToggle.querySelector('i');
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = themeToggle.querySelector("i");
       const body = document.body;
 
-      themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-          themeIcon.classList.remove('fa-moon');
-          themeIcon.classList.add('fa-sun');
+      themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+        if (body.classList.contains("dark-mode")) {
+          themeIcon.classList.remove("fa-moon");
+          themeIcon.classList.add("fa-sun");
         } else {
-          themeIcon.classList.remove('fa-sun');
-          themeIcon.classList.add('fa-moon');
+          themeIcon.classList.remove("fa-sun");
+          themeIcon.classList.add("fa-moon");
         }
       });
 
-      const hamburger = document.getElementById('hamburger');
-      const navMenu = document.getElementById('navMenu');
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("navMenu");
 
-      hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+      hamburger.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
       });
 
-      const signInBtn = document.getElementById('signInBtn');
-      const signInModal = document.getElementById('signInModal');
-      const closeModal = document.getElementById('closeModal');
-      const signInForm = document.getElementById('signInForm');
+      const signInBtn = document.getElementById("signInBtn");
+      const signInModal = document.getElementById("signInModal");
+      const closeModal = document.getElementById("closeModal");
+      const signInForm = document.getElementById("signInForm");
 
-      signInBtn.addEventListener('click', (e) => {
+      signInBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        signInModal.classList.add('active');
+        signInModal.classList.add("active");
       });
 
-      closeModal.addEventListener('click', () => {
-        signInModal.classList.remove('active');
+      closeModal.addEventListener("click", () => {
+        signInModal.classList.remove("active");
       });
 
-      signInModal.addEventListener('click', (e) => {
+      signInModal.addEventListener("click", (e) => {
         if (e.target === signInModal) {
-          signInModal.classList.remove('active');
+          signInModal.classList.remove("active");
         }
       });
 
-      signInForm.addEventListener('submit', (e) => {
+      signInForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        alert('Muvaffaqiyatli kirdingiz!');
-        signInModal.classList.remove('active');
+        alert("Muvaffaqiyatli kirdingiz!");
+        signInModal.classList.remove("active");
         signInForm.reset();
       });
     </script>
