@@ -1,675 +1,865 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uz">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080b14">
-<title>GM × ROBLOX MARKET</title>
-
-<style>
-:root {
-  --bg:#080b14;
-  --panel:#111827;
-  --panel2:#182337;
-  --green:#69ffa0;
-  --blue:#70a5ff;
-  --text:#f4f7ff;
-  --muted:#9aa8bd;
-  --border:#29364b;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-a{color:inherit;text-decoration:none}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-.container{width:min(1160px,92%);margin:auto}
-
-header{
-  position:sticky;top:0;z-index:10;
-  background:#080b14ee;backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border)
-}
-.nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-.logo{font-size:24px;font-weight:900;white-space:nowrap}
-.logo span{color:var(--green)}
-.navlinks{display:flex;align-items:center;gap:20px}
-.navlinks a{color:var(--muted);font-size:14px}
-.navlinks a:hover{color:var(--green)}
-.nav-actions{display:flex;gap:10px;align-items:center}
-.btn{
-  display:inline-flex;justify-content:center;align-items:center;
-  gap:7px;padding:12px 17px;border:0;border-radius:10px;
-  background:var(--green);color:#08130c;font-weight:bold;transition:.2s
-}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.07)}
-.btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--border)}
-.btn.small{padding:9px 12px;font-size:13px}
-.menu-btn{display:none;background:var(--panel2);color:white;padding:10px;border-radius:8px}
-
-.hero{padding:55px 0 35px}
-.hero-box{
-  border:1px solid #29443b;border-radius:26px;
-  padding:clamp(25px,5vw,60px);
-  background:radial-gradient(ellipse at 82% 15%,#235b43 0,transparent 38%),
-  radial-gradient(ellipse at 95% 90%,#203d64 0,transparent 35%),
-  linear-gradient(135deg,#151f30,#0b101a);
-  display:grid;grid-template-columns:1.5fr .7fr;gap:30px;align-items:center
-}
-.eyebrow{display:inline-block;padding:9px 13px;background:#173526;border:1px solid #315d42;color:var(--green);border-radius:30px;font-size:12px;letter-spacing:1px}
-.hero h1{font-size:clamp(36px,5.5vw,64px);line-height:1.07;margin:22px 0}
-.hero h1 span{color:var(--green)}
-.hero p{color:var(--muted);line-height:1.85;max-width:610px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.hero-art{text-align:center;font-size:clamp(90px,13vw,165px);filter:drop-shadow(0 0 30px #69ffa055)}
-.hero-note{font-size:12px;color:var(--muted);margin-top:17px}
-
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px}
-.stat,.panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px}
-.stat strong{font-size:26px;color:var(--green);display:block;margin-bottom:8px}
-.stat span{font-size:13px;color:var(--muted)}
-
-.section{padding-top:60px}
-.section-heading{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:24px}
-.section-heading h2{font-size:clamp(23px,3vw,32px)}
-.section-heading p{color:var(--muted);font-size:14px;line-height:1.7;margin-top:8px}
-
-.game-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.game-card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:23px 17px;text-align:center;cursor:pointer;transition:.2s;color:white}
-.game-card:hover,.game-card.active{border-color:var(--green);background:#14251e;transform:translateY(-3px)}
-.game-card .emoji{font-size:39px;margin-bottom:12px}
-.game-card h3{font-size:16px;margin-bottom:7px}
-.game-card p{font-size:12px;color:var(--muted);line-height:1.6}
-
-.toolbar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-.field{width:100%;background:#0b1220;color:var(--text);border:1px solid #354158;border-radius:10px;padding:13px;outline:none}
-.field:focus{border-color:var(--green)}
-.toolbar .search{flex:1;min-width:190px}
-.toolbar select{width:auto;min-width:150px}
-
-.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.listing{background:var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s}
-.listing:hover{transform:translateY(-4px);border-color:#507d69}
-.listing-cover{height:145px;display:grid;place-items:center;font-size:63px;background:radial-gradient(circle at 50% 0,#284737,#182336 70%)}
-.listing-content{padding:18px}
-.pill{display:inline-block;font-size:11px;padding:6px 9px;background:#20352b;color:var(--green);border-radius:20px;margin-bottom:12px}
-.listing h3{font-size:17px;margin-bottom:9px;overflow-wrap:anywhere}
-.listing-desc{font-size:13px;line-height:1.7;color:var(--muted);min-height:44px;overflow-wrap:anywhere}
-.listing-meta{font-size:12px;color:var(--muted);margin-top:13px}
-.listing-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:18px}
-.price{font-size:17px;font-weight:bold;color:var(--green);overflow-wrap:anywhere}
-.empty{grid-column:1/-1;text-align:center;padding:35px;color:var(--muted);background:var(--panel);border-radius:15px}
-
-.donate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.donate-card{background:linear-gradient(145deg,#18263a,#111827);border:1px solid var(--border);border-radius:17px;padding:23px}
-.donate-icon{font-size:39px;margin-bottom:15px}
-.donate-card h3{margin-bottom:10px}
-.donate-card p{color:var(--muted);font-size:13px;line-height:1.8;min-height:45px}
-.donate-card .price{display:block;margin:18px 0}
-
-.form-layout{display:grid;grid-template-columns:1fr .75fr;gap:20px}
-.form-card{background:var(--panel);border:1px solid var(--border);border-radius:17px;padding:24px}
-.form-card h3{font-size:20px;margin-bottom:9px}
-.form-card>p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.form-grid label{display:grid;gap:8px;font-size:12px;color:var(--muted)}
-.form-grid .full{grid-column:1/-1}
-textarea.field{min-height:100px;resize:vertical}
-.steps{display:grid;gap:15px}
-.step{display:flex;gap:13px;align-items:flex-start}
-.step-number{width:36px;height:36px;flex-shrink:0;border-radius:10px;background:#193626;color:var(--green);display:grid;place-items:center;font-weight:bold}
-.step h4{margin:2px 0 7px}
-.step p{font-size:13px;color:var(--muted);line-height:1.7}
-
-.admin-status{font-size:12px;color:var(--muted);margin-bottom:15px}
-.admin-status.active{color:var(--green)}
-.admin-box{border:1px solid #315d42;background:#102219;padding:15px;border-radius:12px;margin-bottom:18px}
-.admin-box p{font-size:13px;color:var(--muted);line-height:1.7;margin:8px 0 13px}
-
-.about-intro{text-align:center;max-width:690px;margin:0 auto 30px}
-.about-intro p{color:var(--muted);line-height:1.9;margin-top:13px}
-.people{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.person{padding:30px;background:linear-gradient(145deg,#151f30,#101622);border:1px solid var(--border);border-radius:20px;text-align:center}
-.avatar{width:75px;height:75px;display:grid;place-items:center;margin:0 auto 16px;border-radius:22px;background:linear-gradient(135deg,#1e5139,#192a40);font-size:36px}
-.person h3{font-size:23px}
-.role{display:block;color:var(--green);font-size:12px;margin-top:8px}
-.socials{display:grid;gap:10px;margin-top:22px}
-.social{display:block;padding:13px;border:1px solid var(--border);border-radius:10px;font-size:13px;overflow-wrap:anywhere;transition:.2s}
-.social:hover{border-color:var(--green);background:#1a2d24}
-
-.notice{margin-top:25px;background:#211d13;border:1px solid #5c4a2b;border-radius:12px;padding:17px;color:#e8d7a9;font-size:12px;line-height:1.8}
-footer{margin-top:65px;padding:30px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13px;line-height:2}
-footer strong{color:var(--green)}
-
-.modal{position:fixed;inset:0;z-index:30;background:#000c;display:none;align-items:center;justify-content:center;padding:18px}
-.modal.show{display:flex}
-.modal-box{width:min(480px,100%);max-height:90vh;overflow:auto;background:#111827;border:1px solid #354158;border-radius:18px;padding:25px}
-.modal-box h3{font-size:22px;margin-bottom:12px}
-.modal-box p{color:var(--muted);font-size:14px;line-height:1.8;margin:12px 0}
-.modal-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
-.toast{position:fixed;z-index:40;bottom:20px;left:50%;transform:translate(-50%,20px);background:#193626;border:1px solid #437b55;color:white;padding:13px 20px;border-radius:12px;opacity:0;pointer-events:none;transition:.25s;max-width:90%;text-align:center}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-
-@media(max-width:850px){
- .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#0c111c;border-bottom:1px solid var(--border);padding:20px;flex-direction:column;align-items:flex-start}
- .navlinks.open{display:flex}
- .menu-btn{display:block}
- .hero-box{grid-template-columns:1fr}
- .hero-art{display:none}
- .listings,.donate-grid{grid-template-columns:repeat(2,1fr)}
- .form-layout{grid-template-columns:1fr}
-}
-@media(max-width:560px){
- .nav{min-height:67px}
- .logo{font-size:19px}
- .navlinks{top:67px}
- .nav-actions>.btn{padding:10px;font-size:12px}
- .hero-box{padding:25px}
- .stats{grid-template-columns:1fr}
- .game-grid{grid-template-columns:repeat(2,1fr)}
- .listings,.donate-grid,.people{grid-template-columns:1fr}
- .form-grid{grid-template-columns:1fr}
- .form-grid .full{grid-column:auto}
- .section{padding-top:48px}
- .section-heading{align-items:flex-start;flex-direction:column}
-}
-</style>
-</head>
-
-<body>
-<header>
-  <div class="container nav">
-    <a href="#home" class="logo">GM <span>×</span> ROBLOX</a>
-    <nav class="navlinks" id="navlinks">
-      <a href="#home">Bosh sahifa</a>
-      <a href="#games">O‘yinlar</a>
-      <a href="#market">E’lonlar</a>
-      <a href="#donate">Donat</a>
-      <a href="#about">Biz haqimizda</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="btn" id="adminOpen">Admin</button>
-      <button class="menu-btn" id="menuBtn">☰</button>
-    </div>
-  </div>
-</header>
-
-<main>
-<section class="hero container" id="home">
-  <div class="hero-box">
-    <div>
-      <span class="eyebrow">🎮 GAMING MARKET UZ</span>
-      <h1>O‘yinlar olami.<br><span>Bitta marketda.</span></h1>
-      <p>Grand Mobile, Roblox va boshqa o‘yinlar uchun e’lonlar, xizmatlar va donat buyurtmalari. Takliflarni ko‘r va o‘zingga keraklisini top.</p>
-      <div class="hero-actions">
-        <a href="#market" class="btn">🛒 Marketni ko‘rish</a>
-        <a href="#donate" class="btn secondary">💎 Donat xizmatlari</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XANSUKI × MAKAR | Gaming Market</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #090d18;
+        --panel: #121a2b;
+        --border: #293650;
+        --blue: #5685ff;
+        --purple: #9b6bff;
+        --text: #f4f6ff;
+        --muted: #a8b4ca;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+      }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #0b1120ee;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        max-width: 1200px;
+        margin: auto;
+        padding: 17px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .logo {
+        font-size: 23px;
+        font-weight: 900;
+      }
+      .logo span {
+        color: #a49bff;
+      }
+      nav {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+      }
+      nav a:hover {
+        color: white;
+      }
+      .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 25px 20px;
+      }
+      .hero {
+        text-align: center;
+        padding: 60px 20px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background:
+          radial-gradient(circle at 85% 15%, #6443d344, transparent 35%),
+          linear-gradient(135deg, #142443, #101427);
+      }
+      .tag {
+        color: #a9c2ff;
+        font-size: 12px;
+        letter-spacing: 3px;
+        font-weight: bold;
+      }
+      h1 {
+        font-size: clamp(32px, 6vw, 58px);
+        margin: 18px 0;
+      }
+      h1 span {
+        color: #a49bff;
+      }
+      .hero p {
+        max-width: 650px;
+        margin: 0 auto 24px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .btn {
+        display: inline-block;
+        padding: 12px 17px;
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(100deg, var(--blue), var(--purple));
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .btn.secondary {
+        background: #1b2942;
+        border: 1px solid var(--border);
+      }
+      .btn.danger {
+        background: #a23349;
+      }
+      section {
+        margin-top: 38px;
+      }
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+      .muted {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        margin-top: 7px;
+      }
+      .panel,
+      .social,
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+      .panel {
+        padding: 22px;
+      }
+      .filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: #0c1424;
+        color: white;
+        font: inherit;
+        outline: none;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: var(--blue);
+      }
+      .filters input {
+        flex: 1;
+        min-width: 180px;
+      }
+      .filters select {
+        width: auto;
+        min-width: 150px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+        gap: 17px;
+      }
+      .card {
+        overflow: hidden;
+      }
+      .card img {
+        width: 100%;
+        height: 185px;
+        object-fit: cover;
+        background: #202b40;
+      }
+      .cardbody {
+        padding: 16px;
+      }
+      .category {
+        display: inline-block;
+        background: #26385a;
+        color: #b8ccff;
+        border-radius: 20px;
+        padding: 6px 9px;
+        font-size: 11px;
+      }
+      .card h3 {
+        margin: 12px 0 8px;
+        font-size: 18px;
+      }
+      .card p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+      }
+      .price {
+        font-size: 20px;
+        color: #8fb0ff;
+        font-weight: bold;
+        margin: 13px 0;
+      }
+      .card .btn {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .empty {
+        grid-column: 1/-1;
+        text-align: center;
+        padding: 30px;
+        color: var(--muted);
+      }
+      .formgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      label {
+        font-size: 13px;
+        color: #cbd6eb;
+      }
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 17px;
+      }
+      .preview {
+        display: none;
+        max-width: 280px;
+        max-height: 220px;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+      .socialgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+      }
+      .social {
+        padding: 20px;
+      }
+      .social h3 {
+        margin-bottom: 8px;
+      }
+      .social a {
+        display: inline-block;
+        color: #93b0ff;
+        text-decoration: none;
+        margin-top: 10px;
+      }
+      #adminArea {
+        display: none;
+      }
+      .adminrow {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      footer {
+        text-align: center;
+        padding: 32px 15px;
+        margin-top: 45px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      #toast {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #243755;
+        color: white;
+        padding: 13px 18px;
+        border-radius: 10px;
+        z-index: 30;
+        max-width: 90%;
+      }
+      @media (max-width: 600px) {
+        .formgrid {
+          grid-template-columns: 1fr;
+        }
+        .field.full {
+          grid-column: auto;
+        }
+        .nav {
+          justify-content: center;
+        }
+        nav {
+          justify-content: center;
+        }
+        .hero {
+          padding: 42px 17px;
+        }
+        .filters select {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="nav">
+        <div class="logo">XANSUKI <span>×</span> MAKAR</div>
+        <nav>
+          <a href="#home">Bosh sahifa</a>
+          <a href="#ads">Elonlar</a>
+          <a href="#post">Elon joylash</a>
+          <a href="#about">Biz haqimizda</a>
+          <a href="#admin">Admin</a>
+        </nav>
       </div>
-      <div class="hero-note">Mustaqil loyiha. Grand Mobile yoki Roblox bilan rasmiy bog‘liqligi yo‘q.</div>
-    </div>
-    <div class="hero-art">🎮💎</div>
-  </div>
+    </header>
 
-  <div class="stats">
-    <div class="stat"><strong id="statListings">0</strong><span>Jami e’lonlar</span></div>
-    <div class="stat"><strong>3+</strong><span>O‘yin kategoriyalari</span></div>
-    <div class="stat"><strong>24/7</strong><span>Saytga kirish imkoniyati</span></div>
-  </div>
-</section>
+    <main class="container">
+      <section class="hero" id="home">
+        <div class="tag">PREMIUM GAMING MARKET</div>
+        <h1>XANSUKI <span>×</span> MAKAR</h1>
+        <p>
+          Grand Mobile va Roblox elonlari uchun maxsus bozor. Mahsulotlarni
+          ko‘ring, narxlarni solishtiring va sotuvchilar bilan Telegram orqali
+          bog‘laning.
+        </p>
+        <a class="btn" href="#ads">Elonlarni ko‘rish</a>
+        <a class="btn secondary" href="#post">Elon joylash</a>
+      </section>
 
-<section class="container section" id="games">
-  <div class="section-heading"><div><h2>🎯 O‘yinni tanla</h2><p>Kerakli o‘yin bo‘yicha e’lonlarni ko‘r.</p></div></div>
-  <div class="game-grid">
-    <button class="game-card active" data-game="all"><div class="emoji">🌐</div><h3>Barchasi</h3><p>Hamma e’lonlar</p></button>
-    <button class="game-card" data-game="Grand Mobile"><div class="emoji">🚘</div><h3>Grand Mobile</h3><p>O‘yin xizmatlari</p></button>
-    <button class="game-card" data-game="Roblox"><div class="emoji">🟦</div><h3>Roblox</h3><p>Roblox xizmatlari</p></button>
-    <button class="game-card" data-game="Boshqa"><div class="emoji">🎮</div><h3>Boshqa o‘yinlar</h3><p>Turli o‘yinlar</p></button>
-  </div>
-</section>
+      <section id="ads">
+        <div class="head">
+          <div>
+            <h2>🔥 Oxirgi elonlar</h2>
+            <p class="muted">Joylangan elonlar ro‘yxati</p>
+          </div>
+          <span class="category" id="count">0 ta elon</span>
+        </div>
+        <div class="filters">
+          <input id="search" placeholder="🔎 Elon qidirish..." />
+          <select id="categoryFilter">
+            <option value="all">Barcha o‘yinlar</option>
+            <option>Grand Mobile</option>
+            <option>Roblox</option>
+            <option>Boshqa</option>
+          </select>
+          <select id="sort">
+            <option value="new">Yangilari avval</option>
+            <option value="cheap">Arzonidan boshlab</option>
+            <option value="expensive">Qimmatidan boshlab</option>
+          </select>
+        </div>
+        <div class="grid" id="adsGrid"></div>
+      </section>
 
-<section class="container section" id="market">
-  <div class="section-heading"><div><h2>🛍️ E’lonlar marketi</h2><p>E’lonlarni qidir va takliflar bilan tanish.</p></div></div>
-  <div class="toolbar">
-    <input class="field search" id="search" placeholder="🔎 E’lon yoki sotuvchini qidir...">
-    <select class="field" id="filterGame">
-      <option value="all">Barcha o‘yinlar</option>
-      <option value="Grand Mobile">Grand Mobile</option>
-      <option value="Roblox">Roblox</option>
-      <option value="Boshqa">Boshqa</option>
-    </select>
-    <select class="field" id="filterCategory">
-      <option value="all">Barcha xizmatlar</option>
-      <option value="Akkaunt">Akkaunt</option>
-      <option value="Donat">Donat</option>
-      <option value="Dizayn">Dizayn</option>
-      <option value="Xizmat">Xizmat</option>
-      <option value="Boshqa">Boshqa</option>
-    </select>
-    <select class="field" id="sort">
-      <option value="new">Yangilari</option>
-      <option value="cheap">Arzonidan</option>
-      <option value="expensive">Qimmatidan</option>
-    </select>
-  </div>
-  <div class="listings" id="listingGrid"></div>
-</section>
+      <section id="post">
+        <div class="head">
+          <div>
+            <h2>📢 Elon joylash</h2>
+            <p class="muted">Faqat XANSUKI va MAKAR uchun.</p>
+          </div>
+        </div>
+        <div class="panel" id="postLock">
+          <h3>🔐 Admin ruxsati kerak</h3>
+          <p class="muted">Elon joylash uchun admin hisobiga kiring.</p>
+          <div class="actions">
+            <a href="#admin" class="btn">Admin paneliga kirish</a>
+          </div>
+        </div>
 
-<section class="container section" id="donate">
-  <div class="section-heading"><div><h2>💎 Donat xizmati</h2><p>Buyurtma shartlarini admin bilan kelish.</p></div></div>
-  <div class="donate-grid">
-    <article class="donate-card"><div class="donate-icon">🚘</div><h3>Grand Mobile</h3><p>Server va kerakli paketni ko‘rsatib, donat haqida so‘rov yubor.</p><span class="price">Kelishiladi</span><button class="btn donate-btn" data-game="Grand Mobile">Buyurtma berish →</button></article>
-    <article class="donate-card"><div class="donate-icon">🟦</div><h3>Roblox</h3><p>Roblox bo‘yicha kerakli paket va shartlarni admin bilan kelish.</p><span class="price">Kelishiladi</span><button class="btn donate-btn" data-game="Roblox">Buyurtma berish →</button></article>
-    <article class="donate-card"><div class="donate-icon">🎮</div><h3>Boshqa o‘yinlar</h3><p>Boshqa o‘yin uchun kerakli xizmat haqida so‘rov yubor.</p><span class="price">Kelishiladi</span><button class="btn donate-btn" data-game="Boshqa">Buyurtma berish →</button></article>
-  </div>
-</section>
+        <form class="panel" id="adForm" style="display: none">
+          <h3 id="welcomeAdmin">Elon joylash</h3>
+          <div class="formgrid" style="margin-top: 18px">
+            <div class="field">
+              <label for="adTitle">Elon nomi *</label
+              ><input
+                id="adTitle"
+                required
+                maxlength="80"
+                placeholder="Grand Mobile akkaunt"
+              />
+            </div>
+            <div class="field">
+              <label for="adCategory">Kategoriya *</label
+              ><select id="adCategory">
+                <option>Grand Mobile</option>
+                <option>Roblox</option>
+                <option>Boshqa</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="adPrice">Narxi (so‘m) *</label
+              ><input
+                id="adPrice"
+                type="number"
+                min="0"
+                max="100000000000"
+                required
+                placeholder="50000"
+              />
+            </div>
+            <div class="field">
+              <label for="adContact">Telegram username *</label
+              ><input
+                id="adContact"
+                required
+                maxlength="100"
+                placeholder="@username"
+              />
+            </div>
+            <div class="field full">
+              <label for="adDescription">Tavsif *</label
+              ><textarea
+                id="adDescription"
+                rows="4"
+                required
+                maxlength="1000"
+                placeholder="Elon haqida ma’lumot..."
+              ></textarea>
+            </div>
+            <div class="field full">
+              <label for="adImage">Rasm (2 MB gacha)</label>
+              <input
+                id="adImage"
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif"
+              />
+              <img id="imagePreview" class="preview" alt="Rasm ko‘rinishi" />
+              <button
+                type="button"
+                id="removeImage"
+                class="btn secondary"
+                style="display: none; width: max-content"
+              >
+                Rasmni olib tashlash
+              </button>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn" type="submit">🚀 Elon joylash</button
+            ><button class="btn secondary" type="reset">Tozalash</button>
+          </div>
+        </form>
+      </section>
 
-<!-- FAQAT ADMIN KO'RADIGAN BO'LIM -->
-<section class="container section" id="adminPanel" hidden>
-  <div class="section-heading"><div><h2>👑 Admin panel</h2><p>E’lonlarni faqat admin joylaydi.</p></div><button class="btn secondary" id="logout">Chiqish</button></div>
-  <div class="form-layout">
-    <div class="form-card">
-      <h3>Yangi e’lon joylash</h3>
-      <p>Ushbu demo versiyada e’lonlar shu brauzerda saqlanadi.</p>
-      <form id="listingForm" class="form-grid">
-        <label>O‘yin<select class="field" id="newGame"><option>Grand Mobile</option><option>Roblox</option><option>Boshqa</option></select></label>
-        <label>Kategoriya<select class="field" id="newCategory"><option>Xizmat</option><option>Donat</option><option>Dizayn</option><option>Akkaunt</option><option>Boshqa</option></select></label>
-        <label class="full">E’lon nomi<input class="field" id="newTitle" maxlength="65" required placeholder="Xizmat nomi"></label>
-        <label>Narxi (so‘m)<input class="field" id="newPrice" type="number" min="0" max="1000000000" required placeholder="50000"></label>
-        <label>Sotuvchi nomi<input class="field" id="newSeller" maxlength="35" required placeholder="XanSuki"></label>
-        <label class="full">Telegram username (ixtiyoriy)<input class="field" id="newTelegram" maxlength="40" placeholder="@username"></label>
-        <label class="full">Tavsif<textarea class="field" id="newDescription" maxlength="350" required placeholder="E’lon haqida..."></textarea></label>
-        <button class="btn full" type="submit">E’lonni joylash</button>
-      </form>
-    </div>
-    <div class="form-card">
-      <h3>📋 Boshqaruv</h3>
-      <p>Sen joylagan e’lonlarni boshqarish.</p>
-      <div class="admin-status active" id="adminStatus">Admin rejimi faol</div>
-      <button class="btn secondary" id="resetListings">Demo e’lonlarni tiklash</button>
-      <p style="margin-top:18px">Admin bo‘limini tark etish uchun “Chiqish” tugmasini bos.</p>
-    </div>
-  </div>
-</section>
+      <section id="about">
+        <h2>👑 Biz haqimizda</h2>
+        <p class="muted" style="margin-bottom: 18px">
+          XANSUKI × MAKAR — gaming market loyihasi.
+        </p>
+        <div class="socialgrid">
+          <div class="social">
+            <h3>👑 XANSUKI</h3>
+            <p class="muted">Do‘kon egasi</p>
+            <a
+              href="https://t.me/Xan1_suki"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Telegram: @Xan1_suki</a
+            ><br />
+            <a
+              href="https://www.instagram.com/xansuki.1/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram profil</a
+            >
+          </div>
+          <div class="social">
+            <h3>🤝 MAKAR</h3>
+            <p class="muted">Do‘kon o‘rinbosari</p>
+            <a
+              href="https://t.me/makarr_pm"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Telegram: @makarr_pm</a
+            ><br />
+            <a
+              href="https://www.instagram.com/makarrpm/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Instagram profil</a
+            >
+          </div>
+        </div>
+      </section>
 
-<section class="container section" id="about">
-  <div class="about-intro">
-    <span class="eyebrow">👋 BIZ BILAN TANISHING</span>
-    <h2 style="font-size:clamp(28px,4vw,40px);margin-top:17px">Biz <span style="color:var(--green)">haqimizda</span></h2>
-    <p>GM × ROBLOX MARKET — o‘yinchilar uchun e’lonlar, xizmatlar va donat buyurtmalarini bir joyga jamlashga mo‘ljallangan mustaqil loyiha.</p>
-  </div>
-  <div class="people">
-    <article class="person">
-      <div class="avatar">👑</div><h3>XanSuki</h3><span class="role">SAYT ASOSCHISI</span>
-      <div class="socials">
-        <a class="social" href="https://t.me/Xan1_suki" target="_blank" rel="noopener noreferrer">✈️ Telegram: @Xan1_suki</a>
-        <a class="social" href="https://www.instagram.com/xansuki.1/" target="_blank" rel="noopener noreferrer">📸 Instagram: @xansuki.1</a>
+      <section id="admin">
+        <div class="head">
+          <div>
+            <h2>🔐 Admin paneli</h2>
+            <p class="muted">Faqat do‘kon egasi va o‘rinbosari.</p>
+          </div>
+        </div>
+        <div class="panel">
+          <div id="adminLogin">
+            <div class="field">
+              <label for="adminUser">Hisobni tanlang</label>
+              <select id="adminUser">
+                <option value="XANSUKI">XANSUKI — Egasi</option>
+                <option value="MAKAR">MAKAR — O‘rinbosar</option>
+              </select>
+            </div>
+            <div class="field" style="margin-top: 14px">
+              <label for="adminPassword">Parol</label
+              ><input
+                id="adminPassword"
+                type="password"
+                placeholder="Parolni kiriting"
+              />
+            </div>
+            <div class="actions">
+              <button class="btn" id="loginBtn" type="button">Kirish</button>
+            </div>
+          </div>
+          <div id="adminArea">
+            <h3 id="adminWelcome">Xush kelibsiz!</h3>
+            <p class="muted">Bu yerdan elon qo‘shish va o‘chirish mumkin.</p>
+            <div class="actions">
+              <button class="btn secondary" id="exportBtn" type="button">
+                Elonlarni JSON yuklash
+              </button>
+              <button class="btn danger" id="logoutBtn" type="button">
+                Chiqish
+              </button>
+            </div>
+            <div id="adminList" style="margin-top: 18px"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>© 2026 XANSUKI × MAKAR · Gaming Market</footer>
+    <div id="toast" role="status"></div>
+
+    <script>
+      const $ = (id) => document.getElementById(id);
+      const STORAGE_KEY = "xansukiMakarMarketV4";
+      const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+
+      // DEMO PAROLLARI. Haqiqiy ommaviy saytda server tomondagi login ishlating.
+      const ADMIN_ACCOUNTS = {
+        XANSUKI: "XanSuki38",
+        MAKAR: "Makar38Secure",
+      };
+
+      let ads = [];
+      let selectedImage = "";
+      let currentAdmin = null;
+
+      function escapeHTML(value) {
+        return String(value).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#039;",
+            })[c],
+        );
+      }
+
+      function showToast(message) {
+        $("toast").textContent = message;
+        $("toast").style.display = "block";
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(
+          () => ($("toast").style.display = "none"),
+          3000,
+        );
+      }
+
+      function loadAds() {
+        try {
+          const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+          ads = Array.isArray(data) ? data : [];
+        } catch {
+          ads = [];
+        }
+      }
+
+      function saveAds() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(ads));
+          return true;
+        } catch {
+          showToast(
+            "Saqlash amalga oshmadi. Rasm hajmini kamaytiring yoki elonlarni o‘chiring.",
+          );
+          return false;
+        }
+      }
+
+      function formatPrice(price) {
+        return Number(price).toLocaleString("uz-UZ") + " so‘m";
+      }
+
+      function contactURL(contact) {
+        const username = String(contact).trim().replace(/^@/, "");
+        return /^[A-Za-z0-9_]{5,32}$/.test(username)
+          ? "https://t.me/" + encodeURIComponent(username)
+          : "https://t.me/Xan1_suki";
+      }
+
+      function renderAds() {
+        const q = $("search").value.trim().toLowerCase();
+        const category = $("categoryFilter").value;
+        const sort = $("sort").value;
+
+        let list = ads.filter(
+          (a) =>
+            (a.title + " " + a.description + " " + a.category)
+              .toLowerCase()
+              .includes(q) &&
+            (category === "all" || a.category === category),
+        );
+
+        if (sort === "cheap") list.sort((a, b) => a.price - b.price);
+        else if (sort === "expensive") list.sort((a, b) => b.price - a.price);
+        else list.sort((a, b) => b.date - a.date);
+
+        $("count").textContent = list.length + " ta elon";
+
+        $("adsGrid").innerHTML = list.length
+          ? list
+              .map(
+                (a) => `
+    <article class="card">
+      ${
+        a.image
+          ? `<img src="${a.image}" alt="${escapeHTML(a.title)}" loading="lazy">`
+          : `<div style="height:185px;display:grid;place-items:center;background:linear-gradient(135deg,#1b2c4b,#30214b);font-size:45px">🎮</div>`
+      }
+      <div class="cardbody">
+        <span class="category">${escapeHTML(a.category)}</span>
+        <h3>${escapeHTML(a.title)}</h3>
+        <p>${escapeHTML(a.description)}</p>
+        <div class="price">${formatPrice(a.price)}</div>
+        <p>Sotuvchi: ${escapeHTML(a.contact)}</p>
+        <a class="btn" href="${contactURL(a.contact)}" target="_blank" rel="noopener noreferrer">Sotuvchi bilan bog‘lanish</a>
       </div>
     </article>
-    <article class="person">
-      <div class="avatar">⚡</div><h3>Makarr</h3><span class="role">HAMKOR</span>
-      <div class="socials">
-        <a class="social" href="https://t.me/makarr_pm" target="_blank" rel="noopener noreferrer">✈️ Telegram: @makarr_pm</a>
-        <a class="social" href="https://www.instagram.com/makarrpm/" target="_blank" rel="noopener noreferrer">📸 Instagram: @makarrpm</a>
+  `,
+              )
+              .join("")
+          : '<div class="empty">😕 Hozircha elon yo‘q.</div>';
+
+        renderAdmin();
+      }
+
+      function renderAdmin() {
+        if (!currentAdmin) return;
+
+        $("adminList").innerHTML = ads.length
+          ? ads
+              .map(
+                (a) => `
+    <div class="adminrow">
+      <div>
+        <strong>${escapeHTML(a.title)}</strong>
+        <p class="muted">${escapeHTML(a.category)} · ${formatPrice(a.price)} · Muallif: ${escapeHTML(a.author || "Admin")}</p>
       </div>
-    </article>
-  </div>
-  <div class="notice">⚠️ Bu mustaqil loyiha. Parol va tasdiqlash kodlarini hech kimga bermang. O‘yin qoidalarini tekshiring. Ushbu HTML demo haqiqiy to‘lovlarni qabul qilmaydi.</div>
-</section>
-</main>
+      <button class="btn danger" type="button" data-delete="${a.id}">🗑️ O‘chirish</button>
+    </div>
+  `,
+              )
+              .join("")
+          : '<p class="muted">Hozircha elon yo‘q.</p>';
+      }
 
-<footer><div class="container">
-  <div class="logo">GM <span>×</span> ROBLOX MARKET</div>
-  <p>O‘yinchilar uchun yaratilgan mustaqil loyiha 🎮</p>
-  <p>© 2026 GM × ROBLOX MARKET</p>
-</div></footer>
+      function openAdmin(username) {
+        currentAdmin = username;
+        $("adminLogin").style.display = "none";
+        $("adminArea").style.display = "block";
+        $("adminWelcome").textContent = "Xush kelibsiz, " + username + "!";
+        $("adForm").style.display = "block";
+        $("postLock").style.display = "none";
+        $("welcomeAdmin").textContent = username + " — elon joylash";
+        renderAds();
+      }
 
-<div class="modal" id="modal" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <h3 id="modalTitle"></h3><p id="modalDescription"></p><p id="modalMeta"></p>
-    <div class="modal-actions" id="modalActions"></div>
-    <div class="modal-actions"><button class="btn secondary" id="closeModal">Yopish</button></div>
-  </div>
-</div>
-<div class="toast" id="toast" role="status"></div>
+      function logout() {
+        currentAdmin = null;
+        $("adminLogin").style.display = "block";
+        $("adminArea").style.display = "none";
+        $("adminPassword").value = "";
+        $("adForm").style.display = "none";
+        $("postLock").style.display = "block";
+        showToast("Admin hisobidan chiqildi.");
+      }
 
-<script>
-"use strict";
+      $("loginBtn").addEventListener("click", () => {
+        const username = $("adminUser").value;
+        const password = $("adminPassword").value;
 
-/*
-  DEMO ADMIN PAROLI.
-  Haqiqiy sayt uchun parolni HTML ichida saqlamang.
-  Backend va server tomondagi admin tekshiruvi kerak.
-*/
-const ADMIN_PASSWORD = "XanSuki38";
-const ADMIN_SESSION_KEY = "gmMarketDemoAdmin";
+        if (ADMIN_ACCOUNTS[username] === password) {
+          openAdmin(username);
+          $("adminPassword").value = "";
+          showToast("Muvaffaqiyatli kirdingiz!");
+        } else {
+          showToast("Hisob yoki parol noto‘g‘ri!");
+        }
+      });
 
-const starterListings = [
- {id:"demo1",game:"Grand Mobile",category:"Dizayn",title:"Grand Mobile avatar dizayni",price:30000,seller:"XanSuki",telegram:"Xan1_suki",description:"Grand Mobile profilingiz uchun original avatar dizayni.",icon:"🎨",demo:true},
- {id:"demo2",game:"Grand Mobile",category:"Xizmat",title:"RP bio tayyorlash",price:20000,seller:"XanSuki",telegram:"Xan1_suki",description:"Qahramoningiz uchun o‘ziga xos RP tarixi va bio.",icon:"📜",demo:true},
- {id:"demo3",game:"Roblox",category:"Dizayn",title:"Roblox profil dizayni",price:35000,seller:"XanSuki",telegram:"Xan1_suki",description:"Roblox profiliga mos kreativ dizayn.",icon:"🟦",demo:true},
- {id:"demo4",game:"Roblox",category:"Xizmat",title:"Roblox bo‘yicha yordam",price:15000,seller:"XanSuki",telegram:"Xan1_suki",description:"O‘yin sozlamalari va oddiy savollar bo‘yicha yordam.",icon:"🎮",demo:true},
- {id:"demo5",game:"Boshqa",category:"Dizayn",title:"Gaming video montaj",price:60000,seller:"XanSuki",telegram:"Xan1_suki",description:"Gaming videolar uchun montaj va effektlar.",icon:"🎬",demo:true},
- {id:"demo6",game:"Grand Mobile",category:"Boshqa",title:"Gaming banner tayyorlash",price:40000,seller:"XanSuki",telegram:"Xan1_suki",description:"Kanal yoki jamoa uchun original banner.",icon:"💎",demo:true}
-];
+      $("adminPassword").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") $("loginBtn").click();
+      });
 
-const $ = id => document.getElementById(id);
-const icons = {"Grand Mobile":"🚘","Roblox":"🟦","Boshqa":"🎮"};
-let listings = [];
-let activeGame = "all";
-let toastTimer;
+      $("logoutBtn").addEventListener("click", logout);
 
-function showToast(message){
-  $("toast").textContent = message;
-  $("toast").classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>$("toast").classList.remove("show"),2800);
-}
+      $("adImage").addEventListener("change", function () {
+        const file = this.files[0];
+        selectedImage = "";
 
-function money(value){
-  return new Intl.NumberFormat("uz-UZ").format(value)+" so‘m";
-}
+        if (!file) return;
 
-function saveListings(){
-  try{
-    localStorage.setItem("gmRobloxMarketListings",JSON.stringify(listings));
-    return true;
-  }catch(error){
-    showToast("Brauzerda saqlash amalga oshmadi.");
-    return false;
-  }
-}
+        if (
+          !["image/jpeg", "image/png", "image/webp", "image/gif"].includes(
+            file.type,
+          )
+        ) {
+          showToast("JPG, PNG, WEBP yoki GIF rasm tanlang.");
+          this.value = "";
+          return;
+        }
 
-function loadListings(){
-  try{
-    const raw=localStorage.getItem("gmRobloxMarketListings");
-    const saved=raw?JSON.parse(raw):null;
-    listings=Array.isArray(saved)?saved:[...starterListings];
-    if(!Array.isArray(saved)) saveListings();
-  }catch(error){
-    listings=[...starterListings];
-  }
-}
+        if (file.size > MAX_IMAGE_SIZE) {
+          showToast("Rasm 2 MB dan kichik bo‘lishi kerak.");
+          this.value = "";
+          return;
+        }
 
-function safeTelegram(value){
-  const username=String(value||"").trim().replace(/^@/,"");
-  return /^[a-zA-Z0-9_]{5,32}$/.test(username)?username:"";
-}
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          selectedImage = e.target.result;
+          $("imagePreview").src = selectedImage;
+          $("imagePreview").style.display = "block";
+          $("removeImage").style.display = "inline-block";
+        };
+        reader.readAsDataURL(file);
+      });
 
-/* ===== E'LONLARNI KO'RSATISH ===== */
-function createListingCard(item){
-  const card=document.createElement("article");
-  card.className="listing";
+      $("removeImage").addEventListener("click", () => {
+        selectedImage = "";
+        $("adImage").value = "";
+        $("imagePreview").removeAttribute("src");
+        $("imagePreview").style.display = "none";
+        $("removeImage").style.display = "none";
+      });
 
-  const cover=document.createElement("div");
-  cover.className="listing-cover";
-  cover.textContent=item.icon||icons[item.game]||"🎮";
+      $("adForm").addEventListener("submit", (e) => {
+        e.preventDefault();
 
-  const content=document.createElement("div");
-  content.className="listing-content";
+        if (!currentAdmin || !ADMIN_ACCOUNTS[currentAdmin]) {
+          logout();
+          showToast("Avval admin hisobiga kiring.");
+          return;
+        }
 
-  const tag=document.createElement("span");
-  tag.className="pill";
-  tag.textContent=item.game+" · "+item.category;
+        const ad = {
+          id: Date.now(),
+          title: $("adTitle").value.trim(),
+          category: $("adCategory").value,
+          price: Number($("adPrice").value),
+          contact: $("adContact").value.trim(),
+          description: $("adDescription").value.trim(),
+          image: selectedImage,
+          date: Date.now(),
+          author: currentAdmin,
+        };
 
-  const title=document.createElement("h3");
-  title.textContent=item.title;
+        if (
+          !ad.title ||
+          !ad.contact ||
+          !ad.description ||
+          !Number.isFinite(ad.price) ||
+          ad.price < 0
+        ) {
+          showToast("Barcha maydonlarni to‘g‘ri to‘ldiring.");
+          return;
+        }
 
-  const desc=document.createElement("p");
-  desc.className="listing-desc";
-  desc.textContent=item.description;
+        ads.unshift(ad);
+        if (!saveAds()) {
+          ads.shift();
+          return;
+        }
 
-  const meta=document.createElement("div");
-  meta.className="listing-meta";
-  meta.textContent="Sotuvchi: "+item.seller;
+        $("adForm").reset();
+        selectedImage = "";
+        $("imagePreview").removeAttribute("src");
+        $("imagePreview").style.display = "none";
+        $("removeImage").style.display = "none";
 
-  const bottom=document.createElement("div");
-  bottom.className="listing-bottom";
+        renderAds();
+        showToast("✅ Elon joylandi!");
+        $("ads").scrollIntoView({ behavior: "smooth" });
+      });
 
-  const price=document.createElement("span");
-  price.className="price";
-  price.textContent=money(item.price);
+      $("adminList").addEventListener("click", (e) => {
+        const button = e.target.closest("[data-delete]");
+        if (!button || !currentAdmin) return;
 
-  const button=document.createElement("button");
-  button.className="btn small";
-  button.textContent="Batafsil →";
-  button.addEventListener("click",()=>openListing(item.id));
+        if (!confirm("Haqiqatan ham bu elonni o‘chirmoqchimisiz?")) return;
 
-  bottom.append(price,button);
-  content.append(tag,title,desc,meta,bottom);
-  card.append(cover,content);
-  return card;
-}
+        const oldAds = ads;
+        ads = ads.filter((a) => String(a.id) !== button.dataset.delete);
 
-function renderListings(){
-  const query=$("search").value.trim().toLowerCase();
-  const game=$("filterGame").value;
-  const category=$("filterCategory").value;
-  const sort=$("sort").value;
+        if (!saveAds()) {
+          ads = oldAds;
+          return;
+        }
 
-  let filtered=listings.filter(item=>{
-    const matchesGame=activeGame==="all"||item.game===activeGame;
-    const matchesFilter=game==="all"||item.game===game;
-    const matchesCategory=category==="all"||item.category===category;
-    const text=[item.title,item.description,item.seller,item.game,item.category].join(" ").toLowerCase();
-    return matchesGame&&matchesFilter&&matchesCategory&&text.includes(query);
-  });
+        renderAds();
+        showToast("🗑️ Elon o‘chirildi!");
+      });
 
-  if(sort==="cheap") filtered.sort((a,b)=>a.price-b.price);
-  if(sort==="expensive") filtered.sort((a,b)=>b.price-a.price);
-  if(sort==="new") filtered.sort((a,b)=>String(b.id).localeCompare(String(a.id)));
+      $("exportBtn").addEventListener("click", () => {
+        if (!currentAdmin) return;
+        const blob = new Blob([JSON.stringify(ads, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "xansuki-makar-elonlar.json";
+        link.click();
+        URL.revokeObjectURL(url);
+      });
 
-  const grid=$("listingGrid");
-  grid.replaceChildren();
+      $("search").addEventListener("input", renderAds);
+      $("categoryFilter").addEventListener("change", renderAds);
+      $("sort").addEventListener("change", renderAds);
 
-  if(filtered.length===0){
-    const empty=document.createElement("div");
-    empty.className="empty";
-    empty.textContent="😕 E’lon topilmadi. Boshqa qidiruvni sinab ko‘r.";
-    grid.append(empty);
-  }else{
-    filtered.forEach(item=>grid.append(createListingCard(item)));
-  }
-
-  $("statListings").textContent=listings.length;
-}
-
-function setGame(game){
-  activeGame=game;
-  $("filterGame").value=game;
-  document.querySelectorAll(".game-card").forEach(button=>{
-    button.classList.toggle("active",button.dataset.game===game);
-  });
-  renderListings();
-  $("market").scrollIntoView({behavior:"smooth"});
-}
-
-document.querySelectorAll(".game-card").forEach(button=>{
-  button.addEventListener("click",()=>setGame(button.dataset.game));
-});
-
-["search","filterGame","filterCategory","sort"].forEach(id=>{
-  $(id).addEventListener(id==="search"?"input":"change",renderListings);
-});
-
-/* ===== MODAL ===== */
-function makeButton(label,callback,secondary=false){
-  const button=document.createElement("button");
-  button.className=secondary?"btn secondary":"btn";
-  button.textContent=label;
-  button.addEventListener("click",callback);
-  return button;
-}
-
-function openModal(title,description,meta,actions){
-  $("modalTitle").textContent=title;
-  $("modalDescription").textContent=description;
-  $("modalMeta").textContent=meta;
-  $("modalActions").replaceChildren();
-  actions.forEach(action=>$("modalActions").append(action));
-  $("modal").classList.add("show");
-}
-
-function openListing(id){
-  const item=listings.find(entry=>String(entry.id)===String(id));
-  if(!item)return;
-
-  const telegram=safeTelegram(item.telegram);
-  const actions=[
-    makeButton("✈️ Telegram orqali bog‘lanish",()=>{
-      const username=telegram||"Xan1_suki";
-      window.open("https://t.me/"+username,"_blank","noopener,noreferrer");
-    })
-  ];
-
-  if(sessionStorage.getItem(ADMIN_SESSION_KEY)==="yes"&&!item.demo){
-    actions.push(makeButton("🗑 E’lonni o‘chirish",()=>{
-      if(!confirm("E’lonni ushbu brauzerdan o‘chirasizmi?"))return;
-      listings=listings.filter(entry=>String(entry.id)!==String(item.id));
-      saveListings();
-      renderListings();
-      $("modal").classList.remove("show");
-      showToast("E’lon o‘chirildi.");
-    },true));
-  }
-
-  openModal(item.title,item.description,
-    "O‘yin: "+item.game+" | Kategoriya: "+item.category+" | Narx: "+money(item.price)+" | Sotuvchi: "+item.seller,
-    actions);
-}
-
-$("closeModal").addEventListener("click",()=>$("modal").classList.remove("show"));
-$("modal").addEventListener("click",event=>{
-  if(event.target===$("modal"))$("modal").classList.remove("show");
-});
-document.addEventListener("keydown",event=>{
-  if(event.key==="Escape")$("modal").classList.remove("show");
-});
-
-/* ===== ADMIN KIRISH ===== */
-function updateAdminView(){
-  const isAdmin=sessionStorage.getItem(ADMIN_SESSION_KEY)==="yes";
-  $("adminPanel").hidden=!isAdmin;
-  $("adminOpen").textContent=isAdmin?"Admin panel":"Admin";
-  $("adminStatus").textContent=isAdmin?"Admin rejimi faol":"Admin rejimi yopiq";
-  $("adminStatus").classList.toggle("active",isAdmin);
-}
-
-$("adminOpen").addEventListener("click",()=>{
-  if(sessionStorage.getItem(ADMIN_SESSION_KEY)==="yes"){
-    $("adminPanel").scrollIntoView({behavior:"smooth"});
-    return;
-  }
-
-  const password=prompt("Admin parolini kiriting:");
-  if(password===null)return;
-
-  if(password===ADMIN_PASSWORD){
-    sessionStorage.setItem(ADMIN_SESSION_KEY,"yes");
-    updateAdminView();
-    $("adminPanel").scrollIntoView({behavior:"smooth"});
-    showToast("Admin rejimi ochildi.");
-  }else{
-    showToast("Parol noto‘g‘ri.");
-  }
-});
-
-$("logout").addEventListener("click",()=>{
-  sessionStorage.removeItem(ADMIN_SESSION_KEY);
-  updateAdminView();
-  $("home").scrollIntoView({behavior:"smooth"});
-  showToast("Admin rejimidan chiqdingiz.");
-});
-
-/* ===== FAQAT ADMIN E'LON JOYLASHI MUMKIN ===== */
-$("listingForm").addEventListener("submit",event=>{
-  event.preventDefault();
-
-  if(sessionStorage.getItem(ADMIN_SESSION_KEY)!=="yes"){
-    showToast("E’lon joylash uchun admin bo‘lib kiring.");
-    updateAdminView();
-    return;
-  }
-
-  const game=$("newGame").value;
-  const category=$("newCategory").value;
-  const title=$("newTitle").value.trim();
-  const seller=$("newSeller").value.trim();
-  const telegramInput=$("newTelegram").value.trim();
-  const telegram=safeTelegram(telegramInput);
-  const description=$("newDescription").value.trim();
-  const price=Number($("newPrice").value);
-
-  if(!title||!seller||!description||!Number.isFinite(price)||price<0||price>1000000000){
-    showToast("Ma’lumotlarni to‘g‘ri to‘ldir.");
-    return;
-  }
-
-  if(telegramInput&&!telegram){
-    showToast("Telegram username noto‘g‘ri. Masalan: @username");
-    return;
-  }
-
-  const item={
-    id:Date.now(),
-    game,category,title,seller,telegram,description,price,
-    icon:category==="Dizayn"?"🎨":category==="Donat"?"💎":icons[game],
-    demo:false
-  };
-
-  listings.unshift(item);
-  if(!saveListings()){
-    listings.shift();
-    return;
-  }
-
-  $("listingForm").reset();
-  renderListings();
-  showToast("E’lon joylandi!");
-  $("market").scrollIntoView({behavior:"smooth"});
-});
-
-/* ===== DEMO E'LONLARNI TIKLASH ===== */
-$("resetListings").addEventListener("click",()=>{
-  if(sessionStorage.getItem(ADMIN_SESSION_KEY)!=="yes")return;
-  if(!confirm("Barcha joriy e’lonlar o‘rniga demo e’lonlar qaytarilsinmi?"))return;
-
-  listings=[...starterListings];
-  saveListings();
-  renderListings();
-  showToast("Demo e’lonlar tiklandi.");
-});
-
-/* ===== DONAT BUYURTMASI ===== */
-document.querySelectorAll(".donate-btn").forEach(button=>{
-  button.addEventListener("click",()=>{
-    const game=button.dataset.game;
-    openModal(
-      game+" donat buyurtmasi",
-      "Kerakli paket, narx va mavjudlikni admin bilan kelishib oling. Sayt avtomatik to‘lov qabul qilmaydi.",
-      "O‘yin: "+game+" | Narx: kelishiladi",
-      [
-        makeButton("Telegram orqali bog‘lanish",()=>{
-          window.open("https://t.me/Xan1_suki","_blank","noopener,noreferrer");
-        }),
-        makeButton("Instagram",()=>{
-          window.open("https://www.instagram.com/xansuki.1/","_blank","noopener,noreferrer");
-        },true)
-      ]
-    );
-  });
-});
-
-/* ===== MOBIL MENYU ===== */
-$("menuBtn").addEventListener("click",()=>$("navlinks").classList.toggle("open"));
-document.querySelectorAll("#navlinks a").forEach(link=>{
-  link.addEventListener("click",()=>$("navlinks").classList.remove("open"));
-});
-
-/* ===== ISHGA TUSHIRISH ===== */
-loadListings();
-updateAdminView();
-renderListings();
-</script>
-</body>
+      loadAds();
+      renderAds();
+    </script>
+  </body>
 </html>
