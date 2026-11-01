@@ -1,0 +1,1355 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BILYARD CLUB | Premium</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --green: #00ff88;
+    --green2: #00c96b;
+    --bg: #050b08;
+    --card: #0b1510;
+    --border: #193b29;
+    --text: #f1fff6;
+    --muted: #81958a;
+    --yellow: #ffd84d;
+    --red: #ff405b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 70% 0%, #003c2450, transparent 45%),
+        radial-gradient(ellipse at 0% 100%, #00351d40, transparent 40%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+button, input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.15);
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+/* LAYOUT */
+
+.app {
+    display: grid;
+    grid-template-columns: 235px 1fr;
+    min-height: 100vh;
+}
+
+.sidebar {
+    background: #080e0a;
+    border-right: 1px solid #163523;
+    padding: 28px 18px;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.logo {
+    text-align: center;
+    padding: 15px 0 35px;
+}
+
+.logo-icon {
+    font-size: 65px;
+    filter: drop-shadow(0 0 20px #00ff8860);
+}
+
+.logo h1 {
+    font-family: Orbitron, sans-serif;
+    font-size: 23px;
+    letter-spacing: 3px;
+    color: var(--green);
+}
+
+.logo p {
+    color: #7d9686;
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.nav {
+    display: grid;
+    gap: 10px;
+}
+
+.nav button {
+    border: 1px solid transparent;
+    background: transparent;
+    color: #91a398;
+    padding: 15px;
+    text-align: left;
+    border-radius: 12px;
+    font-size: 15px;
+}
+
+.nav button.active {
+    background: #052a18;
+    border-color: #00bd66;
+    color: var(--green);
+    box-shadow: 0 0 20px #00ff8810;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding: 18px;
+    border: 1px solid #1c3a29;
+    border-radius: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 13px;
+}
+
+.sidebar-bottom strong {
+    color: var(--green);
+}
+
+/* MAIN */
+
+main {
+    padding: 30px;
+    min-width: 0;
+    max-width: 1700px;
+    margin: auto;
+    width: 100%;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.heading h2 {
+    font-family: Orbitron, sans-serif;
+    font-size: clamp(22px, 3vw, 35px);
+    letter-spacing: 2px;
+}
+
+.heading h2 span {
+    color: var(--green);
+}
+
+.heading p {
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+.clock {
+    background: #0d1911;
+    border: 1px solid #244a32;
+    padding: 14px 20px;
+    border-radius: 14px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.clock strong {
+    color: var(--green);
+    font-size: 20px;
+    display: block;
+}
+
+.clock span {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* PRICE */
+
+.pricebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 25px;
+    background: linear-gradient(110deg, #0b1b11, #101b14);
+    border: 1px solid #225237;
+    border-radius: 18px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.price-label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.price-value {
+    font-size: 30px;
+    color: var(--green);
+    font-weight: 800;
+}
+
+.price-edit {
+    display: flex;
+    gap: 10px;
+}
+
+.price-edit input {
+    width: 160px;
+    background: #050c08;
+    border: 1px solid #28573a;
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+    outline: none;
+}
+
+.price-edit button {
+    background: var(--green);
+    color: #032211;
+    font-weight: 800;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* TABLE CARDS */
+
+.tables {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.table-card {
+    background: linear-gradient(145deg, #102218, #080e0a 70%);
+    border: 1px solid #234a32;
+    border-radius: 22px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.table-card.playing {
+    border-color: var(--green);
+    box-shadow: 0 0 30px #00ff8810;
+}
+
+.table-card.playing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--green);
+    box-shadow: 0 0 15px var(--green);
+}
+
+.table-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.table-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.number {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    color: var(--green);
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.table-title h3 {
+    font-family: Orbitron, sans-serif;
+    font-size: 22px;
+}
+
+.status {
+    padding: 8px 13px;
+    border-radius: 30px;
+    background: #17241c;
+    color: #93a69a;
+    font-size: 12px;
+}
+
+.status.active {
+    background: #063b20;
+    color: var(--green);
+}
+
+.status.active::before {
+    content: "● ";
+}
+
+/* POOL TABLE VISUAL */
+
+.pool {
+    height: 180px;
+    background: #063d28;
+    border: 12px solid #4b2e1a;
+    border-radius: 12px;
+    box-shadow:
+        inset 0 0 0 3px #98714a,
+        inset 0 0 30px #001b10,
+        0 12px 20px #0008;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.pool::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, #087748, #03472d);
+}
+
+.pocket {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #020604;
+    border-radius: 50%;
+    z-index: 2;
+    box-shadow: inset 0 2px 4px #000;
+}
+
+.p1 { top: -2px; left: -2px; }
+.p2 { top: -2px; right: -2px; }
+.p3 { bottom: -2px; left: -2px; }
+.p4 { bottom: -2px; right: -2px; }
+.p5 { top: -7px; left: 50%; transform: translateX(-50%); }
+.p6 { bottom: -7px; left: 50%; transform: translateX(-50%); }
+
+.balls {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    z-index: 3;
+}
+
+.ball {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, white, #f5cf29 40%, #997a00);
+    box-shadow: 0 2px 4px #0007;
+}
+
+.ball:nth-child(2) {
+    background: radial-gradient(circle at 30% 25%, white, #e93636 40%, #750000);
+}
+
+.ball:nth-child(3) {
+    background: radial-gradient(circle at 30% 25%, white, #358bff 40%, #002c87);
+}
+
+.ball:nth-child(4) {
+    background: radial-gradient(circle at 30% 25%, white, #ff8c25 40%, #8b3000);
+}
+
+.ball:nth-child(5) {
+    background: radial-gradient(circle at 30% 25%, white, #161616 40%, #000);
+}
+
+.ball.white {
+    position: absolute;
+    left: 72%;
+    top: 65%;
+    background: radial-gradient(circle at 30% 25%, white, #eee 60%, #aaa);
+}
+
+/* TIMER */
+
+.timer-box {
+    background: #07140d;
+    border: 1px solid #1d5233;
+    border-radius: 14px;
+    text-align: center;
+    padding: 17px 10px;
+    margin-bottom: 12px;
+}
+
+.timer {
+    font-family: Orbitron, sans-serif;
+    font-size: clamp(24px, 3vw, 36px);
+    letter-spacing: 2px;
+    color: white;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-box small {
+    color: var(--muted);
+    font-size: 11px;
+    display: block;
+    margin-top: 7px;
+}
+
+.payment {
+    background: #080d09;
+    border: 1px solid #192a1e;
+    padding: 17px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 17px;
+}
+
+.payment span {
+    color: #92a398;
+    font-size: 13px;
+}
+
+.payment strong {
+    color: var(--yellow);
+    font-size: 23px;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.controls button {
+    border-radius: 12px;
+    padding: 15px 8px;
+    border: none;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.btn-start {
+    background: linear-gradient(135deg, #00ff88, #00a84f);
+    color: #002513;
+    box-shadow: 0 0 20px #00ff8820;
+}
+
+.btn-stop {
+    background: #202a24;
+    color: #ff7184;
+    border: 1px solid #4a2730 !important;
+}
+
+button:disabled {
+    opacity: .3;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.stat {
+    background: #0c1910;
+    border: 1px solid #20432c;
+    padding: 22px;
+    border-radius: 16px;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.stat h3 {
+    color: var(--green);
+    font-size: 24px;
+    overflow-wrap: anywhere;
+}
+
+.stat-icon {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+/* HISTORY */
+
+.history {
+    margin-top: 30px;
+    background: #0b1510;
+    border: 1px solid #1c3927;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.history-head {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1c3927;
+}
+
+.history-head h3 {
+    font-size: 17px;
+}
+
+.history-head button {
+    background: #17251b;
+    color: var(--green);
+    border: 1px solid #28583a;
+    border-radius: 9px;
+    padding: 10px 15px;
+}
+
+.history table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.history th,
+.history td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid #15251a;
+    font-size: 13px;
+}
+
+.history th {
+    color: #7e9787;
+    font-weight: 500;
+}
+
+.history td {
+    color: #e2f2e7;
+}
+
+.history td:last-child {
+    color: var(--yellow);
+    font-weight: 700;
+}
+
+.empty {
+    text-align: center !important;
+    padding: 30px !important;
+    color: var(--muted) !important;
+}
+
+footer {
+    text-align: center;
+    padding: 35px 10px;
+    color: #40584a;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: relative;
+        height: auto;
+        padding: 15px;
+    }
+
+    .logo {
+        padding: 5px 0 15px;
+    }
+
+    .logo-icon {
+        font-size: 35px;
+    }
+
+    .logo h1 {
+        font-size: 18px;
+    }
+
+    .logo p,
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav button {
+        padding: 10px 15px;
+    }
+
+    main {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 700px) {
+    .tables {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .clock {
+        text-align: left;
+    }
+
+    .pricebar {
+        padding: 18px;
+    }
+
+    .price-edit {
+        width: 100%;
+    }
+
+    .price-edit input {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .price-edit button {
+        white-space: nowrap;
+    }
+
+    .history {
+        overflow-x: auto;
+    }
+
+    .history table {
+        min-width: 500px;
+    }
+}
+
+@media (max-width: 400px) {
+    main {
+        padding: 12px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .table-card {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🎱</div>
+        <h1>BILYARD</h1>
+        <p>PREMIUM CLUB</p>
+    </div>
+
+    <nav class="nav">
+        <button class="active" onclick="showSection('home',this)">
+            🏠 Bosh sahifa
+        </button>
+
+        <button onclick="showSection('history',this)">
+            📊 Hisobot
+        </button>
+
+        <button onclick="showSection('settings',this)">
+            ⚙ Sozlamalar
+        </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+        <strong>● TIZIM ISHLAMOQDA</strong>
+        <br>
+        Premium bilyard hisoblagich
+        <br>
+        <br>
+        🎱 2 ta faol stol
+    </div>
+
+</aside>
+
+<main>
+
+    <div class="topbar">
+        <div class="heading">
+            <h2>BILYARD <span>CLUB</span></h2>
+            <p>O'yin, dam olish va yaxshi kayfiyat!</p>
+        </div>
+
+        <div class="clock">
+            <strong id="clock">00:00:00</strong>
+            <span id="date">01.01.2026</span>
+        </div>
+    </div>
+
+    <section id="settings">
+
+        <div class="pricebar">
+            <div>
+                <p class="price-label">🎱 1 SOATLIK NARX</p>
+                <div class="price-value" id="priceDisplay">
+                    30 000 so'm
+                </div>
+            </div>
+
+            <div class="price-edit">
+                <input
+                    type="number"
+                    id="priceInput"
+                    value="30000"
+                    min="0"
+                    step="1000"
+                    placeholder="Narx"
+                >
+
+                <button onclick="savePrice()">
+                    ✓ Saqlash
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="tables">
+
+        <!-- 1-STOL -->
+
+        <div class="table-card" id="card1">
+
+            <div class="table-head">
+                <div class="table-title">
+                    <div class="number">1</div>
+                    <h3>1-STOL</h3>
+                </div>
+
+                <div class="status" id="status1">
+                    Bo'sh
+                </div>
+            </div>
+
+            <div class="pool">
+                <div class="pocket p1"></div>
+                <div class="pocket p2"></div>
+                <div class="pocket p3"></div>
+                <div class="pocket p4"></div>
+                <div class="pocket p5"></div>
+                <div class="pocket p6"></div>
+
+                <div class="balls">
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                </div>
+
+                <div class="ball white"></div>
+            </div>
+
+            <div class="timer-box">
+                <div class="timer" id="timer1">
+                    00:00:00
+                </div>
+                <small>O'YIN VAQTI</small>
+            </div>
+
+            <div class="payment">
+                <span>Joriy to'lov</span>
+                <strong id="pay1">0 so'm</strong>
+            </div>
+
+            <div class="controls">
+                <button class="btn-start" id="start1"
+                    onclick="startTable(1)">
+                    ▶ BOSHLASH
+                </button>
+
+                <button class="btn-stop" id="stop1"
+                    onclick="stopTable(1)" disabled>
+                    ■ TUGATISH
+                </button>
+            </div>
+
+        </div>
+
+        <!-- 2-STOL -->
+
+        <div class="table-card" id="card2">
+
+            <div class="table-head">
+                <div class="table-title">
+                    <div class="number">2</div>
+                    <h3>2-STOL</h3>
+                </div>
+
+                <div class="status" id="status2">
+                    Bo'sh
+                </div>
+            </div>
+
+            <div class="pool">
+                <div class="pocket p1"></div>
+                <div class="pocket p2"></div>
+                <div class="pocket p3"></div>
+                <div class="pocket p4"></div>
+                <div class="pocket p5"></div>
+                <div class="pocket p6"></div>
+
+                <div class="balls">
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                    <div class="ball"></div>
+                </div>
+
+                <div class="ball white"></div>
+            </div>
+
+            <div class="timer-box">
+                <div class="timer" id="timer2">
+                    00:00:00
+                </div>
+                <small>O'YIN VAQTI</small>
+            </div>
+
+            <div class="payment">
+                <span>Joriy to'lov</span>
+                <strong id="pay2">0 so'm</strong>
+            </div>
+
+            <div class="controls">
+                <button class="btn-start" id="start2"
+                    onclick="startTable(2)">
+                    ▶ BOSHLASH
+                </button>
+
+                <button class="btn-stop" id="stop2"
+                    onclick="stopTable(2)" disabled>
+                    ■ TUGATISH
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATISTIKA -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-icon">💰</div>
+            <p>Bugungi tushum</p>
+            <h3 id="income">0 so'm</h3>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">🎮</div>
+            <p>Jami o'yinlar</p>
+            <h3 id="games">0 ta</h3>
+        </div>
+
+        <div class="stat">
+            <div class="stat-icon">⏱</div>
+            <p>Jami o'ynalgan vaqt</p>
+            <h3 id="totalTime">00:00:00</h3>
+        </div>
+
+    </section>
+
+    <!-- TARIX -->
+
+    <section class="history" id="history">
+
+        <div class="history-head">
+            <h3>📋 O'YINLAR TARIXI</h3>
+
+            <button onclick="clearHistory()">
+                🗑 Tozalash
+            </button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Stol</th>
+                    <th>Boshlangan vaqt</th>
+                    <th>Davomiyligi</th>
+                    <th>To'lov</th>
+                </tr>
+            </thead>
+
+            <tbody id="historyBody">
+                <tr>
+                    <td colspan="4" class="empty">
+                        Hozircha o'yinlar yo'q
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <footer>
+        BILYARD CLUB · PREMIUM MANAGEMENT SYSTEM
+    </footer>
+
+</main>
+
+</div>
+
+<script>
+
+/* =========================
+   MA'LUMOTLAR
+========================= */
+
+const defaultData = {
+    price: 30000,
+    income: 0,
+    games: 0,
+    totalSeconds: 0,
+    history: [],
+    tables: {
+        1: { start: null },
+        2: { start: null }
+    }
+};
+
+let data;
+
+try {
+    data = JSON.parse(
+        localStorage.getItem("bilyardData")
+    ) || defaultData;
+} catch {
+    data = defaultData;
+}
+
+if (!data.tables) {
+    data.tables = {
+        1: { start: null },
+        2: { start: null }
+    };
+}
+
+if (!Array.isArray(data.history)) {
+    data.history = [];
+}
+
+if (!Number.isFinite(data.price)) {
+    data.price = 30000;
+}
+
+if (!Number.isFinite(data.income)) {
+    data.income = 0;
+}
+
+if (!Number.isFinite(data.games)) {
+    data.games = 0;
+}
+
+if (!Number.isFinite(data.totalSeconds)) {
+    data.totalSeconds = 0;
+}
+
+if (!data.tables[1]) data.tables[1] = { start: null };
+if (!data.tables[2]) data.tables[2] = { start: null };
+
+function saveData() {
+    localStorage.setItem(
+        "bilyardData",
+        JSON.stringify(data)
+    );
+}
+
+/* =========================
+   FORMATLASH
+========================= */
+
+function money(value) {
+    return Math.round(value).toLocaleString("uz-UZ")
+        + " so'm";
+}
+
+function formatTime(seconds) {
+    seconds = Math.max(0, Math.floor(seconds));
+
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+
+    return [h, m, s]
+        .map(n => String(n).padStart(2, "0"))
+        .join(":");
+}
+
+function getSeconds(id) {
+    const start = data.tables[id].start;
+
+    if (!start) return 0;
+
+    return Math.floor((Date.now() - start) / 1000);
+}
+
+function getPayment(id) {
+    const seconds = getSeconds(id);
+
+    // Har boshlangan daqiqa hisoblanadi
+    const minutes = Math.ceil(seconds / 60);
+
+    return data.price * minutes / 60;
+}
+
+/* =========================
+   STOLNI YANGILASH
+========================= */
+
+function updateTable(id) {
+
+    const playing = Boolean(data.tables[id].start);
+
+    const seconds = getSeconds(id);
+    const payment = getPayment(id);
+
+    document.getElementById("timer" + id)
+        .textContent = formatTime(seconds);
+
+    document.getElementById("pay" + id)
+        .textContent = money(payment);
+
+    document.getElementById("start" + id)
+        .disabled = playing;
+
+    document.getElementById("stop" + id)
+        .disabled = !playing;
+
+    document.getElementById("status" + id)
+        .textContent = playing ? "O'YINDA" : "Bo'sh";
+
+    document.getElementById("status" + id)
+        .classList.toggle("active", playing);
+
+    document.getElementById("card" + id)
+        .classList.toggle("playing", playing);
+}
+
+/* =========================
+   O'YINNI BOSHLASH
+========================= */
+
+function startTable(id) {
+
+    if (data.tables[id].start) return;
+
+    data.tables[id].start = Date.now();
+
+    saveData();
+
+    updateTable(id);
+}
+
+/* =========================
+   O'YINNI TUGATISH
+========================= */
+
+function stopTable(id) {
+
+    const start = data.tables[id].start;
+
+    if (!start) return;
+
+    const seconds = getSeconds(id);
+    const payment = getPayment(id);
+
+    const startDate = new Date(start);
+
+    const time = startDate.toLocaleTimeString(
+        "uz-UZ",
+        {
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    );
+
+    const game = {
+        id: Date.now(),
+        table: id,
+        time: time,
+        seconds: seconds,
+        payment: Math.ceil(payment)
+    };
+
+    data.income += game.payment;
+    data.games += 1;
+    data.totalSeconds += seconds;
+
+    data.history.unshift(game);
+
+    data.tables[id].start = null;
+
+    saveData();
+
+    updateTable(id);
+    updateStats();
+    renderHistory();
+
+    alert(
+        id + "-stol tugatildi!\n\n" +
+        "Davomiyligi: " + formatTime(seconds) +
+        "\nTo'lov: " + money(game.payment)
+    );
+}
+
+/* =========================
+   NARXNI SAQLASH
+========================= */
+
+function savePrice() {
+
+    const input = document.getElementById("priceInput");
+
+    const price = Number(input.value);
+
+    if (!Number.isFinite(price) || price < 0) {
+        alert("Narxni to'g'ri kiriting!");
+        return;
+    }
+
+    data.price = price;
+
+    saveData();
+
+    document.getElementById("priceDisplay")
+        .textContent = money(data.price);
+
+    updateTable(1);
+    updateTable(2);
+
+    alert("Narx muvaffaqiyatli saqlandi!");
+}
+
+/* =========================
+   STATISTIKA
+========================= */
+
+function updateStats() {
+
+    document.getElementById("income")
+        .textContent = money(data.income);
+
+    document.getElementById("games")
+        .textContent = data.games + " ta";
+
+    let seconds = data.totalSeconds;
+
+    seconds += getSeconds(1);
+    seconds += getSeconds(2);
+
+    document.getElementById("totalTime")
+        .textContent = formatTime(seconds);
+}
+
+/* =========================
+   TARIX
+========================= */
+
+function renderHistory() {
+
+    const body = document.getElementById("historyBody");
+
+    if (!data.history.length) {
+
+        body.innerHTML = `
+            <tr>
+                <td colspan="4" class="empty">
+                    Hozircha o'yinlar yo'q
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    body.innerHTML = data.history.map(game => `
+
+        <tr>
+            <td>${game.table}-stol</td>
+            <td>${game.time}</td>
+            <td>${formatTime(game.seconds)}</td>
+            <td>${money(game.payment)}</td>
+        </tr>
+
+    `).join("");
+}
+
+/* =========================
+   HISOBNI TOZALASH
+========================= */
+
+function clearHistory() {
+
+    const confirmClear = confirm(
+        "Kunlik tushum va tarix tozalansinmi?"
+    );
+
+    if (!confirmClear) return;
+
+    data.income = 0;
+    data.games = 0;
+    data.totalSeconds = 0;
+    data.history = [];
+
+    saveData();
+
+    updateStats();
+    renderHistory();
+}
+
+/* =========================
+   SOAT VA SANA
+========================= */
+
+function updateClock() {
+
+    const now = new Date();
+
+    document.getElementById("clock")
+        .textContent = now.toLocaleTimeString("uz-UZ");
+
+    document.getElementById("date")
+        .textContent = now.toLocaleDateString("uz-UZ");
+}
+
+/* =========================
+   NAVIGATSIYA
+========================= */
+
+function showSection(section, button) {
+
+    document.querySelectorAll(".nav button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    if (section === "history") {
+
+        document.getElementById("history")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    } else if (section === "settings") {
+
+        document.getElementById("settings")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    } else {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+/* =========================
+   ISHGA TUSHIRISH
+========================= */
+
+document.getElementById("priceInput").value = data.price;
+
+document.getElementById("priceDisplay")
+    .textContent = money(data.price);
+
+updateTable(1);
+updateTable(2);
+
+updateStats();
+renderHistory();
+updateClock();
+
+setInterval(() => {
+
+    updateTable(1);
+    updateTable(2);
+
+    updateStats();
+    updateClock();
+
+}, 1000);
+
+</script>
+
+</body>
+</html>

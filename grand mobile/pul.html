@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>XANSUKI × MAKAR | Gaming Market</title>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
     <style>
       * {
         box-sizing: border-box;
@@ -45,7 +50,8 @@
         font-size: 23px;
         font-weight: 900;
       }
-      .logo span {
+      .logo span,
+      h1 span {
         color: #a49bff;
       }
       nav {
@@ -84,9 +90,6 @@
       h1 {
         font-size: clamp(32px, 6vw, 58px);
         margin: 18px 0;
-      }
-      h1 span {
-        color: #a49bff;
       }
       .hero p {
         max-width: 650px;
@@ -272,7 +275,8 @@
         text-decoration: none;
         margin-top: 10px;
       }
-      #adminArea {
+      #adminArea,
+      #adForm {
         display: none;
       }
       .adminrow {
@@ -323,17 +327,22 @@
         .filters select {
           width: 100%;
         }
+        .adminrow {
+          align-items: flex-start;
+          flex-direction: column;
+        }
       }
     </style>
   </head>
+
   <body>
     <header>
       <div class="nav">
         <div class="logo">XANSUKI <span>×</span> MAKAR</div>
         <nav>
           <a href="#home">Bosh sahifa</a>
-          <a href="#ads">Elonlar</a>
-          <a href="#post">Elon joylash</a>
+          <a href="#ads">E'lonlar</a>
+          <a href="#post">E'lon joylash</a>
           <a href="#about">Biz haqimizda</a>
           <a href="#admin">Admin</a>
         </nav>
@@ -345,24 +354,25 @@
         <div class="tag">PREMIUM GAMING MARKET</div>
         <h1>XANSUKI <span>×</span> MAKAR</h1>
         <p>
-          Grand Mobile va Roblox elonlari uchun maxsus bozor. Mahsulotlarni
+          Grand Mobile va Roblox e'lonlari uchun maxsus bozor. Mahsulotlarni
           ko‘ring, narxlarni solishtiring va sotuvchilar bilan Telegram orqali
           bog‘laning.
         </p>
-        <a class="btn" href="#ads">Elonlarni ko‘rish</a>
-        <a class="btn secondary" href="#post">Elon joylash</a>
+        <a class="btn" href="#ads">E'lonlarni ko‘rish</a>
+        <a class="btn secondary" href="#post">E'lon joylash</a>
       </section>
 
       <section id="ads">
         <div class="head">
           <div>
-            <h2>🔥 Oxirgi elonlar</h2>
-            <p class="muted">Joylangan elonlar ro‘yxati</p>
+            <h2>🔥 Oxirgi e'lonlar</h2>
+            <p class="muted">Joylangan e'lonlar ro‘yxati</p>
           </div>
-          <span class="category" id="count">0 ta elon</span>
+          <span class="category" id="count">0 ta e'lon</span>
         </div>
+
         <div class="filters">
-          <input id="search" placeholder="🔎 Elon qidirish..." />
+          <input id="search" placeholder="🔎 E'lon qidirish..." />
           <select id="categoryFilter">
             <option value="all">Barcha o‘yinlar</option>
             <option>Grand Mobile</option>
@@ -375,47 +385,52 @@
             <option value="expensive">Qimmatidan boshlab</option>
           </select>
         </div>
+
         <div class="grid" id="adsGrid"></div>
       </section>
 
       <section id="post">
         <div class="head">
           <div>
-            <h2>📢 Elon joylash</h2>
+            <h2>📢 E'lon joylash</h2>
             <p class="muted">Faqat XANSUKI va MAKAR uchun.</p>
           </div>
         </div>
+
         <div class="panel" id="postLock">
           <h3>🔐 Admin ruxsati kerak</h3>
-          <p class="muted">Elon joylash uchun admin hisobiga kiring.</p>
+          <p class="muted">E'lon joylash uchun admin hisobiga kiring.</p>
           <div class="actions">
             <a href="#admin" class="btn">Admin paneliga kirish</a>
           </div>
         </div>
 
-        <form class="panel" id="adForm" style="display: none">
-          <h3 id="welcomeAdmin">Elon joylash</h3>
+        <form class="panel" id="adForm">
+          <h3 id="welcomeAdmin">E'lon joylash</h3>
+
           <div class="formgrid" style="margin-top: 18px">
             <div class="field">
-              <label for="adTitle">Elon nomi *</label
-              ><input
+              <label for="adTitle">E'lon nomi *</label>
+              <input
                 id="adTitle"
                 required
                 maxlength="80"
                 placeholder="Grand Mobile akkaunt"
               />
             </div>
+
             <div class="field">
-              <label for="adCategory">Kategoriya *</label
-              ><select id="adCategory">
+              <label for="adCategory">Kategoriya *</label>
+              <select id="adCategory">
                 <option>Grand Mobile</option>
                 <option>Roblox</option>
                 <option>Boshqa</option>
               </select>
             </div>
+
             <div class="field">
-              <label for="adPrice">Narxi (so‘m) *</label
-              ><input
+              <label for="adPrice">Narxi (so‘m) *</label>
+              <input
                 id="adPrice"
                 type="number"
                 min="0"
@@ -424,27 +439,30 @@
                 placeholder="50000"
               />
             </div>
+
             <div class="field">
-              <label for="adContact">Telegram username *</label
-              ><input
+              <label for="adContact">Telegram username *</label>
+              <input
                 id="adContact"
                 required
                 maxlength="100"
                 placeholder="@username"
               />
             </div>
+
             <div class="field full">
-              <label for="adDescription">Tavsif *</label
-              ><textarea
+              <label for="adDescription">Tavsif *</label>
+              <textarea
                 id="adDescription"
                 rows="4"
                 required
                 maxlength="1000"
-                placeholder="Elon haqida ma’lumot..."
+                placeholder="E'lon haqida ma’lumot..."
               ></textarea>
             </div>
+
             <div class="field full">
-              <label for="adImage">Rasm (2 MB gacha)</label>
+              <label for="adImage">Rasm (500 KB gacha)</label>
               <input
                 id="adImage"
                 type="file"
@@ -461,9 +479,10 @@
               </button>
             </div>
           </div>
+
           <div class="actions">
-            <button class="btn" type="submit">🚀 Elon joylash</button
-            ><button class="btn secondary" type="reset">Tozalash</button>
+            <button class="btn" type="submit">🚀 E'lon joylash</button>
+            <button class="btn secondary" type="reset">Tozalash</button>
           </div>
         </form>
       </section>
@@ -473,6 +492,7 @@
         <p class="muted" style="margin-bottom: 18px">
           XANSUKI × MAKAR — gaming market loyihasi.
         </p>
+
         <div class="socialgrid">
           <div class="social">
             <h3>👑 XANSUKI</h3>
@@ -482,7 +502,8 @@
               target="_blank"
               rel="noopener noreferrer"
               >Telegram: @Xan1_suki</a
-            ><br />
+            >
+            <br />
             <a
               href="https://www.instagram.com/xansuki.1/"
               target="_blank"
@@ -490,6 +511,7 @@
               >Instagram profil</a
             >
           </div>
+
           <div class="social">
             <h3>🤝 MAKAR</h3>
             <p class="muted">Do‘kon o‘rinbosari</p>
@@ -498,7 +520,8 @@
               target="_blank"
               rel="noopener noreferrer"
               >Telegram: @makarr_pm</a
-            ><br />
+            >
+            <br />
             <a
               href="https://www.instagram.com/makarrpm/"
               target="_blank"
@@ -516,6 +539,7 @@
             <p class="muted">Faqat do‘kon egasi va o‘rinbosari.</p>
           </div>
         </div>
+
         <div class="panel">
           <div id="adminLogin">
             <div class="field">
@@ -525,47 +549,71 @@
                 <option value="MAKAR">MAKAR — O‘rinbosar</option>
               </select>
             </div>
+
             <div class="field" style="margin-top: 14px">
-              <label for="adminPassword">Parol</label
-              ><input
+              <label for="adminPassword">Firebase paroli</label>
+              <input
                 id="adminPassword"
                 type="password"
-                placeholder="Parolni kiriting"
+                placeholder="Firebase parolini kiriting"
+                autocomplete="current-password"
               />
             </div>
+
             <div class="actions">
               <button class="btn" id="loginBtn" type="button">Kirish</button>
             </div>
           </div>
+
           <div id="adminArea">
             <h3 id="adminWelcome">Xush kelibsiz!</h3>
-            <p class="muted">Bu yerdan elon qo‘shish va o‘chirish mumkin.</p>
+            <p class="muted">Bu yerdan e'lon qo‘shish va o‘chirish mumkin.</p>
+
             <div class="actions">
               <button class="btn secondary" id="exportBtn" type="button">
-                Elonlarni JSON yuklash
+                E'lonlarni JSON yuklash
               </button>
               <button class="btn danger" id="logoutBtn" type="button">
                 Chiqish
               </button>
             </div>
+
             <div id="adminList" style="margin-top: 18px"></div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer>© 2026 XANSUKI × MAKAR · Gaming Market</footer>
-    <div id="toast" role="status"></div>
+    <footer>© 2026 XANSUKI × MAKAR | Gaming Market</footer>
+
+    <div id="toast" role="status" aria-live="polite"></div>
 
     <script>
-      const $ = (id) => document.getElementById(id);
-      const STORAGE_KEY = "xansukiMakarMarketV4";
-      const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
+      const firebaseConfig = {
+        apiKey: "AIzaSyDvzKp2X1gES2SF_66WDFQTSfCrlaz4p1k",
+        authDomain: "xansuki-makar-market.firebaseapp.com",
+        projectId: "xansuki-makar-market",
+        storageBucket: "xansuki-makar-market.firebasestorage.app",
+        messagingSenderId: "858196935346",
+        appId: "1:858196935346:web:6a436d45a0c74668ffbfab",
+        measurementId: "G-9E66841THT",
+      };
 
-      // DEMO PAROLLARI. Haqiqiy ommaviy saytda server tomondagi login ishlating.
-      const ADMIN_ACCOUNTS = {
-        XANSUKI: "XanSuki38",
-        MAKAR: "Makar38Secure",
+      firebase.initializeApp(firebaseConfig);
+
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      const $ = (id) => document.getElementById(id);
+      const MAX_IMAGE_SIZE = 500 * 1024;
+
+      const ADMIN_EMAILS = {
+        XANSUKI: "babayevsaidjon782@gmail.com",
+        MAKAR: "makarwilliam@gmail.com",
+      };
+
+      const ADMIN_NAMES_BY_EMAIL = {
+        "babayevsaidjon782@gmail.com": "XANSUKI",
+        "makarwilliam@gmail.com": "MAKAR",
       };
 
       let ads = [];
@@ -573,7 +621,7 @@
       let currentAdmin = null;
 
       function escapeHTML(value) {
-        return String(value).replace(
+        return String(value ?? "").replace(
           /[&<>"']/g,
           (c) =>
             ({
@@ -589,40 +637,23 @@
       function showToast(message) {
         $("toast").textContent = message;
         $("toast").style.display = "block";
+
         clearTimeout(showToast.timer);
-        showToast.timer = setTimeout(
-          () => ($("toast").style.display = "none"),
-          3000,
-        );
-      }
 
-      function loadAds() {
-        try {
-          const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-          ads = Array.isArray(data) ? data : [];
-        } catch {
-          ads = [];
-        }
-      }
-
-      function saveAds() {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(ads));
-          return true;
-        } catch {
-          showToast(
-            "Saqlash amalga oshmadi. Rasm hajmini kamaytiring yoki elonlarni o‘chiring.",
-          );
-          return false;
-        }
+        showToast.timer = setTimeout(() => {
+          $("toast").style.display = "none";
+        }, 3000);
       }
 
       function formatPrice(price) {
-        return Number(price).toLocaleString("uz-UZ") + " so‘m";
+        return Number(price || 0).toLocaleString("uz-UZ") + " so‘m";
       }
 
       function contactURL(contact) {
-        const username = String(contact).trim().replace(/^@/, "");
+        const username = String(contact || "")
+          .trim()
+          .replace(/^@/, "");
+
         return /^[A-Za-z0-9_]{5,32}$/.test(username)
           ? "https://t.me/" + encodeURIComponent(username)
           : "https://t.me/Xan1_suki";
@@ -633,110 +664,181 @@
         const category = $("categoryFilter").value;
         const sort = $("sort").value;
 
-        let list = ads.filter(
+        const list = ads.filter(
           (a) =>
-            (a.title + " " + a.description + " " + a.category)
+            (
+              String(a.title || "") +
+              " " +
+              String(a.description || "") +
+              " " +
+              String(a.category || "")
+            )
               .toLowerCase()
               .includes(q) &&
             (category === "all" || a.category === category),
         );
 
-        if (sort === "cheap") list.sort((a, b) => a.price - b.price);
-        else if (sort === "expensive") list.sort((a, b) => b.price - a.price);
-        else list.sort((a, b) => b.date - a.date);
+        if (sort === "cheap") {
+          list.sort((a, b) => Number(a.price) - Number(b.price));
+        } else if (sort === "expensive") {
+          list.sort((a, b) => Number(b.price) - Number(a.price));
+        } else {
+          list.sort((a, b) => Number(b.date) - Number(a.date));
+        }
 
-        $("count").textContent = list.length + " ta elon";
+        $("count").textContent = list.length + " ta e'lon";
 
         $("adsGrid").innerHTML = list.length
           ? list
               .map(
                 (a) => `
-    <article class="card">
-      ${
-        a.image
-          ? `<img src="${a.image}" alt="${escapeHTML(a.title)}" loading="lazy">`
-          : `<div style="height:185px;display:grid;place-items:center;background:linear-gradient(135deg,#1b2c4b,#30214b);font-size:45px">🎮</div>`
-      }
-      <div class="cardbody">
-        <span class="category">${escapeHTML(a.category)}</span>
-        <h3>${escapeHTML(a.title)}</h3>
-        <p>${escapeHTML(a.description)}</p>
-        <div class="price">${formatPrice(a.price)}</div>
-        <p>Sotuvchi: ${escapeHTML(a.contact)}</p>
-        <a class="btn" href="${contactURL(a.contact)}" target="_blank" rel="noopener noreferrer">Sotuvchi bilan bog‘lanish</a>
-      </div>
-    </article>
-  `,
+        <article class="card">
+          ${
+            a.image
+              ? `<img src="${a.image}" alt="${escapeHTML(a.title)}" loading="lazy">`
+              : `<div style="height:185px;display:grid;place-items:center;background:linear-gradient(135deg,#1b2c4b,#30214b);font-size:45px">🎮</div>`
+          }
+
+          <div class="cardbody">
+            <span class="category">${escapeHTML(a.category)}</span>
+            <h3>${escapeHTML(a.title)}</h3>
+            <p>${escapeHTML(a.description)}</p>
+            <div class="price">${formatPrice(a.price)}</div>
+            <p>Sotuvchi: ${escapeHTML(a.contact)}</p>
+            <a class="btn" href="${contactURL(a.contact)}" target="_blank" rel="noopener noreferrer">
+              Sotuvchi bilan bog‘lanish
+            </a>
+          </div>
+        </article>
+      `,
               )
               .join("")
-          : '<div class="empty">😕 Hozircha elon yo‘q.</div>';
+          : '<div class="empty">😕 Hozircha e’lon yo‘q.</div>';
 
         renderAdmin();
       }
 
       function renderAdmin() {
-        if (!currentAdmin) return;
+        if (!currentAdmin) {
+          $("adminList").innerHTML = "";
+          return;
+        }
 
         $("adminList").innerHTML = ads.length
           ? ads
               .map(
                 (a) => `
-    <div class="adminrow">
-      <div>
-        <strong>${escapeHTML(a.title)}</strong>
-        <p class="muted">${escapeHTML(a.category)} · ${formatPrice(a.price)} · Muallif: ${escapeHTML(a.author || "Admin")}</p>
-      </div>
-      <button class="btn danger" type="button" data-delete="${a.id}">🗑️ O‘chirish</button>
-    </div>
-  `,
+        <div class="adminrow">
+          <div>
+            <strong>${escapeHTML(a.title)}</strong>
+            <p class="muted">
+              ${escapeHTML(a.category)} · ${formatPrice(a.price)}
+              · Muallif: ${escapeHTML(a.author || "Admin")}
+            </p>
+          </div>
+
+          <button class="btn danger" type="button" data-delete="${escapeHTML(a.id)}">
+            🗑️ O‘chirish
+          </button>
+        </div>
+      `,
               )
               .join("")
-          : '<p class="muted">Hozircha elon yo‘q.</p>';
+          : '<p class="muted">Hozircha e’lon yo‘q.</p>';
       }
 
       function openAdmin(username) {
         currentAdmin = username;
+
         $("adminLogin").style.display = "none";
         $("adminArea").style.display = "block";
         $("adminWelcome").textContent = "Xush kelibsiz, " + username + "!";
         $("adForm").style.display = "block";
         $("postLock").style.display = "none";
-        $("welcomeAdmin").textContent = username + " — elon joylash";
-        renderAds();
+        $("welcomeAdmin").textContent = username + " — e’lon joylash";
+
+        renderAdmin();
       }
 
-      function logout() {
+      function closeAdminUI() {
         currentAdmin = null;
+
         $("adminLogin").style.display = "block";
         $("adminArea").style.display = "none";
         $("adminPassword").value = "";
         $("adForm").style.display = "none";
         $("postLock").style.display = "block";
-        showToast("Admin hisobidan chiqildi.");
+        $("adminList").innerHTML = "";
       }
 
-      $("loginBtn").addEventListener("click", () => {
+      async function logout() {
+        try {
+          await auth.signOut();
+          showToast("Admin hisobidan chiqildi.");
+        } catch (error) {
+          console.error("Chiqish xatosi:", error);
+          showToast("Chiqishda xatolik. Qayta urinib ko‘ring.");
+        }
+      }
+
+      // Firebase login holatini bir marta tekshirish
+      auth.onAuthStateChanged((user) => {
+        if (!user) {
+          closeAdminUI();
+          return;
+        }
+
+        const username = ADMIN_NAMES_BY_EMAIL[(user.email || "").toLowerCase()];
+
+        if (!username) {
+          auth.signOut();
+          closeAdminUI();
+          showToast("Bu hisobga admin ruxsati berilmagan.");
+          return;
+        }
+
+        openAdmin(username);
+      });
+
+      // Admin tizimga kirishi
+      $("loginBtn").addEventListener("click", async () => {
         const username = $("adminUser").value;
         const password = $("adminPassword").value;
+        const email = ADMIN_EMAILS[username];
 
-        if (ADMIN_ACCOUNTS[username] === password) {
-          openAdmin(username);
+        if (!email || !password) {
+          showToast("Admin hisobini va parolni kiriting.");
+          return;
+        }
+
+        try {
+          await auth.signInWithEmailAndPassword(email, password);
           $("adminPassword").value = "";
           showToast("Muvaffaqiyatli kirdingiz!");
-        } else {
-          showToast("Hisob yoki parol noto‘g‘ri!");
+        } catch (error) {
+          console.error("Login xatosi:", error);
+          showToast(
+            "Hisob yoki parol noto‘g‘ri. Firebase hisobini tekshiring.",
+          );
         }
       });
 
       $("adminPassword").addEventListener("keydown", (e) => {
-        if (e.key === "Enter") $("loginBtn").click();
+        if (e.key === "Enter") {
+          $("loginBtn").click();
+        }
       });
 
       $("logoutBtn").addEventListener("click", logout);
 
+      // Rasm tanlash
       $("adImage").addEventListener("change", function () {
         const file = this.files[0];
+
         selectedImage = "";
+        $("imagePreview").removeAttribute("src");
+        $("imagePreview").style.display = "none";
+        $("removeImage").style.display = "none";
 
         if (!file) return;
 
@@ -751,21 +853,26 @@
         }
 
         if (file.size > MAX_IMAGE_SIZE) {
-          showToast("Rasm 2 MB dan kichik bo‘lishi kerak.");
+          showToast("Firestore uchun rasm 500 KB dan kichik bo‘lishi kerak.");
           this.value = "";
           return;
         }
 
         const reader = new FileReader();
+
         reader.onload = (e) => {
           selectedImage = e.target.result;
           $("imagePreview").src = selectedImage;
           $("imagePreview").style.display = "block";
           $("removeImage").style.display = "inline-block";
         };
+
+        reader.onerror = () => showToast("Rasmni o‘qib bo‘lmadi.");
+
         reader.readAsDataURL(file);
       });
 
+      // Tanlangan rasmni olib tashlash
       $("removeImage").addEventListener("click", () => {
         selectedImage = "";
         $("adImage").value = "";
@@ -774,17 +881,24 @@
         $("removeImage").style.display = "none";
       });
 
-      $("adForm").addEventListener("submit", (e) => {
+      // Formani tozalaganda rasmni ham tozalash
+      $("adForm").addEventListener("reset", () => {
+        selectedImage = "";
+        $("imagePreview").removeAttribute("src");
+        $("imagePreview").style.display = "none";
+        $("removeImage").style.display = "none";
+      });
+
+      // Yangi e'lonni Firestore bazasiga qo‘shish
+      $("adForm").addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        if (!currentAdmin || !ADMIN_ACCOUNTS[currentAdmin]) {
-          logout();
+        if (!auth.currentUser || !currentAdmin) {
           showToast("Avval admin hisobiga kiring.");
           return;
         }
 
         const ad = {
-          id: Date.now(),
           title: $("adTitle").value.trim(),
           category: $("adCategory").value,
           price: Number($("adPrice").value),
@@ -806,60 +920,101 @@
           return;
         }
 
-        ads.unshift(ad);
-        if (!saveAds()) {
-          ads.shift();
+        if (new TextEncoder().encode(JSON.stringify(ad)).length > 850000) {
+          showToast("E'lon juda katta. Kichikroq rasm tanlang.");
           return;
         }
 
-        $("adForm").reset();
-        selectedImage = "";
-        $("imagePreview").removeAttribute("src");
-        $("imagePreview").style.display = "none";
-        $("removeImage").style.display = "none";
+        try {
+          const docRef = await db.collection("ads").add(ad);
+          console.log("SAQLANDI, ID:", docRef.id);
+          $("adForm").reset();
+          showToast("✅ E’lon Firestore bazasiga joylandi!");
+          $("ads").scrollIntoView({ behavior: "smooth" });
+        } catch (error) {
+          console.error(
+            "Firestore saqlash xatosi:",
+            error.code,
+            error.message,
+            error,
+          );
 
-        renderAds();
-        showToast("✅ Elon joylandi!");
-        $("ads").scrollIntoView({ behavior: "smooth" });
+          showToast(
+            "Saqlanmadi: " + (error.code || error.message || "Noma'lum xato"),
+          );
+        }
       });
 
-      $("adminList").addEventListener("click", (e) => {
+      // E'lonni Firestore bazasidan o‘chirish
+      $("adminList").addEventListener("click", async (e) => {
         const button = e.target.closest("[data-delete]");
-        if (!button || !currentAdmin) return;
 
-        if (!confirm("Haqiqatan ham bu elonni o‘chirmoqchimisiz?")) return;
+        if (!button || !currentAdmin || !auth.currentUser) return;
 
-        const oldAds = ads;
-        ads = ads.filter((a) => String(a.id) !== button.dataset.delete);
+        const id = button.dataset.delete;
 
-        if (!saveAds()) {
-          ads = oldAds;
+        if (!confirm("Haqiqatan ham bu e'lonni o‘chirmoqchimisiz?")) {
           return;
         }
 
-        renderAds();
-        showToast("🗑️ Elon o‘chirildi!");
+        button.disabled = true;
+
+        try {
+          await db.collection("ads").doc(id).delete();
+          showToast("🗑️ E’lon bazadan o‘chirildi!");
+        } catch (error) {
+          console.error("Firestore o‘chirish xatosi:", error);
+          showToast("O‘chirilmadi. Admin ruxsatini tekshiring.");
+          button.disabled = false;
+        }
       });
 
+      // E'lonlarni JSON fayl qilib yuklab olish
       $("exportBtn").addEventListener("click", () => {
         if (!currentAdmin) return;
+
         const blob = new Blob([JSON.stringify(ads, null, 2)], {
           type: "application/json",
         });
+
         const url = URL.createObjectURL(blob);
         const link = document.createElement("a");
+
         link.href = url;
         link.download = "xansuki-makar-elonlar.json";
         link.click();
-        URL.revokeObjectURL(url);
+
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
       });
 
+      // Qidiruv, kategoriya va narx bo‘yicha saralash
       $("search").addEventListener("input", renderAds);
       $("categoryFilter").addEventListener("change", renderAds);
       $("sort").addEventListener("change", renderAds);
 
+      // Firestore'dan e'lonlarni jonli yuklash
+      function loadAds() {
+        db.collection("ads")
+          .orderBy("date", "desc")
+          .onSnapshot(
+            (snapshot) => {
+              ads = snapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+              }));
+
+              renderAds();
+            },
+            (error) => {
+              console.error("Firestore o‘qish xatosi:", error);
+              showToast(
+                "E’lonlarni yuklab bo‘lmadi. Firestore Rules’ni tekshiring.",
+              );
+            },
+          );
+      }
+
       loadAds();
-      renderAds();
     </script>
   </body>
 </html>
