@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dildora Onajonimga ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #ffe4ed, #fff8f5, #f7d9e7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #7b2346;
+}
+
+.card {
+    width: 90%;
+    max-width: 750px;
+    padding: 45px 30px;
+    text-align: center;
+    background: rgba(255,255,255,0.85);
+    border-radius: 30px;
+    box-shadow: 0 20px 70px #9a466525;
+    position: relative;
+    z-index: 2;
+    animation: appear 1s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.subtitle {
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #b45b79;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 8vw, 75px);
+    margin: 20px 0;
+}
+
+h1 span {
+    color: #d95778;
+}
+
+.flower {
+    font-size: 65px;
+    display: block;
+    margin-top: 20px;
+    animation: sway 3s infinite;
+}
+
+@keyframes sway {
+    0%,100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.message {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 4vw, 24px);
+    line-height: 1.8;
+    margin: 25px 0;
+    color: #6b3048;
+}
+
+.divider {
+    margin: 25px 0;
+    color: #d27b96;
+    font-size: 25px;
+}
+
+button {
+    padding: 16px 28px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #e87999, #b9426c);
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 25px;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px #d9577833;
+}
+
+button:hover {
+    transform: translateY(-4px);
+}
+
+#secret {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    background: #fff1f5;
+    border-radius: 20px;
+    line-height: 1.8;
+    animation: appear 0.7s ease;
+}
+
+footer {
+    margin-top: 30px;
+    font-size: 11px;
+    color: #b17b90;
+    letter-spacing: 2px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="card">
+
+    <div class="subtitle">
+        DUNYODAGI ENG AZIZ INSONIMGA
+    </div>
+
+    <span class="flower">💐</span>
+
+    <h1>
+        Dildora <span>Onajonim</span>
+    </h1>
+
+    <p class="message">
+        Bu kichkina sahifa — cheksiz mehringiz,
+        duolaringiz va qalbimdagi eng go‘zal
+        tuyg‘ular uchun.
+    </p>
+
+    <div class="divider">♡</div>
+
+    <p class="message">
+        “Onajon, siz borligingiz — mening eng katta
+        baxtim. Mehringiz qalbimga nur, duolaringiz
+        yo‘limga kuch beradi. Sizni dunyodagi barcha
+        go‘zalliklardan ham ko‘proq qadrlayman.”
+    </p>
+
+    <p>
+        Cheksiz mehr bilan, farzandingiz ❤️
+    </p>
+
+    <button onclick="openLetter()" id="openBtn">
+        Yuragimdagi yana bir gapni oching 💌
+    </button>
+
+    <div id="secret">
+        Onajonim, har doim sog‘-salomat bo‘ling.
+        Yuzingizdan tabassum, qalbingizdan xotirjamlik
+        arimasin.
+
+        Sizni xursand qilish va duolaringizga munosib
+        farzand bo‘lish — mening eng katta orzularimdan biri.
+
+        <br><br>
+
+        <strong>
+            Men sizni juda-juda yaxshi ko‘raman! ❤️
+        </strong>
+    </div>
+
+    <footer>
+        BU SAHIFA FAQAT SIZ UCHUN, ONAJONIM
+    </footer>
+
+</section>
+
+<script>
+function openLetter() {
+
+    const secret = document.getElementById("secret");
+    const button = document.getElementById("openBtn");
+
+    secret.style.display = "block";
+
+    button.innerText =
+        "Sizni juda yaxshi ko‘raman, Onajon! ❤️";
+
+    button.disabled = true;
+
+    for (let i = 0; i < 30; i++) {
+        setTimeout(makeHeart, i * 100);
+    }
+}
+
+function makeHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerText = ["♡", "♥", "🌸", "✨"][
+        Math.floor(Math.random() * 4)
+    ];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        (14 + Math.random() * 25) + "px";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 5) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 9000);
+}
+
+setInterval(() => {
+    if (Math.random() > 0.45) {
+        makeHeart();
+    }
+}, 1100);
+</script>
+
+</body>
+</html>
