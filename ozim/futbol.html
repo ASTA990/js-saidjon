@@ -1,0 +1,791 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAIDJON ST | Football Club</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --purple: #8500ff;
+  --purple2: #4e00b8;
+  --black: #050508;
+  --card: #101016;
+  --white: #f8f8ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5,5,8,.94);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid #32115b;
+}
+
+.navbar {
+  max-width: 1250px;
+  margin: auto;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.brand span {
+  color: var(--purple);
+}
+
+.logo {
+  width: 48px;
+  height: 55px;
+  background: linear-gradient(145deg, #a100ff, #21004f);
+  clip-path: polygon(50% 0,100% 20%,90% 75%,50% 100%,10% 75%,0 20%);
+  display: grid;
+  place-items: center;
+  border: 1px solid white;
+}
+
+.logo-inner {
+  font-size: 25px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-links a {
+  transition: .3s;
+}
+
+.nav-links a:hover {
+  color: #b66aff;
+}
+
+.contact-btn {
+  background: linear-gradient(120deg, #a000ff, #5300c9);
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-weight: 700;
+  box-shadow: 0 0 20px #7000ff44;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  color: white;
+  font-size: 28px;
+  border: none;
+}
+
+/* HERO */
+
+.hero {
+  min-height: 550px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, #050508 5%, #050508dd 40%, #05050822 100%),
+    url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=85')
+    center/cover;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, #050508, transparent 40%);
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 1250px;
+  width: 100%;
+  margin: auto;
+  padding: 70px 35px;
+  position: relative;
+  z-index: 2;
+}
+
+.tag {
+  display: inline-block;
+  color: #c99aff;
+  border: 1px solid #6c00d9;
+  background: #6500bb22;
+  padding: 9px 17px;
+  border-radius: 30px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(45px, 8vw, 100px);
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -3px;
+}
+
+.hero h1 span {
+  color: var(--purple);
+  text-shadow: 0 0 35px #8100ff66;
+}
+
+.hero p {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #c5c5d0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 15px 24px;
+  border-radius: 9px;
+  font-weight: 700;
+  display: inline-block;
+  transition: .3s;
+}
+
+.primary-btn {
+  background: var(--purple);
+  box-shadow: 0 0 25px #8500ff44;
+}
+
+.secondary-btn {
+  border: 1px solid #8500ff;
+  background: #09090e;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px #8500ff77;
+}
+
+/* SECTION */
+
+section {
+  padding: 75px 25px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-head {
+  margin-bottom: 35px;
+}
+
+.section-head .small {
+  color: #ad62ff;
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.section-head h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(25px, 4vw, 40px);
+  margin-top: 12px;
+}
+
+.section-head h2 span {
+  color: var(--purple);
+}
+
+/* TEAM */
+
+.team {
+  background: linear-gradient(180deg, #050508, #0c0714, #050508);
+}
+
+.players {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.player {
+  background: linear-gradient(145deg, #17131f, #09090e);
+  border: 1px solid #2d1a43;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: .35s;
+  position: relative;
+}
+
+.player:hover {
+  transform: translateY(-8px);
+  border-color: var(--purple);
+  box-shadow: 0 0 30px #8500ff22;
+}
+
+.player-visual {
+  height: 180px;
+  background:
+    radial-gradient(circle at 50% 20%, #6a00b744, transparent 50%),
+    linear-gradient(135deg, #181021, #08080d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.player-visual::after {
+  content: "ST";
+  font-family: 'Orbitron', sans-serif;
+  font-size: 85px;
+  font-weight: 900;
+  color: #ffffff09;
+  position: absolute;
+}
+
+.player-number {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 70px;
+  font-weight: 900;
+  color: #b66aff;
+  text-shadow: 0 0 30px #8500ff55;
+  z-index: 1;
+}
+
+.player-info {
+  padding: 18px;
+}
+
+.player-info h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.position {
+  display: inline-block;
+  background: #8500ff22;
+  border: 1px solid #6100b8;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #c69aff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ABOUT */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+}
+
+.about-image {
+  min-height: 330px;
+  border-radius: 18px;
+  background:
+    linear-gradient(0deg, #08060dcc, transparent),
+    url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80')
+    center/cover;
+  border: 1px solid #4c167a;
+}
+
+.about-text p {
+  color: #aaaab8;
+  line-height: 1.9;
+  margin-top: 20px;
+}
+
+.stats {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.stat strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 28px;
+  color: #b66aff;
+}
+
+.stat small {
+  color: #999;
+  font-size: 12px;
+}
+
+/* CONTACT */
+
+.contact {
+  background:
+    radial-gradient(ellipse at 50% 100%, #4a008a33, transparent 60%),
+    #09090e;
+}
+
+.contact-card {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  padding: 55px 25px;
+  border: 1px solid #4c167a;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #15101f, #08080c);
+  box-shadow: 0 0 60px #8500ff12;
+}
+
+.telegram-icon {
+  width: 75px;
+  height: 75px;
+  display: grid;
+  place-items: center;
+  background: #8500ff22;
+  border: 1px solid #8500ff;
+  border-radius: 50%;
+  font-size: 35px;
+  margin: 0 auto 25px;
+}
+
+.contact-card h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(25px, 5vw, 38px);
+}
+
+.contact-card p {
+  color: #aaa;
+  margin: 20px 0 30px;
+  line-height: 1.8;
+}
+
+.telegram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #8b00ff, #5100bc);
+  font-weight: 800;
+  transition: .3s;
+}
+
+.telegram-link:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 30px #8500ff66;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 30px 25px;
+  border-top: 1px solid #29143f;
+  background: #050508;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+footer p {
+  color: #777;
+  font-size: 12px;
+}
+
+footer a {
+  color: #b66aff;
+}
+
+/* MOBILE */
+
+@media(max-width: 900px) {
+  .players {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+}
+
+@media(max-width: 650px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 75px;
+    left: 0;
+    width: 100%;
+    background: #09090e;
+    border-bottom: 1px solid #4c167a;
+    padding: 25px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 10px;
+  }
+
+  .hero {
+    min-height: 480px;
+    background-position: 65% center;
+  }
+
+  .hero-content {
+    padding: 60px 22px;
+  }
+
+  .hero h1 {
+    letter-spacing: -2px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  section {
+    padding: 55px 18px;
+  }
+
+  .players {
+    gap: 12px;
+  }
+
+  .player-visual {
+    height: 135px;
+  }
+
+  .player-number {
+    font-size: 55px;
+  }
+
+  .player-info {
+    padding: 13px;
+  }
+
+  .player-info h3 {
+    font-size: 14px;
+  }
+
+  .stats {
+    gap: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="navbar">
+    <a href="#home" class="brand">
+      <div class="logo">
+        <div class="logo-inner">⚽</div>
+      </div>
+      SAIDJON <span>ST</span>
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <div class="nav-links" id="navLinks">
+      <a href="#home" onclick="closeMenu()">Bosh sahifa</a>
+      <a href="#about" onclick="closeMenu()">Klub haqida</a>
+      <a href="#team" onclick="closeMenu()">Jamoa</a>
+      <a href="#contact" onclick="closeMenu()">Aloqa</a>
+      <a href="https://t.me/Xan1_suki" target="_blank"
+         class="contact-btn">Telegram ↗</a>
+    </div>
+  </nav>
+</header>
+
+<!-- BOSH SAHIFA -->
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">⚽ FOOTBALL CLUB</div>
+
+    <h1>SAIDJON<br><span>ST</span></h1>
+
+    <p>Bir jamoa — Bir maqsad!</p>
+
+    <div class="hero-buttons">
+      <a href="#team" class="primary-btn">Jamoani ko‘rish →</a>
+      <a href="#contact" class="secondary-btn">Aloqa uchun ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- JAMOA -->
+
+<section class="team" id="team">
+  <div class="container">
+
+    <div class="section-head">
+      <div class="small">OUR PLAYERS / 2026</div>
+      <h2>JAMOA <span>TARKIBI</span></h2>
+    </div>
+
+    <div class="players">
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">10</div>
+        </div>
+        <div class="player-info">
+          <h3>Saidjon</h3>
+          <span class="position">HUJUMCHI · ST</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">7</div>
+        </div>
+        <div class="player-info">
+          <h3>Abror (S)</h3>
+          <span class="position">HUJUMCHI · SARDOR</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">11</div>
+        </div>
+        <div class="player-info">
+          <h3>Akmal</h3>
+          <span class="position">HUJUMCHI · ST</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">8</div>
+        </div>
+        <div class="player-info">
+          <h3>Sulaymon</h3>
+          <span class="position">YARIM HIMOYACHI</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">4</div>
+        </div>
+        <div class="player-info">
+          <h3>Islom</h3>
+          <span class="position">HIMOYACHI</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">6</div>
+        </div>
+        <div class="player-info">
+          <h3>Shamsiddin</h3>
+          <span class="position">HIMOYACHI</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">5</div>
+        </div>
+        <div class="player-info">
+          <h3>Diyorbek</h3>
+          <span class="position">HIMOYACHI</span>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="player-visual">
+          <div class="player-number">1</div>
+        </div>
+        <div class="player-info">
+          <h3>Mardonbek</h3>
+          <span class="position">DARVOZABON · GK</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KLUB HAQIDA -->
+
+<section id="about">
+  <div class="container">
+
+    <div class="about-grid">
+
+      <div class="about-image"></div>
+
+      <div class="about-text">
+        <div class="section-head">
+          <div class="small">ABOUT OUR CLUB</div>
+          <h2>BIZNING <span>JAMOA</span></h2>
+        </div>
+
+        <p>
+          SAIDJON ST — futbolga bo‘lgan muhabbat,
+          do‘stlik va g‘alaba uchun birlashgan jamoa.
+          Biz maydonda birgalikda kurashamiz,
+          birgalikda rivojlanamiz va har bir o‘yinda
+          bor kuchimizni ko‘rsatamiz.
+        </p>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>08</strong>
+            <small>Futbolchilar</small>
+          </div>
+
+          <div class="stat">
+            <strong>01</strong>
+            <small>Jamoa</small>
+          </div>
+
+          <div class="stat">
+            <strong>∞</strong>
+            <small>Maqsadlar</small>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ALOQA -->
+
+<section class="contact" id="contact">
+  <div class="container">
+
+    <div class="contact-card">
+
+      <div class="telegram-icon">✈</div>
+
+      <div class="section-head">
+        <div class="small">CONTACT US</div>
+        <h2>ALOQA <span>UCHUN</span></h2>
+      </div>
+
+      <p>
+        SAIDJON ST jamoasi bilan bog‘lanmoqchimisiz?
+        Bizga Telegram orqali yozing!
+      </p>
+
+      <a href="https://t.me/Xan1_suki"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="telegram-link">
+        ✈ @Xan1_suki
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <div class="footer-inner">
+
+    <a href="#home" class="brand">
+      SAIDJON <span>ST</span>
+    </a>
+
+    <p>© 2026 SAIDJON ST. Bir jamoa — Bir maqsad!</p>
+
+    <a href="https://t.me/Xan1_suki" target="_blank">
+      Telegram ↗
+    </a>
+
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+
+function closeMenu() {
+  document.getElementById("navLinks").classList.remove("active");
+}
+</script>
+
+</body>
+</html>
