@@ -1,0 +1,464 @@
+
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kitobxon | 6–8-sinf</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f4ef;
+  color: #20251f;
+  transition: .3s;
+}
+
+header {
+  background: #183c2b;
+  color: white;
+  padding: 25px 7%;
+}
+
+header h1 {
+  font-size: 28px;
+}
+
+header p {
+  margin-top: 8px;
+  color: #c7dfce;
+}
+
+main {
+  max-width: 1100px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #1c5438, #387c50);
+  color: white;
+  padding: 35px;
+  border-radius: 22px;
+  margin-bottom: 30px;
+}
+
+.hero h2 {
+  font-size: 30px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  color: #e2f4e5;
+  line-height: 1.6;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+input, select {
+  padding: 13px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: white;
+  font-size: 15px;
+}
+
+input {
+  flex: 1;
+  min-width: 180px;
+}
+
+.books {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.book {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  border: 1px solid #e8e8e0;
+  transition: .2s;
+}
+
+.book:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px #0000000b;
+}
+
+.cover {
+  height: 125px;
+  background: #e7f1e8;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+
+.book small {
+  color: #51815e;
+  font-weight: bold;
+}
+
+.book h3 {
+  margin: 12px 0;
+  font-size: 18px;
+}
+
+.book p {
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  padding: 13px 18px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: .2s;
+}
+
+.read {
+  width: 100%;
+  background: #245a38;
+  color: white;
+}
+
+.read:hover {
+  background: #163e26;
+}
+
+.reader {
+  display: none;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-top: 30px;
+}
+
+.reader.active {
+  display: block;
+}
+
+.reader h2 {
+  margin-bottom: 15px;
+}
+
+.reader p {
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.reader textarea {
+  width: 100%;
+  min-height: 250px;
+  padding: 18px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 17px;
+  line-height: 1.8;
+  resize: vertical;
+}
+
+.reader-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.green {
+  background: #245a38;
+  color: white;
+}
+
+.gray {
+  background: #eeeeea;
+  color: #333;
+}
+
+footer {
+  text-align: center;
+  padding: 35px;
+  color: #777;
+}
+
+body.dark {
+  background: #111713;
+  color: #e8eee9;
+}
+
+body.dark .book,
+body.dark .reader {
+  background: #202922;
+  border-color: #303b32;
+}
+
+body.dark input,
+body.dark select,
+body.dark textarea {
+  background: #182019;
+  color: white;
+  border-color: #39443b;
+}
+
+body.dark .cover {
+  background: #293b2d;
+}
+
+body.dark .gray {
+  background: #354138;
+  color: white;
+}
+
+@media(max-width:600px) {
+  header {
+    padding: 22px;
+  }
+
+  .hero {
+    padding: 25px;
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+
+  main {
+    margin-top: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>📚 KITOBXON</h1>
+  <p>6–8-sinf o‘quvchilari uchun elektron kutubxona</p>
+</header>
+
+<main>
+
+  <section class="hero">
+    <h2>Kitob o‘qish — yangi dunyo! 🌍</h2>
+    <p>
+      Sevimli kitobingni tanla va o‘qishni boshlagin.
+      Har bir kitob bir yangi sarguzasht!
+    </p>
+  </section>
+
+  <div class="controls">
+    <input
+      id="search"
+      type="text"
+      placeholder="🔍 Kitob nomini qidir..."
+      oninput="renderBooks()"
+    >
+
+    <select id="grade" onchange="renderBooks()">
+      <option value="all">Barcha sinflar</option>
+      <option value="6">6-sinf</option>
+      <option value="7">7-sinf</option>
+      <option value="8">8-sinf</option>
+    </select>
+
+    <button class="gray" onclick="toggleDark()">
+      🌙 Rejim
+    </button>
+  </div>
+
+  <div class="books" id="books"></div>
+
+  <section class="reader" id="reader">
+    <h2 id="readerTitle">Kitob o‘qish</h2>
+
+    <p>
+      Kitobning matnini quyidagi oynaga joylashtir.
+      O‘qish oynasi matnni kattalashtirish va tungi rejimni
+      qo‘llab-quvvatlaydi.
+    </p>
+
+    <div class="reader-buttons">
+      <button class="green" onclick="changeSize(2)">
+        A+ Kattalashtirish
+      </button>
+
+      <button class="gray" onclick="changeSize(-2)">
+        A- Kichraytirish
+      </button>
+
+      <button class="gray" onclick="clearText()">
+        Tozalash
+      </button>
+
+      <button class="green" onclick="findBook()">
+        🌐 Kitobni topish
+      </button>
+    </div>
+
+    <textarea id="text" placeholder="Kitob matnini shu yerga joylashtir..."></textarea>
+  </section>
+
+</main>
+
+<footer>
+  📚 KITOBXON — Har kuni yangi sahifa!
+</footer>
+
+<script>
+const booksData = [
+  {
+    title: "To‘maris",
+    grade: "6",
+    author: "Mirkarim Osim"
+  },
+  {
+    title: "Malik",
+    grade: "6",
+    author: "Kipling"
+  },
+  {
+    title: "Falak",
+    grade: "6",
+    author: "Tohir Malik"
+  },
+  {
+    title: "Tom Soyerning boshidan kechirganlari",
+    grade: "6",
+    author: "Mark Tven"
+  },
+  {
+    title: "Chipollinoning sarguzashtlari",
+    grade: "6",
+    author: "Janni Rodari"
+  },
+  {
+    title: "Navoiy bilan bolalar",
+    grade: "6",
+    author: "Erkin A'zam"
+  },
+  {
+    title: "Oygul bilan Baxtiyor",
+    grade: "6",
+    author: "Hamid Olimjon"
+  },
+  {
+    title: "Yovvoyi yo‘rg‘a",
+    grade: "6",
+    author: "Ernest Seton-Tompson"
+  },
+  {
+    title: "Ezop masallari",
+    grade: "6",
+    author: "Ezop"
+  },
+  {
+    title: "Lobo: Chinkona",
+    grade: "6",
+    author: "Ernest Seton-Tompson"
+  }
+];
+
+let selectedBook = "";
+let fontSize = 17;
+
+function renderBooks() {
+  const search = document
+    .getElementById("search")
+    .value.toLowerCase();
+
+  const grade = document.getElementById("grade").value;
+
+  const container = document.getElementById("books");
+
+  container.innerHTML = "";
+
+  const filtered = booksData.filter(book => {
+    return book.title.toLowerCase().includes(search)
+      && (grade === "all" || book.grade === grade);
+  });
+
+  filtered.forEach(book => {
+    const card = document.createElement("div");
+
+    card.className = "book";
+
+    card.innerHTML = `
+      <div class="cover">📖</div>
+      <small>${book.grade}-SINF</small>
+      <h3>${book.title}</h3>
+      <p>Muallif: ${book.author}</p>
+      <button class="read"
+        onclick="openBook('${book.title.replace(/'/g, "\\'")}')">
+        O‘QISH →
+      </button>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function openBook(title) {
+  selectedBook = title;
+
+  document.getElementById("readerTitle").innerText =
+    "📖 " + title;
+
+  document.getElementById("reader").classList.add("active");
+
+  document.getElementById("reader").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+function changeSize(amount) {
+  fontSize += amount;
+
+  if (fontSize < 12) fontSize = 12;
+  if (fontSize > 40) fontSize = 40;
+
+  document.getElementById("text").style.fontSize =
+    fontSize + "px";
+}
+
+function clearText() {
+  document.getElementById("text").value = "";
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+function findBook() {
+  const query = encodeURIComponent(
+    selectedBook + " kitob elektron matn"
+  );
+
+  window.open(
+    "https://www.google.com/search?q=" + query,
+    "_blank"
+  );
+}
+
+renderBooks();
+</script>
+
+</body>
+</html>
