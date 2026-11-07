@@ -1,0 +1,1760 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BILLIARD PRO</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --bg: #0a0e0c;
+        --panel: #111815;
+        --line: #24332b;
+        --green: #19c37d;
+        --gold: #e7b95c;
+        --text: #f1f5f2;
+        --muted: #8b9a91;
+        --red: #f16b6b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background:
+          radial-gradient(ellipse at 80% -20%, #173a2b, transparent 36%),
+          var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        min-height: 100vh;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 255px 1fr;
+        min-height: 100vh;
+      }
+      .sidebar {
+        background: #0d1410;
+        border-right: 1px solid var(--line);
+        padding: 26px 18px;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 4px 8px 30px;
+      }
+      .brand-icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #22d68a, #08744b);
+        display: grid;
+        place-items: center;
+        color: #06140d;
+        font-size: 22px;
+        font-weight: 900;
+      }
+      .brand b {
+        font: 800 17px Manrope;
+        letter-spacing: 1.4px;
+      }
+      .brand small {
+        display: block;
+        color: var(--muted);
+        font-size: 9px;
+        letter-spacing: 2px;
+        margin-top: 3px;
+      }
+      .nav-label {
+        font-size: 10px;
+        color: #65766c;
+        letter-spacing: 1.7px;
+        font-weight: 800;
+        padding: 12px;
+      }
+      .nav {
+        display: grid;
+        gap: 5px;
+      }
+      .nav button {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        padding: 12px 13px;
+        border-radius: 12px;
+        background: transparent;
+        color: #a8b5ad;
+        text-align: left;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      .nav button:hover,
+      .nav button.active {
+        background: #173125;
+        color: #eafff3;
+      }
+      .nav button.active {
+        box-shadow: inset 3px 0 var(--green);
+      }
+      .nav .ico {
+        width: 20px;
+        text-align: center;
+        font-size: 17px;
+      }
+      .sidebar-bottom {
+        margin-top: auto;
+      }
+      .status {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
+        background: #111a15;
+      }
+      .status strong {
+        font-size: 12px;
+      }
+      .status p {
+        font-size: 11px;
+        color: var(--muted);
+        margin: 6px 0 0;
+      }
+      .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--green);
+        margin-right: 7px;
+      }
+      main {
+        padding: 30px 34px 55px;
+        max-width: 1600px;
+        width: 100%;
+        margin: auto;
+      }
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        gap: 15px;
+      }
+      .eyebrow {
+        color: var(--green);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 2px;
+      }
+      .topbar h1 {
+        font: 800 27px Manrope;
+        margin: 5px 0 0;
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .date-chip,
+      .user-chip {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 10px 13px;
+        border-radius: 12px;
+        color: #c6d0ca;
+        font-size: 12px;
+      }
+      .user-chip {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+      }
+      .avatar {
+        width: 27px;
+        height: 27px;
+        border-radius: 9px;
+        background: #254d39;
+        display: grid;
+        place-items: center;
+        color: #8cf0bb;
+        font-weight: 800;
+      }
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+      .welcome {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(105deg, #143a29, #10251b 65%, #18291f);
+        border: 1px solid #28583e;
+        border-radius: 20px;
+        padding: 24px 27px;
+        margin-bottom: 22px;
+      }
+      .welcome h2 {
+        font: 800 21px Manrope;
+        margin: 0 0 7px;
+      }
+      .welcome p {
+        color: #b3cabe;
+        margin: 0;
+        font-size: 12px;
+      }
+      .welcome .today {
+        z-index: 1;
+        text-align: right;
+        color: #c7dfd0;
+        font-size: 11px;
+      }
+      .today b {
+        display: block;
+        font-size: 22px;
+        color: white;
+        margin-bottom: 4px;
+      }
+      .grid {
+        display: grid;
+        gap: 15px;
+      }
+      .stats {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 22px;
+      }
+      .stat {
+        background: linear-gradient(145deg, #151f1a, #101713);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+      }
+      .stat-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .stat-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: #1c3528;
+        display: grid;
+        place-items: center;
+        color: var(--green);
+        font-size: 16px;
+      }
+      .stat strong {
+        display: block;
+        font: 800 23px Manrope;
+        margin: 15px 0 5px;
+      }
+      .stat small {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .positive {
+        color: var(--green) !important;
+      }
+      .section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 27px 0 14px;
+        gap: 12px;
+      }
+      .section-head h3 {
+        font: 800 16px Manrope;
+        margin: 0;
+      }
+      .section-head p {
+        color: var(--muted);
+        font-size: 11px;
+        margin: 5px 0 0;
+      }
+      .btn {
+        border-radius: 11px;
+        padding: 10px 14px;
+        font-weight: 700;
+        font-size: 11px;
+        transition: 0.2s;
+      }
+      .btn-primary {
+        background: var(--green);
+        color: #052013;
+      }
+      .btn-primary:hover {
+        background: #45dda0;
+      }
+      .btn-soft {
+        background: #1b2b22;
+        color: #ccebd9;
+        border: 1px solid #294535;
+      }
+      .btn-danger {
+        background: #3a2020;
+        color: #ffaaaa;
+        border: 1px solid #633434;
+      }
+      .tables {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .table-card {
+        background: linear-gradient(145deg, #15221b, #101713);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 19px;
+        position: relative;
+      }
+      .table-card.busy {
+        border-color: #286847;
+      }
+      .table-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .table-name {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .table-symbol {
+        width: 43px;
+        height: 43px;
+        border-radius: 13px;
+        background: #1b3829;
+        display: grid;
+        place-items: center;
+        font-size: 21px;
+      }
+      .table-name h4 {
+        margin: 0;
+        font: 800 15px Manrope;
+      }
+      .table-name small {
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .pill {
+        border-radius: 30px;
+        padding: 6px 9px;
+        font-size: 9px;
+        font-weight: 800;
+        background: #26312b;
+        color: #a8b8ae;
+      }
+      .pill.busy {
+        background: #17452e;
+        color: #70e9a9;
+      }
+      .table-middle {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin: 23px 0 18px;
+      }
+      .timer {
+        font: 800 29px Manrope;
+        letter-spacing: 1px;
+      }
+      .timer-label {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .cost {
+        text-align: right;
+      }
+      .cost b {
+        display: block;
+        color: var(--gold);
+        font: 800 20px Manrope;
+      }
+      .cost small {
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .table-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .table-actions .btn {
+        flex: 1;
+      }
+      .table-info {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        padding: 19px;
+      }
+      .two-col {
+        grid-template-columns: 1.25fr 0.75fr;
+      }
+      .chart-area {
+        height: 210px;
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        padding: 20px 5px 0;
+      }
+      .bar-wrap {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        gap: 8px;
+      }
+      .bar {
+        width: min(32px, 75%);
+        border-radius: 7px 7px 3px 3px;
+        background: linear-gradient(180deg, #29d88d, #12653f);
+        min-height: 3px;
+      }
+      .bar-label {
+        font-size: 9px;
+        color: var(--muted);
+      }
+      .bar-value {
+        font-size: 9px;
+        color: #c9d8ce;
+      }
+      .list {
+        display: grid;
+      }
+      .list-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 13px 0;
+        border-bottom: 1px solid #202d25;
+        font-size: 11px;
+      }
+      .list-row:last-child {
+        border: 0;
+      }
+      .list-row span {
+        color: var(--muted);
+      }
+      .toolbar {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .field {
+        display: grid;
+        gap: 6px;
+      }
+      .field label {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        background: #0c130f;
+        border: 1px solid #2b3a31;
+        color: var(--text);
+        border-radius: 10px;
+        padding: 11px 12px;
+        outline: none;
+        font-size: 12px;
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--green);
+      }
+      .field textarea {
+        min-height: 75px;
+        resize: vertical;
+      }
+      .field-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .form-grid {
+        display: grid;
+        gap: 14px;
+      }
+      .table-wrap {
+        overflow: auto;
+      }
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 600px;
+      }
+      .data-table th {
+        text-align: left;
+        color: #829389;
+        font-size: 10px;
+        letter-spacing: 0.7px;
+        padding: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .data-table td {
+        padding: 13px 12px;
+        border-bottom: 1px solid #202b24;
+        font-size: 11px;
+        color: #d5dfd8;
+      }
+      .empty {
+        text-align: center;
+        color: var(--muted);
+        padding: 32px 10px;
+        font-size: 12px;
+      }
+      .report-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .report-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        padding: 18px;
+        border-radius: 15px;
+      }
+      .report-card span {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .report-card b {
+        display: block;
+        font: 800 20px Manrope;
+        margin-top: 9px;
+      }
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: #000b;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 18px;
+        z-index: 20;
+      }
+      .modal-backdrop.show {
+        display: flex;
+      }
+      .modal {
+        width: min(470px, 100%);
+        background: #121b16;
+        border: 1px solid #304438;
+        border-radius: 19px;
+        padding: 22px;
+        max-height: 90vh;
+        overflow: auto;
+      }
+      .modal-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+      .modal-head h3 {
+        font: 800 17px Manrope;
+        margin: 0;
+      }
+      .close {
+        background: #26332b;
+        color: #cbd8cf;
+        border-radius: 9px;
+        width: 30px;
+        height: 30px;
+      }
+      .modal-actions {
+        display: flex;
+        justify-content: end;
+        gap: 8px;
+        margin-top: 18px;
+      }
+      .toast {
+        position: fixed;
+        right: 22px;
+        bottom: 22px;
+        background: #173b29;
+        border: 1px solid #2b8052;
+        color: #d9ffea;
+        padding: 13px 17px;
+        border-radius: 12px;
+        font-size: 12px;
+        z-index: 40;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: 0.25s;
+        pointer-events: none;
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .settings-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .small {
+        font-size: 10px;
+      }
+      .footer {
+        text-align: center;
+        color: #5f7066;
+        font-size: 10px;
+        padding: 35px 0 5px;
+      }
+      @media (max-width: 1000px) {
+        .stats {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .layout {
+          grid-template-columns: 215px 1fr;
+        }
+        main {
+          padding: 25px 22px;
+        }
+      }
+      @media (max-width: 720px) {
+        .layout {
+          display: block;
+        }
+        .sidebar {
+          height: auto;
+          position: relative;
+          padding: 13px 14px;
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+        .brand {
+          padding: 0 5px 12px;
+        }
+        .nav-label,
+        .sidebar-bottom {
+          display: none;
+        }
+        .nav {
+          display: flex;
+          overflow: auto;
+          gap: 5px;
+        }
+        .nav button {
+          white-space: nowrap;
+          padding: 9px 11px;
+          font-size: 11px;
+        }
+        .nav button.active {
+          box-shadow: inset 0 -2px var(--green);
+        }
+        main {
+          padding: 20px 14px;
+        }
+        .topbar h1 {
+          font-size: 21px;
+        }
+        .date-chip {
+          display: none;
+        }
+        .welcome {
+          padding: 19px;
+        }
+        .welcome .today {
+          display: none;
+        }
+        .tables,
+        .two-col,
+        .settings-grid {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          gap: 9px;
+        }
+        .stat {
+          padding: 13px;
+        }
+        .stat strong {
+          font-size: 18px;
+        }
+        .report-cards {
+          grid-template-columns: 1fr;
+        }
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-icon">♧</div>
+          <div><b>BILLIARD PRO</b><small>CLUB MANAGEMENT</small></div>
+        </div>
+        <div class="nav-label">ASOSIY MENYU</div>
+        <nav class="nav">
+          <button class="active" data-page="dashboard">
+            <span class="ico">▦</span> Bosh sahifa
+          </button>
+          <button data-page="tables">
+            <span class="ico">▤</span> Stol boshqaruvi
+          </button>
+          <button data-page="reports">
+            <span class="ico">▥</span> Hisobotlar
+          </button>
+          <button data-page="expenses">
+            <span class="ico">↘</span> Xarajatlar
+          </button>
+          <button data-page="history">
+            <span class="ico">◷</span> O‘yinlar tarixi
+          </button>
+          <button data-page="settings">
+            <span class="ico">⚙</span> Sozlamalar
+          </button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="status">
+            <strong><i class="dot"></i>Tizim faol</strong>
+            <p>Ma'lumotlar ushbu qurilmada avtomatik saqlanadi.</p>
+          </div>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">BILLIARD CLUB / CONTROL CENTER</div>
+            <h1 id="pageTitle">Bosh sahifa</h1>
+          </div>
+          <div class="top-actions">
+            <div class="date-chip" id="liveDate"></div>
+            <div class="user-chip">
+              <div class="avatar">A</div>
+              <b>Administrator</b>
+            </div>
+          </div>
+        </header>
+
+        <section class="page active" id="dashboard">
+          <div class="welcome">
+            <div>
+              <h2>Bilyardxonangizga xush kelibsiz 👋</h2>
+              <p>
+                Bugungi ish jarayoni va daromadlaringizni shu yerdan kuzating.
+              </p>
+            </div>
+            <div class="today"><b id="welcomeDate"></b>BUGUNGI ISH KUNI</div>
+          </div>
+          <div class="grid stats">
+            <div class="stat">
+              <div class="stat-head">
+                Bugungi tushum <span class="stat-icon">↗</span>
+              </div>
+              <strong id="dashRevenue">0 so‘m</strong
+              ><small class="positive">Bugun yakunlangan to‘lovlar</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Bugungi xarajat <span class="stat-icon">↘</span>
+              </div>
+              <strong id="dashExpense">0 so‘m</strong
+              ><small>Qayd etilgan xarajatlar</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Sof foyda <span class="stat-icon">◈</span>
+              </div>
+              <strong id="dashProfit">0 so‘m</strong
+              ><small>Tushum − xarajat</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Faol stollar <span class="stat-icon">▤</span>
+              </div>
+              <strong id="dashActive">0 / 2</strong
+              ><small>Hozir o‘ynalayotgan stollar</small>
+            </div>
+          </div>
+          <div class="section-head">
+            <div>
+              <h3>Stollar holati</h3>
+              <p>Vaqtni boshlang va to‘lovni avtomatik hisoblang</p>
+            </div>
+            <button class="btn btn-soft" onclick="go('tables')">
+              Barcha stollar →
+            </button>
+          </div>
+          <div class="grid tables" id="dashTables"></div>
+          <div class="grid two-col">
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Daromad statistikasi</h3>
+                  <p>Oxirgi 7 kunlik tushum</p>
+                </div>
+              </div>
+              <div class="chart-area" id="weekChart"></div>
+            </div>
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Bugungi qisqa hisobot</h3>
+                  <p>Kun yakunidagi holat</p>
+                </div>
+              </div>
+              <div class="list" id="quickReport"></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="tables">
+          <div class="welcome">
+            <div>
+              <h2>Stollarni boshqarish</h2>
+              <p>Har bir stol uchun vaqt va narx alohida hisoblanadi.</p>
+            </div>
+            <div class="today"><b id="activeCount">0 / 2</b>FAOL STOLLAR</div>
+          </div>
+          <div class="grid stats">
+            <div class="stat">
+              <div class="stat-head">
+                Band stollar<span class="stat-icon">●</span>
+              </div>
+              <strong id="tableBusy">0</strong
+              ><small>Hozir foydalanilmoqda</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Bo‘sh stollar<span class="stat-icon">○</span>
+              </div>
+              <strong id="tableFree">2</strong
+              ><small>O‘yinni boshlash mumkin</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Bugun seanslar<span class="stat-icon">◷</span>
+              </div>
+              <strong id="tableSessions">0</strong
+              ><small>Yakunlangan o‘yinlar</small>
+            </div>
+            <div class="stat">
+              <div class="stat-head">
+                Stollar tushumi<span class="stat-icon">₸</span>
+              </div>
+              <strong id="tableRevenue">0</strong><small>Bugungi tushum</small>
+            </div>
+          </div>
+          <div class="grid tables" id="allTables"></div>
+        </section>
+
+        <section class="page" id="reports">
+          <div class="panel" style="margin-bottom: 17px">
+            <div class="toolbar">
+              <div class="field">
+                <label>BOSHLANISH SANASI</label
+                ><input type="date" id="reportFrom" />
+              </div>
+              <div class="field">
+                <label>TUGASH SANASI</label><input type="date" id="reportTo" />
+              </div>
+              <button
+                class="btn btn-primary"
+                style="align-self: end"
+                onclick="renderReports()"
+              >
+                Hisobotni ko‘rish
+              </button>
+              <button
+                class="btn btn-soft"
+                style="align-self: end"
+                onclick="exportCSV()"
+              >
+                CSV yuklab olish
+              </button>
+              <button
+                class="btn btn-soft"
+                style="align-self: end"
+                onclick="window.print()"
+              >
+                Chop etish
+              </button>
+            </div>
+          </div>
+          <div class="grid report-cards" style="margin-bottom: 17px">
+            <div class="report-card">
+              <span>JAMI TUSHUM</span><b id="repRevenue">0 so‘m</b>
+            </div>
+            <div class="report-card">
+              <span>JAMI XARAJAT</span><b id="repExpense">0 so‘m</b>
+            </div>
+            <div class="report-card">
+              <span>SOF FOYDA</span><b id="repProfit">0 so‘m</b>
+            </div>
+          </div>
+          <div class="grid two-col">
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Kunlar bo‘yicha tushum</h3>
+                  <p>Tanlangan davr statistikasi</p>
+                </div>
+              </div>
+              <div class="chart-area" id="reportChart"></div>
+            </div>
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div><h3>Hisobot tafsilotlari</h3></div>
+              </div>
+              <div class="list" id="reportDetails"></div>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 17px">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h3>Tanlangan davrdagi operatsiyalar</h3>
+                <p>Yakunlangan o‘yinlar va tushumlar</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>SANA</th>
+                    <th>STOL</th>
+                    <th>MIJOZ</th>
+                    <th>VAQT</th>
+                    <th>SUMMA</th>
+                    <th>TO‘LOV</th>
+                  </tr>
+                </thead>
+                <tbody id="reportRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="expenses">
+          <div class="grid two-col">
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Yangi xarajat qo‘shish</h3>
+                  <p>Elektr, ijara, tozalash va boshqa xarajatlar</p>
+                </div>
+              </div>
+              <form class="form-grid" id="expenseForm">
+                <div class="field">
+                  <label>XARAJAT NOMI</label
+                  ><input
+                    id="expenseName"
+                    placeholder="Masalan: Elektr energiyasi"
+                    required
+                  />
+                </div>
+                <div class="field-row">
+                  <div class="field">
+                    <label>SUMMA (SO‘M)</label
+                    ><input
+                      id="expenseAmount"
+                      type="number"
+                      min="1"
+                      placeholder="50000"
+                      required
+                    />
+                  </div>
+                  <div class="field">
+                    <label>SANA</label
+                    ><input id="expenseDate" type="date" required />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>IZOH</label
+                  ><textarea
+                    id="expenseNote"
+                    placeholder="Qo‘shimcha ma'lumot..."
+                  ></textarea>
+                </div>
+                <button class="btn btn-primary">Xarajatni saqlash</button>
+              </form>
+            </div>
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Xarajatlar jamlanmasi</h3>
+                  <p>Bugungi va umumiy xarajatlar</p>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-row">
+                  <span>Bugungi xarajat</span><b id="expenseToday">0 so‘m</b>
+                </div>
+                <div class="list-row">
+                  <span>Jami xarajat</span><b id="expenseTotal">0 so‘m</b>
+                </div>
+                <div class="list-row">
+                  <span>Xarajatlar soni</span><b id="expenseCount">0</b>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel" style="margin-top: 18px">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h3>Xarajatlar tarixi</h3>
+                <p>Barcha kiritilgan xarajatlar</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>SANA</th>
+                    <th>NOMI</th>
+                    <th>IZOH</th>
+                    <th>SUMMA</th>
+                    <th>AMAL</th>
+                  </tr>
+                </thead>
+                <tbody id="expenseRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="history">
+          <div class="panel">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h3>O‘yinlar tarixi</h3>
+                <p>Yakunlangan barcha seanslar</p>
+              </div>
+              <button class="btn btn-soft" onclick="exportCSV()">
+                CSV eksport
+              </button>
+            </div>
+            <div class="toolbar" style="margin-bottom: 14px">
+              <div class="field" style="min-width: 210px">
+                <label>QIDIRISH</label
+                ><input
+                  id="historySearch"
+                  placeholder="Mijoz yoki stol nomi..."
+                  oninput="renderHistory()"
+                />
+              </div>
+              <div class="field">
+                <label>STOL</label
+                ><select id="historyTable" onchange="renderHistory()">
+                  <option value="">Barcha stollar</option>
+                  <option>1-stol</option>
+                  <option>2-stol</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>SANA</th>
+                    <th>STOL</th>
+                    <th>MIJOZ</th>
+                    <th>BOSHLANDI</th>
+                    <th>TUGADI</th>
+                    <th>DAVOMIYLIK</th>
+                    <th>JAMI</th>
+                    <th>TO‘LOV</th>
+                  </tr>
+                </thead>
+                <tbody id="historyRows"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="settings">
+          <div class="grid settings-grid">
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Asosiy sozlamalar</h3>
+                  <p>Bilyardxona ma'lumotlarini kiriting</p>
+                </div>
+              </div>
+              <form id="settingsForm" class="form-grid">
+                <div class="field">
+                  <label>BILYARDXONA NOMI</label
+                  ><input id="clubName" placeholder="Billiard Club" />
+                </div>
+                <div class="field">
+                  <label>1 SOATLIK NARX (SO‘M)</label
+                  ><input id="hourRate" type="number" min="1" required />
+                </div>
+                <div class="field">
+                  <label>STOLLAR SONI</label
+                  ><input value="2 ta stol" disabled />
+                </div>
+                <button class="btn btn-primary">Sozlamalarni saqlash</button>
+              </form>
+            </div>
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Ma'lumotlar xavfsizligi</h3>
+                  <p>Zaxira nusxa va tiklash</p>
+                </div>
+              </div>
+              <div class="form-grid">
+                <button class="btn btn-soft" onclick="backupData()">
+                  ⬇ Zaxira nusxasini yuklab olish
+                </button>
+                <div class="field">
+                  <label>ZAXIRA FAYLINI TIKLASH</label
+                  ><input
+                    type="file"
+                    id="restoreFile"
+                    accept=".json,application/json"
+                  />
+                </div>
+                <button class="btn btn-soft" onclick="restoreData()">
+                  Zaxirani tiklash
+                </button>
+                <p class="small muted">
+                  Ma'lumotlar shu brauzer va qurilmada saqlanadi. Boshqa
+                  qurilmada ko‘rish uchun zaxira faylini ko‘chirishingiz kerak.
+                </p>
+              </div>
+            </div>
+            <div class="panel" style="border-color: #633434">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3 style="color: #ff9b9b">Xavfli hudud</h3>
+                  <p>Barcha ma'lumotlarni tozalash</p>
+                </div>
+              </div>
+              <p class="small muted">
+                Bu amal stollar tarixi, xarajatlar va hisobotlarni o‘chiradi.
+                Avval zaxira nusxa oling.
+              </p>
+              <button class="btn btn-danger" onclick="clearAll()">
+                Barcha ma'lumotlarni tozalash
+              </button>
+            </div>
+            <div class="panel">
+              <div class="section-head" style="margin-top: 0">
+                <div>
+                  <h3>Tizim haqida</h3>
+                  <p>BILLIARD PRO v1.0</p>
+                </div>
+              </div>
+              <div class="list">
+                <div class="list-row">
+                  <span>Saqlash usuli</span><b>Local Storage</b>
+                </div>
+                <div class="list-row">
+                  <span>Valyuta</span><b>O‘zbek so‘mi</b>
+                </div>
+                <div class="list-row"><span>Stollar</span><b>2 ta</b></div>
+                <div class="list-row">
+                  <span>Hisoblash</span><b>Daqiqalar bo‘yicha</b>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="footer">BILLIARD PRO · CLUB MANAGEMENT SYSTEM</div>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal">
+        <div class="modal-head">
+          <h3 id="modalTitle">O‘yinni boshlash</h3>
+          <button class="close" onclick="closeModal()">✕</button>
+        </div>
+        <div id="modalBody"></div>
+        <div class="modal-actions" id="modalActions"></div>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
+
+    <script>
+      const KEY = "billiard_pro_data_v1";
+      const today = () => new Date().toISOString().slice(0, 10);
+      const money = (n) =>
+        new Intl.NumberFormat("uz-UZ").format(Math.round(Number(n) || 0)) +
+        " so‘m";
+      const timeText = (ms) => {
+        let s = Math.max(0, Math.floor(ms / 1000)),
+          h = Math.floor(s / 3600),
+          m = Math.floor((s % 3600) / 60),
+          sec = s % 60;
+        return [h, m, sec].map((v) => String(v).padStart(2, "0")).join(":");
+      };
+      const dateTime = (t) =>
+        new Date(t).toLocaleString("uz-UZ", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      const defaultData = () => ({
+        club: "Billiard Club",
+        rate: 40000,
+        tables: [
+          { id: 1, name: "1-stol", session: null },
+          { id: 2, name: "2-stol", session: null },
+        ],
+        sessions: [],
+        expenses: [],
+      });
+      let data;
+      try {
+        data = JSON.parse(localStorage.getItem(KEY)) || defaultData();
+      } catch (e) {
+        data = defaultData();
+      }
+      if (!data.tables || data.tables.length !== 2)
+        data.tables = defaultData().tables;
+
+      function save() {
+        localStorage.setItem(KEY, JSON.stringify(data));
+        renderAll();
+      }
+      function toast(msg) {
+        let el = document.getElementById("toast");
+        el.textContent = msg;
+        el.classList.add("show");
+        setTimeout(() => el.classList.remove("show"), 2300);
+      }
+      function go(page) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.toggle("active", p.id === page));
+        document
+          .querySelectorAll(".nav button")
+          .forEach((b) =>
+            b.classList.toggle("active", b.dataset.page === page),
+          );
+        let names = {
+          dashboard: "Bosh sahifa",
+          tables: "Stol boshqaruvi",
+          reports: "Hisobotlar",
+          expenses: "Xarajatlar",
+          history: "O‘yinlar tarixi",
+          settings: "Sozlamalar",
+        };
+        document.getElementById("pageTitle").textContent = names[page];
+        if (page === "reports") renderReports();
+        if (page === "history") renderHistory();
+        if (page === "expenses") renderExpenses();
+        window.scrollTo(0, 0);
+      }
+      document
+        .querySelectorAll(".nav button")
+        .forEach((b) => b.addEventListener("click", () => go(b.dataset.page)));
+
+      function daySessions(day = today()) {
+        return data.sessions.filter((s) => s.date === day);
+      }
+      function dayExpenses(day = today()) {
+        return data.expenses
+          .filter((e) => e.date === day)
+          .reduce((a, e) => a + Number(e.amount), 0);
+      }
+      function revenue(day = today()) {
+        return daySessions(day).reduce((a, s) => a + Number(s.total), 0);
+      }
+      function calc(session, now = Date.now()) {
+        return (
+          (Math.max(0, Math.ceil((now - session.start) / 60000)) *
+            Number(data.rate)) /
+          60
+        );
+      }
+
+      function tableCard(t) {
+        let s = t.session,
+          busy = !!s,
+          elapsed = busy ? Date.now() - s.start : 0,
+          cost = busy ? calc(s) : 0;
+        return `<article class="table-card ${busy ? "busy" : ""}">
+ <div class="table-top"><div class="table-name"><div class="table-symbol">🎱</div><div><h4>${t.name}</h4><small>${busy ? s.customer || "Mehmon" : "O‘yin boshlashga tayyor"}</small></div></div><span class="pill ${busy ? "busy" : ""}">${busy ? "● BAND" : "○ BO‘SH"}</span></div>
+ <div class="table-middle"><div><div class="timer">${busy ? timeText(elapsed) : "00:00:00"}</div><div class="timer-label">${busy ? "O‘yin davomiyligi" : "Hisoblagich to‘xtatilgan"}</div></div><div class="cost"><b>${money(cost)}</b><small>${money(data.rate)} / soat</small></div></div>
+ <div class="table-actions">${busy ? `<button class="btn btn-primary" onclick="finishSession(${t.id})">⏹ Yakunlash</button><button class="btn btn-soft" onclick="editSession(${t.id})">✎ Mijoz</button>` : `<button class="btn btn-primary" onclick="startSession(${t.id})">▶ O‘yinni boshlash</button>`}</div>
+ <div class="table-info"><span>${busy ? "Boshlangan: " + dateTime(s.start) : "Har daqiqada avtomatik hisob"}</span><span>${busy ? "To‘lov kutilmoqda" : "Tayyor"}</span></div>
+ </article>`;
+      }
+      function renderTables() {
+        let html = data.tables.map(tableCard).join("");
+        document.getElementById("dashTables").innerHTML = html;
+        document.getElementById("allTables").innerHTML = html;
+        let active = data.tables.filter((t) => t.session).length;
+        document.getElementById("activeCount").textContent = active + " / 2";
+        document.getElementById("dashActive").textContent = active + " / 2";
+        document.getElementById("tableBusy").textContent = active;
+        document.getElementById("tableFree").textContent = 2 - active;
+        document.getElementById("tableSessions").textContent =
+          daySessions().length;
+        document.getElementById("tableRevenue").textContent = money(revenue());
+      }
+      function openModal(title, body, actions) {
+        document.getElementById("modalTitle").textContent = title;
+        document.getElementById("modalBody").innerHTML = body;
+        document.getElementById("modalActions").innerHTML = actions;
+        document.getElementById("modalBackdrop").classList.add("show");
+      }
+      function closeModal() {
+        document.getElementById("modalBackdrop").classList.remove("show");
+      }
+
+      function startSession(id) {
+        let t = data.tables.find((x) => x.id === id);
+        if (t.session) return;
+        openModal(
+          t.name + " — yangi o‘yin",
+          `<div class="form-grid"><div class="field"><label>MIJOZ ISMI (IXTIYORIY)</label><input id="newCustomer" placeholder="Masalan: Ali"></div><div class="field"><label>IZOH</label><input id="newNote" placeholder="Qo‘shimcha izoh"></div><p class="small muted">Hisoblagich boshlash tugmasi bosilishi bilan ishga tushadi.</p></div>`,
+          `<button class="btn btn-soft" onclick="closeModal()">Bekor qilish</button><button class="btn btn-primary" onclick="confirmStart(${id})">▶ Boshlash</button>`,
+        );
+      }
+      function confirmStart(id) {
+        let t = data.tables.find((x) => x.id === id);
+        t.session = {
+          start: Date.now(),
+          customer: document.getElementById("newCustomer").value.trim(),
+          note: document.getElementById("newNote").value.trim(),
+        };
+        save();
+        closeModal();
+        toast(t.name + " o‘yini boshlandi");
+      }
+      function editSession(id) {
+        let t = data.tables.find((x) => x.id === id);
+        openModal(
+          "Mijoz ma’lumotlari",
+          `<div class="field"><label>MIJOZ ISMI</label><input id="editCustomer" value="${(t.session.customer || "").replace(/"/g, "&quot;")}"></div>`,
+          `<button class="btn btn-soft" onclick="closeModal()">Bekor qilish</button><button class="btn btn-primary" onclick="saveCustomer(${id})">Saqlash</button>`,
+        );
+      }
+      function saveCustomer(id) {
+        let t = data.tables.find((x) => x.id === id);
+        t.session.customer = document
+          .getElementById("editCustomer")
+          .value.trim();
+        save();
+        closeModal();
+        toast("Mijoz ma’lumoti saqlandi");
+      }
+      function finishSession(id) {
+        let t = data.tables.find((x) => x.id === id),
+          s = t.session;
+        if (!s) return;
+        let mins = Math.max(1, Math.ceil((Date.now() - s.start) / 60000)),
+          total = Math.ceil((mins * data.rate) / 60);
+        openModal(
+          t.name + " — hisob-kitob",
+          `<div class="list">
+ <div class="list-row"><span>Mijoz</span><b>${s.customer || "Mehmon"}</b></div>
+ <div class="list-row"><span>O‘ynagan vaqt</span><b>${timeText(Date.now() - s.start)}</b></div>
+ <div class="list-row"><span>Hisoblangan daqiqa</span><b>${mins} daqiqa</b></div>
+ <div class="list-row"><span>Soatlik narx</span><b>${money(data.rate)}</b></div>
+ <div class="list-row"><span>Jami to‘lov</span><b style="color:var(--gold);font-size:17px">${money(total)}</b></div>
+ </div><div class="form-grid" style="margin-top:15px">
+ <div class="field"><label>TO‘LOV USULI</label><select id="payMethod"><option value="Naqd">Naqd</option><option value="Karta">Karta</option><option value="Boshqa">Boshqa</option></select></div>
+ <div class="field"><label>TO‘LANGAN SUMMA (SO‘M)</label><input id="paidAmount" type="number" min="0" value="${total}"></div></div>`,
+          `<button class="btn btn-soft" onclick="closeModal()">Orqaga</button><button class="btn btn-primary" onclick="confirmFinish(${id},${mins},${total})">Tasdiqlash</button>`,
+        );
+      }
+      function confirmFinish(id, mins, total) {
+        let t = data.tables.find((x) => x.id === id),
+          s = t.session,
+          paid = Number(document.getElementById("paidAmount").value);
+        if (!Number.isFinite(paid) || paid < 0) {
+          toast("To‘lov summasini tekshiring");
+          return;
+        }
+        data.sessions.unshift({
+          id: Date.now(),
+          table: t.name,
+          customer: s.customer || "Mehmon",
+          start: s.start,
+          end: Date.now(),
+          minutes: mins,
+          total,
+          paid,
+          debt: Math.max(0, total - paid),
+          method: document.getElementById("payMethod").value,
+          date: new Date().toISOString().slice(0, 10),
+          note: s.note || "",
+        });
+        t.session = null;
+        save();
+        closeModal();
+        toast("O‘yin yakunlandi. " + money(total));
+      }
+
+      function renderDashboard() {
+        let rev = revenue(),
+          exp = dayExpenses();
+        document.getElementById("dashRevenue").textContent = money(rev);
+        document.getElementById("dashExpense").textContent = money(exp);
+        document.getElementById("dashProfit").textContent = money(rev - exp);
+        let list = [
+          ["Yakunlangan o‘yinlar", daySessions().length],
+          [
+            "Naqd to‘lovlar",
+            money(
+              daySessions()
+                .filter((s) => s.method === "Naqd")
+                .reduce((a, s) => a + s.paid, 0),
+            ),
+          ],
+          [
+            "Karta to‘lovlari",
+            money(
+              daySessions()
+                .filter((s) => s.method === "Karta")
+                .reduce((a, s) => a + s.paid, 0),
+            ),
+          ],
+          [
+            "To‘lanmagan qarz",
+            money(daySessions().reduce((a, s) => a + (s.debt || 0), 0)),
+          ],
+          [
+            "Faol stollar",
+            data.tables.filter((t) => t.session).length + " / 2",
+          ],
+        ];
+        document.getElementById("quickReport").innerHTML = list
+          .map(
+            (x) =>
+              `<div class="list-row"><span>${x[0]}</span><b>${x[1]}</b></div>`,
+          )
+          .join("");
+        renderWeekChart("weekChart", 7);
+      }
+      function renderWeekChart(id, count) {
+        let arr = [];
+        for (let i = count - 1; i >= 0; i--) {
+          let d = new Date();
+          d.setDate(d.getDate() - i);
+          let key = d.toISOString().slice(0, 10);
+          arr.push({
+            label: d.toLocaleDateString("uz-UZ", { weekday: "short" }),
+            value: revenue(key),
+          });
+        }
+        let max = Math.max(1, ...arr.map((x) => x.value));
+        document.getElementById(id).innerHTML = arr
+          .map(
+            (x) =>
+              `<div class="bar-wrap"><span class="bar-value">${x.value ? Math.round(x.value / 1000) + "k" : ""}</span><div class="bar" style="height:${Math.max(3, (x.value / max) * 100)}%"></div><span class="bar-label">${x.label}</span></div>`,
+          )
+          .join("");
+      }
+      function renderExpenses() {
+        let total = data.expenses.reduce((a, e) => a + Number(e.amount), 0);
+        document.getElementById("expenseToday").textContent =
+          money(dayExpenses());
+        document.getElementById("expenseTotal").textContent = money(total);
+        document.getElementById("expenseCount").textContent =
+          data.expenses.length;
+        document.getElementById("expenseRows").innerHTML = data.expenses.length
+          ? data.expenses
+              .slice()
+              .sort((a, b) => b.date.localeCompare(a.date))
+              .map(
+                (e) =>
+                  `<tr><td>${e.date}</td><td>${escapeHTML(e.name)}</td><td>${escapeHTML(e.note || "—")}</td><td>${money(e.amount)}</td><td><button class="btn btn-danger" onclick="deleteExpense(${e.id})">O‘chirish</button></td></tr>`,
+              )
+              .join("")
+          : '<tr><td colspan="5" class="empty">Hozircha xarajatlar yo‘q</td></tr>';
+      }
+      function escapeHTML(s) {
+        return String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      }
+      document.getElementById("expenseForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        let amount = Number(document.getElementById("expenseAmount").value);
+        if (amount <= 0) return;
+        data.expenses.push({
+          id: Date.now(),
+          name: document.getElementById("expenseName").value.trim(),
+          amount,
+          date: document.getElementById("expenseDate").value,
+          note: document.getElementById("expenseNote").value.trim(),
+        });
+        e.target.reset();
+        document.getElementById("expenseDate").value = today();
+        save();
+        toast("Xarajat saqlandi");
+      });
+      function deleteExpense(id) {
+        if (!confirm("Bu xarajatni o‘chirmoqchimisiz?")) return;
+        data.expenses = data.expenses.filter((e) => e.id !== id);
+        save();
+      }
+      function renderHistory() {
+        let q = (
+          document.getElementById("historySearch").value || ""
+        ).toLowerCase();
+        let tab = document.getElementById("historyTable").value;
+        let rows = data.sessions.filter(
+          (s) =>
+            (!tab || s.table === tab) &&
+            `${s.customer} ${s.table}`.toLowerCase().includes(q),
+        );
+        document.getElementById("historyRows").innerHTML = rows.length
+          ? rows
+              .map(
+                (s) => `<tr>
+ <td>${s.date}</td><td>${s.table}</td><td>${escapeHTML(s.customer)}</td>
+ <td>${new Date(s.start).toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" })}</td>
+ <td>${new Date(s.end).toLocaleTimeString("uz-UZ", { hour: "2-digit", minute: "2-digit" })}</td>
+ <td>${s.minutes} daq.</td><td>${money(s.total)}</td><td>${s.method}${s.debt ? ` · qarz ${money(s.debt)}` : ""}</td></tr>`,
+              )
+              .join("")
+          : '<tr><td colspan="8" class="empty">Hozircha o‘yinlar tarixi yo‘q</td></tr>';
+      }
+      function renderReports() {
+        let from = document.getElementById("reportFrom").value || today();
+        let to = document.getElementById("reportTo").value || today();
+        let ss = data.sessions.filter((s) => s.date >= from && s.date <= to);
+        let ee = data.expenses.filter((e) => e.date >= from && e.date <= to);
+        let rev = ss.reduce((a, s) => a + s.total, 0),
+          exp = ee.reduce((a, e) => a + Number(e.amount), 0);
+        document.getElementById("repRevenue").textContent = money(rev);
+        document.getElementById("repExpense").textContent = money(exp);
+        document.getElementById("repProfit").textContent = money(rev - exp);
+        let days = [],
+          start = new Date(from + "T12:00:00"),
+          end = new Date(to + "T12:00:00");
+        for (
+          let d = new Date(start);
+          d <= end && days.length < 31;
+          d.setDate(d.getDate() + 1)
+        ) {
+          let k = d.toISOString().slice(0, 10);
+          days.push({
+            key: k,
+            label: d.toLocaleDateString("uz-UZ", {
+              day: "2-digit",
+              month: "2-digit",
+            }),
+            value: ss
+              .filter((s) => s.date === k)
+              .reduce((a, s) => a + s.total, 0),
+          });
+        }
+        let max = Math.max(1, ...days.map((x) => x.value));
+        document.getElementById("reportChart").innerHTML = days.length
+          ? days
+              .map(
+                (x) =>
+                  `<div class="bar-wrap"><span class="bar-value">${x.value ? Math.round(x.value / 1000) + "k" : ""}</span><div class="bar" style="height:${Math.max(3, (x.value / max) * 100)}%"></div><span class="bar-label">${x.label}</span></div>`,
+              )
+              .join("")
+          : '<div class="empty">Ma’lumot yo‘q</div>';
+        let cash = ss
+          .filter((s) => s.method === "Naqd")
+          .reduce((a, s) => a + s.paid, 0);
+        let card = ss
+          .filter((s) => s.method === "Karta")
+          .reduce((a, s) => a + s.paid, 0);
+        let debt = ss.reduce((a, s) => a + (s.debt || 0), 0);
+        document.getElementById("reportDetails").innerHTML = [
+          ["Yakunlangan o‘yinlar", ss.length],
+          ["Naqd tushum", money(cash)],
+          ["Karta tushumi", money(card)],
+          [
+            "Boshqa to‘lov",
+            money(
+              ss
+                .filter((s) => s.method === "Boshqa")
+                .reduce((a, s) => a + s.paid, 0),
+            ),
+          ],
+          ["To‘lanmagan qarz", money(debt)],
+          ["Xarajatlar soni", ee.length],
+        ]
+          .map(
+            (x) =>
+              `<div class="list-row"><span>${x[0]}</span><b>${x[1]}</b></div>`,
+          )
+          .join("");
+        document.getElementById("reportRows").innerHTML = ss.length
+          ? ss
+              .map(
+                (s) =>
+                  `<tr><td>${s.date}</td><td>${s.table}</td><td>${escapeHTML(s.customer)}</td><td>${s.minutes} daq.</td><td>${money(s.total)}</td><td>${s.method}</td></tr>`,
+              )
+              .join("")
+          : '<tr><td colspan="6" class="empty">Tanlangan davrda ma’lumot yo‘q</td></tr>';
+      }
+      function exportCSV() {
+        let rows = [
+          [
+            "Sana",
+            "Stol",
+            "Mijoz",
+            "Daqiqa",
+            "Jami",
+            "To‘langan",
+            "Qarz",
+            "To‘lov turi",
+          ],
+          ...data.sessions.map((s) => [
+            s.date,
+            s.table,
+            s.customer,
+            s.minutes,
+            s.total,
+            s.paid,
+            s.debt || 0,
+            s.method,
+          ]),
+        ];
+        let csv =
+          "\uFEFF" +
+          rows
+            .map((r) =>
+              r
+                .map((v) => '"' + String(v ?? "").replace(/"/g, '""') + '"')
+                .join(";"),
+            )
+            .join("\n");
+        downloadFile("billiard-hisobot.csv", csv, "text/csv;charset=utf-8");
+        toast("Hisobot yuklab olindi");
+      }
+      function downloadFile(name, content, type) {
+        let a = document.createElement("a"),
+          url = URL.createObjectURL(new Blob([content], { type }));
+        a.href = url;
+        a.download = name;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+      document
+        .getElementById("settingsForm")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          let r = Number(document.getElementById("hourRate").value);
+          if (r <= 0) {
+            toast("Narxni to‘g‘ri kiriting");
+            return;
+          }
+          data.club =
+            document.getElementById("clubName").value.trim() || "Billiard Club";
+          data.rate = r;
+          save();
+          toast("Sozlamalar saqlandi");
+        });
+      function backupData() {
+        downloadFile(
+          "billiard-pro-zaxira.json",
+          JSON.stringify(data, null, 2),
+          "application/json",
+        );
+        toast("Zaxira tayyor");
+      }
+      function restoreData() {
+        let f = document.getElementById("restoreFile").files[0];
+        if (!f) {
+          toast("Avval JSON faylni tanlang");
+          return;
+        }
+        let r = new FileReader();
+        r.onload = () => {
+          try {
+            let x = JSON.parse(r.result);
+            if (!x.tables || !x.sessions || !x.expenses) throw Error();
+            data = x;
+            save();
+            toast("Zaxira tiklandi");
+          } catch (e) {
+            toast("Fayl noto‘g‘ri yoki buzilgan");
+          }
+        };
+        r.readAsText(f);
+      }
+      function clearAll() {
+        if (!confirm("Barcha ma’lumotlar butunlay o‘chadi. Davom etasizmi?"))
+          return;
+        if (!confirm("Oxirgi tasdiq: barcha tarixni o‘chirish?")) return;
+        data = defaultData();
+        save();
+        toast("Ma’lumotlar tozalandi");
+      }
+      function renderAll() {
+        renderTables();
+        renderDashboard();
+        renderExpenses();
+        renderHistory();
+        if (document.getElementById("reports").classList.contains("active"))
+          renderReports();
+        document.getElementById("clubName").value = data.club;
+        document.getElementById("hourRate").value = data.rate;
+      }
+      function tick() {
+        renderTables();
+        renderDashboard();
+      }
+      document.getElementById("liveDate").textContent =
+        new Date().toLocaleDateString("uz-UZ", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+        });
+      document.getElementById("welcomeDate").textContent =
+        new Date().toLocaleDateString("uz-UZ", {
+          day: "numeric",
+          month: "long",
+        });
+      document.getElementById("expenseDate").value = today();
+      document.getElementById("reportFrom").value = today();
+      document.getElementById("reportTo").value = today();
+      renderAll();
+      setInterval(tick, 1000);
+    </script>
+  </body>
+</html>
