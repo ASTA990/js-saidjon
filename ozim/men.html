@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090914" />
+    <title>SAIDJON — Personal Universe</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
+      :root {
+        --bg: #090914;
+        --panel: #111122;
+        --text: #f5f4ff;
+        --muted: #a5a3bd;
+        --purple: #9b7bff;
+        --cyan: #57e6e0;
+        --line: rgba(255, 255, 255, 0.09);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+      body:before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            circle at 15% 10%,
+            rgba(126, 82, 255, 0.16),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 85% 45%,
+            rgba(45, 207, 207, 0.09),
+            transparent 30%
+          );
+        z-index: -1;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .wrap {
+        width: min(1120px, 92%);
+        margin: auto;
+      }
+      nav {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--line);
+        position: sticky;
+        top: 0;
+        background: rgba(9, 9, 20, 0.82);
+        backdrop-filter: blur(18px);
+        z-index: 10;
+      }
+      .logo {
+        font-weight: 900;
+        letter-spacing: 1px;
+        font-size: 20px;
+      }
+      .logo span {
+        color: var(--purple);
+      }
+      .links {
+        display: flex;
+        gap: 24px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .links a:hover {
+        color: white;
+      }
+      .menu {
+        display: none;
+        background: none;
+        border: 1px solid var(--line);
+        color: white;
+        border-radius: 10px;
+        padding: 9px 12px;
+      }
+      .hero {
+        min-height: 650px;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: center;
+        gap: 40px;
+        padding: 70px 0;
+      }
+      .eyebrow {
+        display: inline-flex;
+        gap: 9px;
+        align-items: center;
+        border: 1px solid rgba(155, 123, 255, 0.35);
+        background: rgba(155, 123, 255, 0.09);
+        color: #c8baff;
+        padding: 9px 13px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        background: #69e6a4;
+        border-radius: 50%;
+        box-shadow: 0 0 12px #69e6a4;
+      }
+      h1 {
+        font-size: clamp(48px, 7vw, 82px);
+        line-height: 0.99;
+        letter-spacing: -4px;
+        margin: 25px 0 20px;
+      }
+      h1 span {
+        background: linear-gradient(100deg, #a58aff, #5de6df);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+      .lead {
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.85;
+        max-width: 590px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+      .btn {
+        padding: 13px 18px;
+        border-radius: 13px;
+        font-weight: 800;
+        font-size: 13px;
+        border: 1px solid var(--line);
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        transition: 0.2s;
+      }
+      .btn.primary {
+        background: linear-gradient(110deg, #8d6bfa, #5c5fe8);
+        border: 0;
+      }
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+      .profile {
+        height: 390px;
+        border: 1px solid rgba(155, 123, 255, 0.28);
+        border-radius: 30px;
+        background: linear-gradient(
+          145deg,
+          rgba(155, 123, 255, 0.18),
+          rgba(87, 230, 224, 0.06)
+        );
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .profile:before,
+      .profile:after {
+        content: "";
+        position: absolute;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        width: 290px;
+        height: 290px;
+      }
+      .profile:after {
+        width: 390px;
+        height: 390px;
+      }
+      .monogram {
+        width: 190px;
+        height: 190px;
+        border-radius: 42px;
+        display: grid;
+        place-items: center;
+        font-size: 70px;
+        font-weight: 900;
+        letter-spacing: -7px;
+        background: linear-gradient(145deg, #9c7bff, #4b57bb);
+        box-shadow: 0 25px 90px rgba(124, 91, 255, 0.35);
+        transform: rotate(-8deg);
+        z-index: 1;
+      }
+      .float {
+        position: absolute;
+        padding: 11px 14px;
+        border-radius: 13px;
+        background: #17172b;
+        border: 1px solid var(--line);
+        font-size: 12px;
+        font-weight: 800;
+        z-index: 2;
+      }
+      .f1 {
+        top: 45px;
+        left: 25px;
+      }
+      .f2 {
+        right: 22px;
+        bottom: 48px;
+      }
+      .f3 {
+        right: 20px;
+        top: 55px;
+        color: var(--cyan);
+      }
+      section {
+        padding: 76px 0;
+        scroll-margin-top: 75px;
+      }
+      .section-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        margin-bottom: 28px;
+        gap: 20px;
+      }
+      .kicker {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--purple);
+        font-weight: 900;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      h2 {
+        font-size: clamp(30px, 4vw, 43px);
+        letter-spacing: -1.5px;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+        max-width: 450px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+      }
+      .card {
+        background: linear-gradient(
+          145deg,
+          rgba(23, 23, 43, 0.94),
+          rgba(15, 15, 29, 0.94)
+        );
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 23px;
+        transition: 0.25s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(155, 123, 255, 0.45);
+      }
+      .icon {
+        width: 43px;
+        height: 43px;
+        border-radius: 13px;
+        background: rgba(155, 123, 255, 0.13);
+        display: grid;
+        place-items: center;
+        font-size: 21px;
+        margin-bottom: 18px;
+      }
+      .card h3 {
+        font-size: 17px;
+        margin-bottom: 9px;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+      }
+      .tag {
+        font-size: 11px;
+        color: #d4ccff;
+        border: 1px solid rgba(155, 123, 255, 0.23);
+        background: rgba(155, 123, 255, 0.08);
+        padding: 7px 10px;
+        border-radius: 30px;
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .about-box {
+        padding: 28px;
+        border-radius: 22px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .fact {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+      }
+      .fact:last-child {
+        border: 0;
+      }
+      .fact span:first-child {
+        color: var(--muted);
+      }
+      .fact strong {
+        text-align: right;
+      }
+      .timeline {
+        border-left: 1px solid rgba(155, 123, 255, 0.45);
+        padding-left: 22px;
+        margin-left: 8px;
+      }
+      .event {
+        position: relative;
+        padding: 0 0 25px;
+      }
+      .event:before {
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--purple);
+        left: -27px;
+        top: 4px;
+        box-shadow: 0 0 12px var(--purple);
+      }
+      .event h3 {
+        font-size: 15px;
+        margin-bottom: 6px;
+      }
+      .event p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .project {
+        min-height: 190px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .project small {
+        color: var(--cyan);
+        font-weight: 800;
+        letter-spacing: 1px;
+        font-size: 10px;
+      }
+      .project a {
+        color: #c5b7ff;
+        font-size: 12px;
+        font-weight: 800;
+        margin-top: 15px;
+        display: inline-block;
+      }
+      .contact {
+        background: linear-gradient(
+          120deg,
+          rgba(130, 94, 255, 0.16),
+          rgba(60, 210, 200, 0.08)
+        );
+        border: 1px solid rgba(155, 123, 255, 0.22);
+        border-radius: 26px;
+        padding: 34px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+      }
+      .contact p {
+        color: var(--muted);
+        font-size: 13px;
+        margin-top: 9px;
+      }
+      .socials {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      footer {
+        padding: 30px 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+      }
+      @media (max-width: 800px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 55px;
+        }
+        .profile {
+          height: 300px;
+        }
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .links {
+          display: none;
+        }
+        .menu {
+          display: block;
+        }
+        .links.open {
+          display: flex;
+          position: absolute;
+          top: 76px;
+          left: 0;
+          right: 0;
+          padding: 20px;
+          background: #101020;
+          flex-direction: column;
+          gap: 17px;
+          border-bottom: 1px solid var(--line);
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .contact {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+      @media (max-width: 540px) {
+        h1 {
+          letter-spacing: -2.5px;
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .section-top {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .hero {
+          min-height: auto;
+          padding-bottom: 35px;
+        }
+        section {
+          padding: 55px 0;
+        }
+        .profile {
+          height: 260px;
+        }
+        .monogram {
+          width: 150px;
+          height: 150px;
+          font-size: 55px;
+        }
+        .contact {
+          padding: 25px;
+        }
+        footer {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="wrap">
+      <a class="logo" href="#home">SAIDJON<span>.</span></a>
+      <div class="links" id="navLinks">
+        <a href="#about">Men haqimda</a>
+        <a href="#skills">Ko‘nikmalar</a>
+        <a href="#projects">Loyihalar</a>
+        <a href="#life">Qiziqishlar</a>
+        <a href="#contact">Aloqa</a>
+      </div>
+      <button
+        class="menu"
+        onclick="document.getElementById('navLinks').classList.toggle('open')"
+      >
+        ☰
+      </button>
+    </nav>
+
+    <main class="wrap">
+      <header class="hero" id="home">
+        <div>
+          <div class="eyebrow">
+            <span class="dot"></span> PERSONAL UNIVERSE · 2026
+          </div>
+          <h1>Salom, men<br /><span>Saidjon.</span></h1>
+          <p class="lead">
+            Men — futbol, texnologiya va gaming olamiga qiziqadigan, yangi
+            g‘oyalarni haqiqiy loyihalarga aylantirishni yoqtiradigan insonman.
+            Bu mening kichik raqamli dunyoyim.
+          </p>
+          <div class="actions">
+            <a class="btn primary" href="#about">Men bilan tanishish ↗</a>
+            <a class="btn" href="#projects">Loyihalarimni ko‘rish</a>
+          </div>
+        </div>
+        <div class="profile">
+          <div class="float f1">⚡ CREATIVE MIND</div>
+          <div class="float f2">🎮 GAMER</div>
+          <div class="float f3">⚽ FOOTBALL</div>
+          <div class="monogram">SB</div>
+        </div>
+      </header>
+
+      <section id="about">
+        <div class="section-top">
+          <div>
+            <div class="kicker">01 / ABOUT ME</div>
+            <h2>Men haqimda</h2>
+          </div>
+          <p class="sub">
+            Qiziqishlarim, xarakterim va oldimga qo‘ygan maqsadlarim.
+          </p>
+        </div>
+        <div class="about-grid">
+          <div class="about-box">
+            <h3 style="font-size: 20px; margin-bottom: 12px">
+              Har kuni — yangi imkoniyat.
+            </h3>
+            <p class="sub" style="max-width: none">
+              Men yangi narsalarni o‘rganishni, kompyuterda nimadir yaratishni
+              va o‘z g‘oyalarimni amalga oshirishni yaxshi ko‘raman. Katta
+              maqsadlarim bor va ularga bosqichma-bosqich yaqinlashaman.
+            </p>
+            <div class="tags">
+              <span class="tag">Creative</span><span class="tag">Curious</span
+              ><span class="tag">Goal-oriented</span>
+            </div>
+          </div>
+          <div class="about-box">
+            <div class="fact">
+              <span>Ism</span><strong>Saidjon Babayev</strong>
+            </div>
+            <div class="fact">
+              <span>Tug‘ilgan kun</span><strong>1-avgust</strong>
+            </div>
+            <div class="fact">
+              <span>Sevimli klub</span><strong>FC Barcelona 🔵🔴</strong>
+            </div>
+            <div class="fact">
+              <span>Sevimli futbolchi</span><strong>Lionel Messi 🐐</strong>
+            </div>
+            <div class="fact">
+              <span>Futboldagi pozitsiya</span><strong>LW</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-top">
+          <div>
+            <div class="kicker">02 / MY SKILLS</div>
+            <h2>Nimalarni o‘rganaman?</h2>
+          </div>
+          <p class="sub">
+            Texnologiya bilan tajriba qilish va yangi ko‘nikmalarni
+            rivojlantirish.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>Web dasturlash</h3>
+            <p>
+              Saytlar yaratish, dizayn va interaktiv funksiyalar ustida ishlash.
+            </p>
+            <div class="tags">
+              <span class="tag">HTML</span><span class="tag">CSS</span
+              ><span class="tag">JavaScript</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">🔥</div>
+            <h3>Firebase</h3>
+            <p>
+              Saytlar uchun ma’lumotlar bazasi, autentifikatsiya va hosting
+              bilan ishlash.
+            </p>
+            <div class="tags">
+              <span class="tag">Firestore</span><span class="tag">Hosting</span
+              ><span class="tag">Auth</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">🚀</div>
+            <h3>Deploy & hosting</h3>
+            <p>Loyihalarni internetga joylash va ularga havola berish.</p>
+            <div class="tags">
+              <span class="tag">Vercel</span><span class="tag">Netlify</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-top">
+          <div>
+            <div class="kicker">03 / MY PROJECTS</div>
+            <h2>Loyihalarim</h2>
+          </div>
+          <p class="sub">G‘oyadan boshlangan va internetga chiqqan ishlarim.</p>
+        </div>
+        <div class="grid">
+          <article class="card project">
+            <div>
+              <small>GAMING MARKET</small>
+              <div class="icon">🛒</div>
+              <h3>XANSUKI × MAKAR</h3>
+              <p>
+                Grand Mobile va Roblox uchun e’lonlar joylashga mo‘ljallangan
+                gaming market.
+              </p>
+            </div>
+            <a
+              href="https://xansuki-makar-market.web.app"
+              target="_blank"
+              rel="noopener"
+              >Saytni ochish ↗</a
+            >
+          </article>
+          <article class="card project">
+            <div>
+              <small>PERSONAL PROJECT</small>
+              <div class="icon">🎱</div>
+              <h3>Bilyard hisob tizimi</h3>
+              <p>
+                Bilyard stollari bo‘yicha vaqt va hisob-kitoblarni boshqarish
+                g‘oyasi.
+              </p>
+            </div>
+            <a href="#contact">Loyiha haqida ↗</a>
+          </article>
+          <article class="card project">
+            <div>
+              <small>CREATIVE WEB</small>
+              <div class="icon">💜</div>
+              <h3>Shaxsiy web loyihalar</h3>
+              <p>Oila, jamoa va boshqa maxsus mavzularda saytlar yaratish.</p>
+            </div>
+            <a href="#contact">Bog‘lanish ↗</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="life">
+        <div class="section-top">
+          <div>
+            <div class="kicker">04 / MY WORLD</div>
+            <h2>Mening qiziqishlarim</h2>
+          </div>
+          <p class="sub">
+            Menga ilhom beradigan va bo‘sh vaqtimni mazmunli qiladigan
+            mashg‘ulotlar.
+          </p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="icon">⚽</div>
+            <h3>Football</h3>
+            <p>
+              FC Barcelona muxlisiman. Messi — sevimli futbolchim. Dribling, pas
+              va hujumkor o‘yin menga yoqadi.
+            </p>
+            <div class="tags">
+              <span class="tag">Barcelona</span><span class="tag">Messi</span
+              ><span class="tag">LW</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">🎮</div>
+            <h3>Gaming</h3>
+            <p>
+              Grand Mobile, Roblox, Minecraft, PUBG Mobile, eFootball va boshqa
+              o‘yinlar.
+            </p>
+            <div class="tags">
+              <span class="tag">Grand Mobile</span
+              ><span class="tag">Roblox</span><span class="tag">Minecraft</span>
+            </div>
+          </article>
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>Technology</h3>
+            <p>
+              Yangi dasturlarni sinash, AI vositalarini o‘rganish va o‘z
+              saytlarimni yaratish.
+            </p>
+            <div class="tags">
+              <span class="tag">AI</span><span class="tag">Web</span
+              ><span class="tag">Ideas</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-top">
+          <div>
+            <div class="kicker">05 / MY JOURNEY</div>
+            <h2>Mening yo‘lim</h2>
+          </div>
+          <p class="sub">Hozirgi faoliyatim va kelajakdagi rejalarim.</p>
+        </div>
+        <div class="about-box">
+          <div class="timeline">
+            <div class="event">
+              <h3>Web dasturlashni o‘rganish</h3>
+              <p>
+                HTML, CSS va JavaScript orqali o‘z g‘oyalarimni saytga
+                aylantirishni boshladim.
+              </p>
+            </div>
+            <div class="event">
+              <h3>XANSUKI × MAKAR Gaming Market</h3>
+              <p>
+                O‘z gaming market loyihamni yaratib, Firebase Hosting orqali
+                internetga joyladim.
+              </p>
+            </div>
+            <div class="event">
+              <h3>Grand Mobile — 38-server</h3>
+              <p>
+                O‘yin ichidagi adminlik faoliyati, tartib va jamoa bilan ishlash
+                tajribasi.
+              </p>
+            </div>
+            <div class="event">
+              <h3>Kelajakdagi maqsadlar</h3>
+              <p>
+                Yanada kuchli saytlar yaratish, dasturlashni chuqur o‘rganish va
+                futbol maqsadlarim sari harakat qilish.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="contact">
+          <div>
+            <div class="kicker">06 / CONTACT</div>
+            <h2>Men bilan bog‘lan</h2>
+            <p>Hamkorlik, loyiha yoki shunchaki suhbat uchun.</p>
+          </div>
+          <div class="socials">
+            <a
+              class="btn primary"
+              href="https://t.me/Xan1_suki"
+              target="_blank"
+              rel="noopener"
+              >✈ Telegram</a
+            >
+            <a
+              class="btn"
+              href="https://instagram.com/xansuki.1"
+              target="_blank"
+              rel="noopener"
+              >◎ Instagram</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <span>© 2026 SAIDJON BABAYEV</span>
+      <span>Designed with purpose. Built with passion.</span>
+    </footer>
+    <script>
+      document.querySelectorAll("#navLinks a").forEach((link) => {
+        link.addEventListener("click", () => {
+          document.getElementById("navLinks").classList.remove("open");
+        });
+      });
+    </script>
+  </body>
+</html>
